@@ -25,7 +25,7 @@ namespace TechSupport.View
             username = usernameTextbox.Text;
             password = passwordTextbox.Text;
 
-            return (String.Equals(username, "Jane") && String.Equals(password, " test1234"));
+            return (String.Equals(username, "Jane") && String.Equals(password, "test1234"));
 
         }
       
@@ -34,13 +34,11 @@ namespace TechSupport.View
             if (CheckCredentials())
             {
                 errorMessage.Text = "Success";
-            }
-            else
+            } else
             {
                 errorMessage.ForeColor = Color.Red;
-                errorMessage.Text = "Username or password invalid.";
+                errorMessage.Text = "Invalid username or password.";
             }
-
         }
     }
 }
