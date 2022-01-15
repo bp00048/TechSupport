@@ -11,10 +11,18 @@ using System.Windows.Forms;
 namespace TechSupport.View
 {
     public partial class LoginForm : Form
+        
     {
+        string username;
+        string password;
         public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void loginSubmit(object sender, EventArgs e)
+        {
+
         }
     }
 }
