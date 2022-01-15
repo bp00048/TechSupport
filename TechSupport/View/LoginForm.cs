@@ -20,8 +20,26 @@ namespace TechSupport.View
             InitializeComponent();
         }
 
+        private Boolean CheckCredentials()
+        {
+            username = usernameTextbox.Text;
+            password = passwordTextbox.Text;
+
+            return (String.Equals(username, "Jane") && String.Equals(password, " test1234"));
+
+        }
+      
         private void loginSubmit(object sender, EventArgs e)
         {
+            if (CheckCredentials())
+            {
+                errorMessage.Text = "Success";
+            }
+            else
+            {
+                errorMessage.ForeColor = Color.Red;
+                errorMessage.Text = "Username or password invalid.";
+            }
 
         }
     }
