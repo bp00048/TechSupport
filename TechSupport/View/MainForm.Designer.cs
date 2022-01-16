@@ -50,7 +50,7 @@ namespace TechSupport.View
             this.logoutLabel.TabIndex = 1;
             this.logoutLabel.TabStop = true;
             this.logoutLabel.Text = "Logout";
-            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logoutLabel_LinkClicked);
+            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LogoutLabel_LinkClicked);
             // 
             // MainForm
             // 

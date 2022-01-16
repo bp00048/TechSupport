@@ -13,33 +13,35 @@ namespace TechSupport.View
     public partial class LoginForm : Form
         
     {
-        string username;
+        //The Username string stores the username of the potential user. 
+        //It is references in the MainForm so it is public.
+        public string Username { get; set; }
         string password;
         public LoginForm()
         {
             InitializeComponent();
+
       
         }
 
+        //The credentials (username "Jane" and password "test1234") are checked and case sensitize. The true or false is returned.
         private Boolean CheckCredentials()
         {
-            username = usernameTextbox.Text;
+            Username = usernameTextbox.Text;
             password = passwordTextbox.Text;
 
-            return (String.Equals(username, "Jane") && String.Equals(password, "test1234"));
+            return (String.Equals(Username, "Jane") && String.Equals(password, "test1234"));
 
         }
-      
-        public string GetUsername()
-        {
-            return username;
-        }
+
   
+        //Once the login is successful it hides the login form and creates a new MainForm to show. 
+        //If the login is not successful, an error message is displayed.
         private void LoginSubmit(object sender, EventArgs e)
         {
             if (CheckCredentials())
             {
-                Program.LoginSuccess = true;
+                
                 MainForm newMainForm = new MainForm(this);
                 newMainForm.Show();
                 this.Hide();
@@ -52,20 +54,20 @@ namespace TechSupport.View
         }
 
 
+        //Clears the username and password of the respective textboxes
+        //for the user to log in again and makes the LoginForm appear.
+
         public void LogOut()
         {
             usernameTextbox.Clear();
             passwordTextbox.Clear();
             this.Show();
         }
+
+        //Removes the error message when the user begins retyping in either username or password textbox.
         private void UserInputEntered(object sender, EventArgs e)
         {
             errorMessage.Text = "";
-        }
-
-        private void loginSubmit(object sender, EventArgs e)
-        {
-
         }
     }
 
