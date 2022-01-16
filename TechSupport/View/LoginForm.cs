@@ -18,6 +18,7 @@ namespace TechSupport.View
         public LoginForm()
         {
             InitializeComponent();
+      
         }
 
         private Boolean CheckCredentials()
@@ -29,16 +30,43 @@ namespace TechSupport.View
 
         }
       
-        private void loginSubmit(object sender, EventArgs e)
+        public string GetUsername()
+        {
+            return username;
+        }
+  
+        private void LoginSubmit(object sender, EventArgs e)
         {
             if (CheckCredentials())
             {
-                errorMessage.Text = "Success";
+                Program.LoginSuccess = true;
+                MainForm newMainForm = new MainForm(this);
+                newMainForm.Show();
+                this.Hide();
+            
             } else
             {
                 errorMessage.ForeColor = Color.Red;
                 errorMessage.Text = "Invalid username or password.";
             }
         }
+
+
+        public void LogOut()
+        {
+            usernameTextbox.Clear();
+            passwordTextbox.Clear();
+            this.Show();
+        }
+        private void UserInputEntered(object sender, EventArgs e)
+        {
+            errorMessage.Text = "";
+        }
+
+        private void loginSubmit(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }
