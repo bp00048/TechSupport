@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace TechSupport.View
 {
-    //This class passes the LoginForm through its constructor to build its username data. 
+    /// <summary>
+    /// Main form of the application. Accepts a LoginForm to store the user's username.
+    /// </summary>
+  
     public partial class MainForm : Form
     {
         bool logOut;
@@ -26,7 +21,8 @@ namespace TechSupport.View
 
         }
 
-        //The form closes instead of hides to avoid multiple instances of the form running in the background if the user logs in again.
+        
+       
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             logOut = true;
@@ -34,7 +30,7 @@ namespace TechSupport.View
             this.Close();
         }
 
-        //logOut bool stops the application from exiting when user selects log out instead of clicking the x.
+        
         private void MainClosing(object sender, FormClosingEventArgs e)
         {
             if (!logOut)

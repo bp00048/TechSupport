@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// Displays login information for user to input credentials. When criteria is met, MainForm is launched and Login hides.
+    /// </summary>
     public partial class LoginForm : Form
         
     {
-        //The Username string stores the username of the potential user. 
-        //It is references in the MainForm so it is public.
+     
         public string Username { get; set; }
         string password;
         public LoginForm()
@@ -24,7 +26,7 @@ namespace TechSupport.View
       
         }
 
-        //The credentials (username "Jane" and password "test1234") are checked and case sensitize. The true or false is returned.
+      
         private Boolean CheckCredentials()
         {
             Username = usernameTextbox.Text;
@@ -35,8 +37,6 @@ namespace TechSupport.View
         }
 
   
-        //Once the login is successful it hides the login form and creates a new MainForm to show. 
-        //If the login is not successful, an error message is displayed.
         private void LoginSubmit(object sender, EventArgs e)
         {
             if (CheckCredentials())
@@ -53,9 +53,10 @@ namespace TechSupport.View
             }
         }
 
-
-        //Clears the username and password of the respective textboxes
-        //for the user to log in again and makes the LoginForm appear.
+        /// <summary>
+        /// Clears the username and password of the respective 
+        /// textboxes for the user to log in again and make the LoginForm appear.
+        /// </summary>
 
         public void LogOut()
         {
@@ -64,7 +65,7 @@ namespace TechSupport.View
             this.Show();
         }
 
-        //Removes the error message when the user begins retyping in either username or password textbox.
+        
         private void UserInputEntered(object sender, EventArgs e)
         {
             errorMessage.Text = "";
