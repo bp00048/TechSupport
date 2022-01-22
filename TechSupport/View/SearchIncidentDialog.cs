@@ -17,10 +17,9 @@ namespace TechSupport.View
         {
             try
             {
-         
-                var customerID = int.Parse(this.searchTextBox.Text);
 
-                this.incidentController.Add(new Model.Incident(title, description, customerID));
+                var customerID = int.Parse(this.searchTextBox.Text);
+                this.RefreshDataGrid(customerID);
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -28,6 +27,20 @@ namespace TechSupport.View
                 MessageBox.Show("Something is wrong with the input \n" + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+
+     
+        }
+
+        private void RefreshDataGrid(int customerID)
+        {
+            this.searchResultDataGridView.DataSource = null;
+            this.searchResultDataGridView.DataSource = this.incidentController.GetIncidentList(customerID);
+
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -60,17 +60,34 @@ namespace TechSupport.View
 
         private void addIncidentButton_Click(object sender, System.EventArgs e)
         {
+            this.Hide();
             Form addIncidentDialog = new AddIncidentDialog();
             DialogResult result = addIncidentDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 this.RefreshDataGrid();
+                this.Show();
             }
             else if (result == DialogResult.Cancel)
             {
+                this.Show();
                 MessageBox.Show("Add incident cancelled.");
+       
             }
+        }
+
+        private void searchIncidentButton_Click(object sender, System.EventArgs e)
+        {
+            this.Hide();
+            Form searchIncidentDialog = new SearchIncidentDialog();
+            DialogResult result = searchIncidentDialog.ShowDialog();
+
+            if (result == DialogResult.Cancel)
+            {
+                this.Show();
+            }
+           
         }
     }
 }

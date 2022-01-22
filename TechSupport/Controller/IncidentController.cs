@@ -24,8 +24,23 @@ namespace TechSupport.Controller
         {
             return this.incidentSource.GetIncidentList();
         }
-    
-    
+
+        public List<Incident> GetIncidentList(int customerID)
+        {
+            List<Incident> searchList = new List<Incident>();
+            List<Incident> incidentSourceList = this.incidentSource.GetIncidentList();
+
+            foreach (Incident incident in incidentSourceList)
+            {
+              if (incident.CustomerID == customerID)
+                {
+                    searchList.Add(incident);
+                }
+            }
+            return searchList;
+        }
+
+
         public void Add(Incident incident)
         {
             if (incident == null)
@@ -35,5 +50,8 @@ namespace TechSupport.Controller
 
             this.incidentSource.Add(incident);
         }
+    
+       
+        }
     }
-}
+
