@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\IncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="Model\Incident.cs" />
     <Compile Include="Program.cs" />
