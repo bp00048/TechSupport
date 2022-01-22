@@ -1,21 +1,28 @@
 ﻿using System.Windows.Forms;
+using TechSupport.Controller;
 
 namespace TechSupport.View
 {
-    /// <summary>
-    /// Main form of the application. Accepts a LoginForm to store the user's username.
-    /// </summary>
+    
   
     public partial class MainForm : Form
     {
         bool logOut;
+        private readonly IncidentController incidentController;
         readonly LoginForm currentLogIn;
-    
+
+        /// <summary>
+        /// Main form of the application.
+        /// Accepts a LoginForm to store and display the user's username.
+        /// Displays an incidents list and allows the user to add 
+        /// or search for an incident.
+        /// </summary>
         public MainForm(LoginForm newLogin)
         {
             
             InitializeComponent();
             currentLogIn = newLogin;
+            this.incidentController = new IncidentController();
             currentUsernameLabel.Text = currentLogIn.Username;
             logOut = false;
 
@@ -36,6 +43,33 @@ namespace TechSupport.View
             if (!logOut)
             {
                 Application.Exit();
+            }
+        }
+
+        private void MainForm_Load(object sender, System.EventArgs e)
+        {
+            this.RefreshDataGrid();
+        }
+
+        private void RefreshDataGrid()
+        {
+            this.incidentDataGridView.DataSource = null;
+            this.incidentDataGridView.DataSource = this.incidentController.GetIncidentList();
+            
+        }
+
+        private void addIncidentButton_Click(object sender, System.EventArgs e)
+        {
+            Form addIncidentDialog = new AddIncidentDialog();
+            DialogResult result = addIncidentDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                this.RefreshDataGrid();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                MessageBox.Show("Add incident cancelled.");
             }
         }
     }

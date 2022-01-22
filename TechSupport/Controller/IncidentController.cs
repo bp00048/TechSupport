@@ -12,6 +12,9 @@ namespace TechSupport.Controller
     {
         private IncidentDAL incidentSource;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IncidentController()
         {
             this.incidentSource = new IncidentDAL();

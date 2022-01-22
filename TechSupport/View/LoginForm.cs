@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace TechSupport.View
 {
-    /// <summary>
-    /// Displays login information for user to input credentials. When criteria is met, MainForm is launched and Login hides.
-    /// </summary>
+   
     public partial class LoginForm : Form
         
     {
-     
+
+        /// <summary>
+        /// Displays login information for user to input credentials. 
+        /// When criteria is met, MainForm is launched and Login hides.
+        /// </summary>
         public string Username { get; set; }
         string password;
         public LoginForm()
