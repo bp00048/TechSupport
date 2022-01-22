@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TechSupport.Model
 {
     /// <summary>
-    /// 
-    /// 
+    /// This class contains the title, description and customerID associated with a
+    /// reported incident.
     /// </summary>
     public class Incident
     {

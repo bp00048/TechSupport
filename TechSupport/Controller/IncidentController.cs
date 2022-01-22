@@ -13,7 +13,8 @@ namespace TechSupport.Controller
         private IncidentDAL incidentSource;
 
         /// <summary>
-        /// 
+        /// This controller class interacts with the Incident data source
+        /// and performs all the operations on the Incident data source.
         /// </summary>
         public IncidentController()
         {
@@ -24,7 +25,13 @@ namespace TechSupport.Controller
         {
             return this.incidentSource.GetIncidentList();
         }
-
+        
+        /// <summary>
+        /// Overloaded constructor. Returns incident list that only
+        /// includes the customerId that was passed to the method.
+        /// </summary>
+        /// <param name="customerID">Customer's unique id.</param>
+        /// <returns>List of data incidents that only are involved with the ID specified.</returns>
         public List<Incident> GetIncidentList(int customerID)
         {
             List<Incident> searchList = new List<Incident>();

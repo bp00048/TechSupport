@@ -4,6 +4,9 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// This class includes the DAL of Incident objects. It adds to and returns the list.
+    /// </summary>
     public class IncidentDAL
     {
 

@@ -4,6 +4,11 @@ using TechSupport.Controller;
 
 namespace TechSupport.View
 {
+
+    /// <summary>
+    /// This class shows a dialog box containing a search function that will display the 
+    /// search results including the determined customerId.
+    /// </summary>
     public partial class SearchIncidentDialog : Form
     {
         private readonly IncidentController incidentController;
@@ -11,6 +16,7 @@ namespace TechSupport.View
         {
             InitializeComponent();
             this.incidentController = new IncidentController();
+            this.FormClosed += new FormClosedEventHandler(SearchIncidentDialog_FormClosed);
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -20,7 +26,7 @@ namespace TechSupport.View
 
                 var customerID = int.Parse(this.searchTextBox.Text);
                 this.RefreshDataGrid(customerID);
-                this.DialogResult = DialogResult.OK;
+                
             }
             catch (Exception ex)
             {
@@ -29,6 +35,11 @@ namespace TechSupport.View
             }
 
      
+        }
+
+        private void SearchIncidentDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
 
         private void RefreshDataGrid(int customerID)

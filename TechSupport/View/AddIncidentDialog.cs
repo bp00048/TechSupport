@@ -5,6 +5,11 @@ using TechSupport.Controller;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// This class represents the Add Incident Dialog. The user can fill out a form involving the title, description and customerid
+    /// associated with the incident. If all criteria is met, it is added to the list and the user is brought back to the main form
+    /// with the updated list. If not, the user is alerted of a failed addition.
+    /// </summary>
     public partial class AddIncidentDialog : Form
     {
         private readonly IncidentController incidentController;
