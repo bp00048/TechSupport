@@ -65,13 +65,12 @@ namespace TechSupport.View
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(291, 26);
             this.searchTextBox.TabIndex = 2;
-
             // 
             // searchButton
             // 
             this.searchButton.AutoSize = true;
             this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchButton.Location = new System.Drawing.Point(424, 182);
+            this.searchButton.Location = new System.Drawing.Point(413, 182);
             this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(172, 54);
@@ -84,7 +83,7 @@ namespace TechSupport.View
             // 
             this.cancelButton.AutoSize = true;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(630, 182);
+            this.cancelButton.Location = new System.Drawing.Point(620, 182);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(192, 54);
