@@ -89,5 +89,10 @@ namespace TechSupport.View
             }
            
         }
+
+        private void incidentDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
