@@ -8,13 +8,13 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
-    class IncidentDBDAL
+    public static class IncidentDBDAL
     {
-    
 
+        
     public static List<Incident> GetOpenIncidents()
     {
-        List<Incident> incidentList = new List<Incident>();
+        List<Incident> IncidentList = new List<Incident>();
 
         string selectStatement =
                 "SELECT i.ProductCode, i.DateOpened, i.Name," +
@@ -40,12 +40,12 @@ namespace TechSupport.DAL
                     {
 
                         Incident Incident = new Incident();
-                        Incident.IncidentNumber = reader["IncidentNumber"].ToString();
-                        Incident.IncidentDate = (DateTime)reader["IncidentDate"];
-                        Incident.IncidentTotal = (decimal)reader["IncidentTotal"];
-                        Incident.PaymentTotal = (decimal)reader["PaymentTotal"];
-                        Incident.CreditTotal = (decimal)reader["CreditTotal"];
-                        Incident.DueDate = (DateTime)reader["DueDate"];
+                        Incident.ProductCode = reader["i.ProductCode"].ToString();
+                        Incident.DateOpened = reader["i.DateOpened"].ToString();
+                        Incident.CustomerName = reader["i.Name"].ToString();
+                        Incident.TechnicianName = reader["t.Name"].ToString();
+                        Incident.Title = reader["i.Title"].ToString();
+                    
                         IncidentList.Add(Incident);
                     }
                 }
@@ -76,55 +76,6 @@ namespace TechSupport.DAL
     /// 
     /// </summary>
     /// <returns>a list of Incidents</returns>
-    public List<Incident> GetIncidentsDue2()
-    {
-        List<Incident> IncidentList = new List<Incident>();
-        SqlConnection connection = TechSupportDBConnection.GetConnection();
-        string selectStatement =
-            "SELECT IncidentNumber, IncidentDate, IncidentTotal, " +
-            "PaymentTotal, CreditTotal, DueDate " +
-            "FROM Incidents " +
-            "WHERE IncidentTotal - PaymentTotal - CreditTotal > 0 " +
-            "ORDER BY DueDate";
-        SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-        SqlDataReader reader = null;
-
-        try
-        {
-            connection.Open();
-            reader = selectCommand.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Incident Incident = new Incident();
-                Incident.IncidentNumber = reader["IncidentNumber"].ToString();
-                Incident.IncidentDate = (DateTime)reader["IncidentDate"];
-                Incident.IncidentTotal = (decimal)reader["IncidentTotal"];
-                Incident.PaymentTotal = (decimal)reader["PaymentTotal"];
-                Incident.CreditTotal = (decimal)reader["CreditTotal"];
-                Incident.DueDate = (DateTime)reader["DueDate"];
-                IncidentList.Add(Incident);
-            }
-
-        }
-        //catch (SqlException ex)
-        //{
-        //    throw;
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw;
-        //}
-        finally
-        {
-            if (connection != null)
-                connection.Close();
-            if (reader != null)
-                reader.Close();
-        }
-        return IncidentList;
-    }
-
-
+    
 }
 }

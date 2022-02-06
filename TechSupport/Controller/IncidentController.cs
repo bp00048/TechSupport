@@ -57,13 +57,14 @@ namespace TechSupport.Controller
 
             this.incidentSource.Add(incident);
         }
-    
-       
+        public List<Incident> GetOpenIncidents()
+        {
+            return IncidentDBDAL.GetOpenIncidents();
         }
 
-    public List<Incident> GetOpenIncidents()
-    {
-        return IncidentDBDAL.GetOpenIncidents();
     }
+
+
+ 
     }
 
