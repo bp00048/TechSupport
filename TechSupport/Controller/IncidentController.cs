@@ -60,5 +60,10 @@ namespace TechSupport.Controller
     
        
         }
+
+    public List<Incident> GetOpenIncidents()
+    {
+        return IncidentDBDAL.GetOpenIncidents();
+    }
     }
 
