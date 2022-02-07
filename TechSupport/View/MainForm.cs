@@ -3,10 +3,10 @@ using TechSupport.Controller;
 
 namespace TechSupport.View
 {
-    
-  /// <summary>
-  /// This class displays the Main form of the application with the username and displays the incident list.
-  /// </summary>
+
+    /// <summary>
+    /// This class displays the Main form of the application with the username and displays the incident list.
+    /// </summary>
     public partial class MainForm : Form
     {
         bool logOut;
@@ -21,7 +21,7 @@ namespace TechSupport.View
         /// </summary>
         public MainForm(LoginForm newLogin)
         {
-            
+
             InitializeComponent();
             currentLogIn = newLogin;
             this.incidentController = new IncidentController();
@@ -30,8 +30,8 @@ namespace TechSupport.View
 
         }
 
-        
-       
+
+
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             logOut = true;
@@ -39,7 +39,7 @@ namespace TechSupport.View
             this.Close();
         }
 
-        
+
         private void MainClosing(object sender, FormClosingEventArgs e)
         {
             if (!logOut)
@@ -57,17 +57,43 @@ namespace TechSupport.View
         {
             this.incidentDataGridView.DataSource = null;
             this.incidentDataGridView.DataSource = this.incidentController.GetIncidentList();
-            
+
         }
 
         private void AddIncidentButton_Click(object sender, System.EventArgs e)
         {
+            using (Form addIncidentDialog = new AddIncidentDialog())
+            {
 
+                DialogResult result = addIncidentDialog.ShowDialog();
+
+                if (result == DialogResult.Cancel)
+
+                {
+
+                    this.RefreshDataGrid();
+
+                }
+            }
         }
 
         private void SearchIncidentButton_Click(object sender, System.EventArgs e)
         {
+            using (Form searchIncidentDialog = new SearchIncidentDialog())
+            {
 
+                DialogResult result = searchIncidentDialog.ShowDialog();
+
+                if (result == DialogResult.Cancel)
+
+                {
+
+                    this.RefreshDataGrid();
+
+                }
+
+            }
         }
     }
 }
+

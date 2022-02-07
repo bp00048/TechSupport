@@ -32,7 +32,7 @@ namespace TechSupport.View
                 var customerID = int.Parse(this.customerIDTextBox.Text);
 
                 this.incidentController.Add(new Model.Incident(title, description, customerID));
-                this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.Cancel;
             }
             catch (Exception ex)
             {
