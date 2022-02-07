@@ -1,9 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechSupport.Model;
 
 namespace TechSupport.DAL
@@ -11,71 +9,68 @@ namespace TechSupport.DAL
     public static class IncidentDBDAL
     {
 
-        
-    public static List<Incident> GetOpenIncidents()
-    {
-        List<Incident> IncidentList = new List<Incident>();
 
-        string selectStatement =
-                "SELECT i.ProductCode, i.DateOpened, i.Name," +
-                "t.Name, i.Title" +
-                "FROM Incidents i" +
-                "LEFT JOIN Technicians t" +
-                "ON i.techID = t.techID" +
-                "WHERE DateClosed = null" +
-                "ORDER BY DateOpened";
-        // the try-catch block is commented because the default behavior of exception handling is
-        // exceptions are propagated to the caller of the method when exceptions are not caught in the method.
-        //try
-        //{
-        using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+        public static List<Incident> GetOpenIncidents()
         {
-            connection.Open();
+            List<Incident> incidentList = new List<Incident>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
 
-            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+            string selectStatement =
+              "SELECT ProductCode, DateOpened, " +
+              "Customers.Name as customerName, Technicians.Name as techniciansName, Title " +
+              "FROM Incidents " +
+              "JOIN Customers " +
+              "ON Customers.CustomerID=Incidents.CustomerID " +
+              "LEFT JOIN Technicians " +
+              "ON Incidents.techID = Technicians.techID " +
+              "WHERE DateClosed IS NULL " +
+              "ORDER BY DateOpened DESC ";
+             
+            //  "ORDER BY DateOpened ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+
+            // the try-catch block is commented because the default behavior of exception handling is
+            // exceptions are propagated to the caller of the method when exceptions are not caught in the method.
+            //try
+            //{
+
+            try
             {
-                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+              
+
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
+                    Incident Incident = new Incident();
 
-                        Incident Incident = new Incident();
-                        Incident.ProductCode = reader["i.ProductCode"].ToString();
-                        Incident.DateOpened = reader["i.DateOpened"].ToString();
-                        Incident.CustomerName = reader["i.Name"].ToString();
-                        Incident.TechnicianName = reader["t.Name"].ToString();
-                        Incident.Title = reader["i.Title"].ToString();
-                    
-                        IncidentList.Add(Incident);
-                    }
+                    Incident.ProductCode = reader["ProductCode"].ToString();
+                    Incident.DateOpened = (DateTime)reader["DateOpened"];
+                    Incident.CustomerName = reader["customerName"].ToString();
+                    Incident.TechnicianName = reader["techniciansName"].ToString();
+                    Incident.Title = reader["Title"].ToString();
+
+                    incidentList.Add(Incident);
                 }
+
             }
+            //catch (SqlException ex)
+            //{
+            //    throw;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //}
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return incidentList;
         }
-
-
-        // }
-        //catch (SqlException ex)
-        //{
-        //exceptions are thrown to the controller, then to the view
-        //Please make sure that do not use MessageBox.Show(ex.Message) in the DAL
-        //because it couples the DAL with the view
-
-        //throw is used instead of throw ex because the former preserves the stack trace
-        //    throw ;
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ;
-        //}
-
-        return IncidentList;
-    }
-    /// <summary>
-    /// This method uses try/catch/finally and placed closing of the resources (connection, reader) in the 
-    /// finally block.
-    /// 
-    /// </summary>
-    /// <returns>a list of Incidents</returns>
-    
-}
-}
+    } 
+}  

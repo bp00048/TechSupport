@@ -14,6 +14,7 @@ namespace TechSupport.Model
 
         public int CustomerID { get; set; }
 
+      
         private string productCode;
         private DateTime dateOpened;
         private string customerName;
@@ -47,8 +48,9 @@ namespace TechSupport.Model
 
         }
 
+    
         public string ProductCode { get; set; }
-        public string DateOpened { get; set; }
+        public DateTime DateOpened { get; set; }
         public string CustomerName { get; set; }
         public string TechnicianName { get; set; }
 

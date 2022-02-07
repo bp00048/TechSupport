@@ -24,7 +24,7 @@ namespace TechSupport.UserControls
         }
 
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
 
             try

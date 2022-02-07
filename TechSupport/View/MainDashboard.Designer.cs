@@ -36,13 +36,15 @@ namespace TechSupport.View
             this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.SearchIncidentsTab = new System.Windows.Forms.TabPage();
             this.searchIncidentsUserControl1 = new TechSupport.UserControls.SearchIncidentsUserControl();
+            this.DisplayOpenIncidentsTab = new System.Windows.Forms.TabPage();
+            this.displayOpenIncidentsUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.currentUsernameLabel = new System.Windows.Forms.Label();
-            this.DisplayOpenIncidentsTab = new System.Windows.Forms.TabPage();
             this.mainTabControl.SuspendLayout();
             this.AddIncidentTab.SuspendLayout();
             this.LoadIncidentsTab.SuspendLayout();
             this.SearchIncidentsTab.SuspendLayout();
+            this.DisplayOpenIncidentsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -118,6 +120,25 @@ namespace TechSupport.View
             this.searchIncidentsUserControl1.Size = new System.Drawing.Size(889, 605);
             this.searchIncidentsUserControl1.TabIndex = 0;
             // 
+            // DisplayOpenIncidentsTab
+            // 
+            this.DisplayOpenIncidentsTab.Controls.Add(this.displayOpenIncidentsUserControl1);
+            this.DisplayOpenIncidentsTab.Location = new System.Drawing.Point(4, 41);
+            this.DisplayOpenIncidentsTab.Name = "DisplayOpenIncidentsTab";
+            this.DisplayOpenIncidentsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.DisplayOpenIncidentsTab.Size = new System.Drawing.Size(924, 604);
+            this.DisplayOpenIncidentsTab.TabIndex = 3;
+            this.DisplayOpenIncidentsTab.Text = "DisplayOpenIncidents";
+            this.DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
+            // 
+            // displayOpenIncidentsUserControl1
+            // 
+            this.displayOpenIncidentsUserControl1.Location = new System.Drawing.Point(8, 17);
+            this.displayOpenIncidentsUserControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.displayOpenIncidentsUserControl1.Name = "displayOpenIncidentsUserControl1";
+            this.displayOpenIncidentsUserControl1.Size = new System.Drawing.Size(892, 556);
+            this.displayOpenIncidentsUserControl1.TabIndex = 0;
+            // 
             // logoutLabel
             // 
             this.logoutLabel.AutoSize = true;
@@ -140,16 +161,6 @@ namespace TechSupport.View
             this.currentUsernameLabel.Size = new System.Drawing.Size(0, 25);
             this.currentUsernameLabel.TabIndex = 5;
             // 
-            // DisplayOpenIncidentsTab
-            // 
-            this.DisplayOpenIncidentsTab.Location = new System.Drawing.Point(4, 41);
-            this.DisplayOpenIncidentsTab.Name = "DisplayOpenIncidentsTab";
-            this.DisplayOpenIncidentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DisplayOpenIncidentsTab.Size = new System.Drawing.Size(924, 604);
-            this.DisplayOpenIncidentsTab.TabIndex = 3;
-            this.DisplayOpenIncidentsTab.Text = "DisplayOpenIncidents";
-            this.DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
-            // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -165,6 +176,7 @@ namespace TechSupport.View
             this.AddIncidentTab.ResumeLayout(false);
             this.LoadIncidentsTab.ResumeLayout(false);
             this.SearchIncidentsTab.ResumeLayout(false);
+            this.DisplayOpenIncidentsTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +194,6 @@ namespace TechSupport.View
         private UserControls.LoadIncidentUserControl loadIncidentUserControl1;
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private System.Windows.Forms.TabPage DisplayOpenIncidentsTab;
+        private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl1;
     }
 }

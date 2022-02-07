@@ -40,19 +40,17 @@ namespace TechSupport.View
             // currentUsernameLabel
             // 
             this.currentUsernameLabel.AutoSize = true;
-            this.currentUsernameLabel.Location = new System.Drawing.Point(988, 14);
-            this.currentUsernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.currentUsernameLabel.Location = new System.Drawing.Point(659, 9);
             this.currentUsernameLabel.Name = "currentUsernameLabel";
-            this.currentUsernameLabel.Size = new System.Drawing.Size(0, 20);
+            this.currentUsernameLabel.Size = new System.Drawing.Size(0, 13);
             this.currentUsernameLabel.TabIndex = 0;
             // 
             // logoutLabel
             // 
             this.logoutLabel.AutoSize = true;
-            this.logoutLabel.Location = new System.Drawing.Point(988, 66);
-            this.logoutLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.logoutLabel.Location = new System.Drawing.Point(659, 43);
             this.logoutLabel.Name = "logoutLabel";
-            this.logoutLabel.Size = new System.Drawing.Size(59, 20);
+            this.logoutLabel.Size = new System.Drawing.Size(40, 13);
             this.logoutLabel.TabIndex = 1;
             this.logoutLabel.TabStop = true;
             this.logoutLabel.Text = "Logout";
@@ -62,9 +60,10 @@ namespace TechSupport.View
             // 
             this.addIncidentButton.AutoSize = true;
             this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addIncidentButton.Location = new System.Drawing.Point(420, 160);
+            this.addIncidentButton.Location = new System.Drawing.Point(280, 104);
+            this.addIncidentButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addIncidentButton.Name = "addIncidentButton";
-            this.addIncidentButton.Size = new System.Drawing.Size(178, 49);
+            this.addIncidentButton.Size = new System.Drawing.Size(119, 32);
             this.addIncidentButton.TabIndex = 1;
             this.addIncidentButton.Text = "Add Incident";
             this.addIncidentButton.UseVisualStyleBackColor = true;
@@ -74,10 +73,9 @@ namespace TechSupport.View
             // 
             this.searchIncidentButton.AutoSize = true;
             this.searchIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchIncidentButton.Location = new System.Drawing.Point(633, 160);
-            this.searchIncidentButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.searchIncidentButton.Location = new System.Drawing.Point(422, 104);
             this.searchIncidentButton.Name = "searchIncidentButton";
-            this.searchIncidentButton.Size = new System.Drawing.Size(216, 49);
+            this.searchIncidentButton.Size = new System.Drawing.Size(144, 32);
             this.searchIncidentButton.TabIndex = 2;
             this.searchIncidentButton.Text = "Search Incident";
             this.searchIncidentButton.UseVisualStyleBackColor = true;
@@ -86,24 +84,21 @@ namespace TechSupport.View
             // incidentDataGridView
             // 
             this.incidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.incidentDataGridView.Location = new System.Drawing.Point(304, 234);
-            this.incidentDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.incidentDataGridView.Location = new System.Drawing.Point(203, 152);
             this.incidentDataGridView.Name = "incidentDataGridView";
-            this.incidentDataGridView.RowHeadersWidth = 62;
-            this.incidentDataGridView.Size = new System.Drawing.Size(612, 380);
+            this.incidentDataGridView.Size = new System.Drawing.Size(413, 267);
             this.incidentDataGridView.TabIndex = 4;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 461);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.incidentDataGridView);
             this.Controls.Add(this.searchIncidentButton);
             this.Controls.Add(this.addIncidentButton);
             this.Controls.Add(this.logoutLabel);
             this.Controls.Add(this.currentUsernameLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";

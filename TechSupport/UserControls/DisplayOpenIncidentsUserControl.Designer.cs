@@ -29,29 +29,13 @@ namespace TechSupport.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
             this.ProductCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DateOpened = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Customer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Technician = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OpenIncidentsListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ProductCode,
-            this.DateOpened,
-            this.Customer,
-            this.Technician,
-            this.Title});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(20, 91);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(612, 500);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // ProductCode
             // 
@@ -78,24 +62,41 @@ namespace TechSupport.UserControls
             this.Title.Text = "Title";
             this.Title.Width = 212;
             // 
+            // OpenIncidentsListView
+            // 
+            this.OpenIncidentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProductCode,
+            this.DateOpened,
+            this.Customer,
+            this.Technician,
+            this.Title});
+            this.OpenIncidentsListView.HideSelection = false;
+            this.OpenIncidentsListView.Location = new System.Drawing.Point(3, 22);
+            this.OpenIncidentsListView.Name = "OpenIncidentsListView";
+            this.OpenIncidentsListView.Size = new System.Drawing.Size(703, 562);
+            this.OpenIncidentsListView.TabIndex = 6;
+            this.OpenIncidentsListView.UseCompatibleStateImageBehavior = false;
+            this.OpenIncidentsListView.View = System.Windows.Forms.View.Details;
+            // 
             // DisplayOpenIncidentsUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.OpenIncidentsListView);
             this.Name = "DisplayOpenIncidentsUserControl";
-            this.Size = new System.Drawing.Size(652, 642);
+            this.Size = new System.Drawing.Size(709, 637);
+            this.Load += new System.EventHandler(this.DisplayOpenIncidents_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader ProductCode;
         private System.Windows.Forms.ColumnHeader DateOpened;
         private System.Windows.Forms.ColumnHeader Customer;
         private System.Windows.Forms.ColumnHeader Technician;
         private System.Windows.Forms.ColumnHeader Title;
+        private System.Windows.Forms.ListView OpenIncidentsListView;
     }
 }
