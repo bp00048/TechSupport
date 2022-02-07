@@ -25,6 +25,19 @@ namespace TechSupport.View
         private void SearchButton_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+
+                var customerID = int.Parse(this.searchTextBox.Text);
+                this.RefreshDataGrid(customerID);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("CustomerID must be a number", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
         private void SearchIncidentDialog_FormClosed(object sender, FormClosedEventArgs e)
