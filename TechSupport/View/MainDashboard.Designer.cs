@@ -133,10 +133,10 @@ namespace TechSupport.View
             // 
             // displayOpenIncidentsUserControl1
             // 
-            this.displayOpenIncidentsUserControl1.Location = new System.Drawing.Point(8, 17);
+            this.displayOpenIncidentsUserControl1.Location = new System.Drawing.Point(8, -20);
             this.displayOpenIncidentsUserControl1.Margin = new System.Windows.Forms.Padding(5);
             this.displayOpenIncidentsUserControl1.Name = "displayOpenIncidentsUserControl1";
-            this.displayOpenIncidentsUserControl1.Size = new System.Drawing.Size(892, 556);
+            this.displayOpenIncidentsUserControl1.Size = new System.Drawing.Size(911, 616);
             this.displayOpenIncidentsUserControl1.TabIndex = 0;
             // 
             // logoutLabel

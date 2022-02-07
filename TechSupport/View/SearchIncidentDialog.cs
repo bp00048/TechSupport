@@ -12,6 +12,9 @@ namespace TechSupport.View
     public partial class SearchIncidentDialog : Form
     {
         private readonly IncidentController incidentController;
+        /// <summary>
+        /// Constructor. Initializes a new incidentcontroller and event handler for closing the window and application.
+        /// </summary>
         public SearchIncidentDialog()
         {
             InitializeComponent();
@@ -19,22 +22,9 @@ namespace TechSupport.View
             this.FormClosed += new FormClosedEventHandler(SearchIncidentDialog_FormClosed);
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
-            try
-            {
 
-                var customerID = int.Parse(this.searchTextBox.Text);
-                this.RefreshDataGrid(customerID);
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something is wrong with the input \n" + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-
-     
         }
 
         private void SearchIncidentDialog_FormClosed(object sender, FormClosedEventArgs e)
@@ -49,9 +39,10 @@ namespace TechSupport.View
 
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
+
     }
 }

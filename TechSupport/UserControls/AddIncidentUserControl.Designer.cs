@@ -102,7 +102,7 @@ namespace TechSupport.UserControls
             this.addIncidentButton.TabIndex = 6;
             this.addIncidentButton.Text = "Add";
             this.addIncidentButton.UseVisualStyleBackColor = true;
-            this.addIncidentButton.Click += new System.EventHandler(this.addIncidentButton_Click);
+            this.addIncidentButton.Click += new System.EventHandler(this.AddIncidentButton_Click);
             // 
             // clearButton
             // 
@@ -116,7 +116,7 @@ namespace TechSupport.UserControls
             this.clearButton.Text = "Clear";
             this.clearButton.UseMnemonic = false;
             this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // customerIDLabel
             // 
@@ -138,6 +138,7 @@ namespace TechSupport.UserControls
             this.customerIDTextBox.Name = "customerIDTextBox";
             this.customerIDTextBox.Size = new System.Drawing.Size(177, 26);
             this.customerIDTextBox.TabIndex = 3;
+            this.customerIDTextBox.TextChanged += new System.EventHandler(this.TextBoxChanged);
             // 
             // titleLabel
             // 
@@ -159,6 +160,7 @@ namespace TechSupport.UserControls
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(177, 26);
             this.titleTextBox.TabIndex = 1;
+            this.titleTextBox.TextChanged += new System.EventHandler(this.TextBoxChanged);
             // 
             // descriptionTextBox
             // 
@@ -168,6 +170,7 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(177, 26);
             this.descriptionTextBox.TabIndex = 2;
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.TextBoxChanged);
             // 
             // AddIncidentUserControl
             // 

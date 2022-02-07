@@ -6,9 +6,17 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// This class includes the DAL from the tech support database. It returns the open incidents.
+    /// </summary>
     public static class IncidentDBDAL
     {
 
+        /// <summary>
+        /// Connects to the Tech Support database and uses a select statement to get the product code, date opened, customer name, technician name and title
+        /// from the selected tables. It then returns a list of the designated incidents objects.
+        /// </summary>
+        /// <returns></returns>
 
         public static List<Incident> GetOpenIncidents()
         {
@@ -23,17 +31,9 @@ namespace TechSupport.DAL
               "ON Customers.CustomerID=Incidents.CustomerID " +
               "LEFT JOIN Technicians " +
               "ON Incidents.techID = Technicians.techID " +
-              "WHERE DateClosed IS NULL " +
-              "ORDER BY DateOpened DESC ";
-             
-            //  "ORDER BY DateOpened ";
+              "WHERE DateClosed IS NULL ";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             SqlDataReader reader = null;
-
-            // the try-catch block is commented because the default behavior of exception handling is
-            // exceptions are propagated to the caller of the method when exceptions are not caught in the method.
-            //try
-            //{
 
             try
             {
@@ -43,7 +43,8 @@ namespace TechSupport.DAL
 
                 while (reader.Read())
                 {
-                    Incident Incident = new Incident();
+                    Incident incident = new Incident();
+          
 
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
@@ -55,14 +56,7 @@ namespace TechSupport.DAL
                 }
 
             }
-            //catch (SqlException ex)
-            //{
-            //    throw;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw;
-            //}
+
             finally
             {
                 if (connection != null)

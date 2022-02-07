@@ -21,6 +21,11 @@ namespace TechSupport.Controller
             this.incidentSource = new IncidentDAL();
         }
 
+        /// <summary>
+        /// Returns the incident list from the DAL to be displayed
+        /// </summary>
+        /// <returns></returns>
+
         public List<Incident> GetIncidentList()
         {
             return this.incidentSource.GetIncidentList();
@@ -34,20 +39,13 @@ namespace TechSupport.Controller
         /// <returns>List of data incidents that only are involved with the ID specified.</returns>
         public List<Incident> GetIncidentList(int customerID)
         {
-            List<Incident> searchList = new List<Incident>();
-            List<Incident> incidentSourceList = this.incidentSource.GetIncidentList();
-
-            foreach (Incident incident in incidentSourceList)
-            {
-              if (incident.CustomerID == customerID)
-                {
-                    searchList.Add(incident);
-                }
-            }
-            return searchList;
+            return this.incidentSource.GetIncidentList(customerID);
         }
 
-
+        /// <summary>
+        /// Adds an incident to the DAL list 
+        /// </summary>
+        /// <param name="incident">The incident to be added</param>
         public void Add(Incident incident)
         {
             if (incident == null)
@@ -57,6 +55,10 @@ namespace TechSupport.Controller
 
             this.incidentSource.Add(incident);
         }
+        /// <summary>
+        /// Returns the incident list from the DBDAL to be displayed
+        /// </summary>
+        /// <returns></returns>
         public List<Incident> GetOpenIncidents()
         {
             return IncidentDBDAL.GetOpenIncidents();

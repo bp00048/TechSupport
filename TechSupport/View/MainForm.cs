@@ -4,7 +4,9 @@ using TechSupport.Controller;
 namespace TechSupport.View
 {
     
-  
+  /// <summary>
+  /// This class displays the Main form of the application with the username and displays the incident list.
+  /// </summary>
     public partial class MainForm : Form
     {
         bool logOut;
@@ -58,39 +60,12 @@ namespace TechSupport.View
             
         }
 
-        private void addIncidentButton_Click(object sender, System.EventArgs e)
+        private void AddIncidentButton_Click(object sender, System.EventArgs e)
         {
-            this.Hide();
-            Form addIncidentDialog = new AddIncidentDialog();
-            DialogResult result = addIncidentDialog.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                this.RefreshDataGrid();
-                this.Show();
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                this.Show();
-                MessageBox.Show("Add incident cancelled.");
-       
-            }
         }
 
-        private void searchIncidentButton_Click(object sender, System.EventArgs e)
-        {
-            this.Hide();
-            Form searchIncidentDialog = new SearchIncidentDialog();
-            DialogResult result = searchIncidentDialog.ShowDialog();
-
-            if (result == DialogResult.Cancel)
-            {
-                this.Show();
-            }
-           
-        }
-
-        private void incidentDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SearchIncidentButton_Click(object sender, System.EventArgs e)
         {
 
         }

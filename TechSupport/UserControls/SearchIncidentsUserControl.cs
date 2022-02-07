@@ -4,10 +4,16 @@ using TechSupport.Controller;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// This class searches through the in-memory incident list based on a customer id inputted by the user.
+    /// </summary>
     public partial class SearchIncidentsUserControl : UserControl
     {
 
         private readonly IncidentController incidentController;
+        /// <summary>
+        /// initializes the component and a new incident controller.
+        /// </summary>
         public SearchIncidentsUserControl()
         {
             InitializeComponent();
@@ -34,9 +40,9 @@ namespace TechSupport.UserControls
                 this.RefreshDataGrid(customerID);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Something is wrong with the input \n" + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("CustomerID must be a number", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 

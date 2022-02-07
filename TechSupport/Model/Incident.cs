@@ -14,15 +14,21 @@ namespace TechSupport.Model
 
         public int CustomerID { get; set; }
 
-      
-        private string productCode;
-        private DateTime dateOpened;
-        private string customerName;
-        private string technicianName;
-       
-       
+        public string ProductCode { get; set; }
+        public DateTime DateOpened { get; set; }
+        public string CustomerName { get; set; }
+        public string TechnicianName { get; set; }
+
+        /// <summary>
+        /// Overloaded constructor. Assigns the title, description and customer Id assuming it follows the correct critera (cannot be null/empty and customer
+        /// id must be a number). If it doesnt, an error is thrown.
+        /// </summary>
+        /// <param name="title">Title of incident</param>
+        /// <param name="description">Description of incident</param>
+        /// <param name="customerID">Customer ID associated with the incident</param>
         public Incident(string title, string description, int customerID)
         {
+
             if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentException("Incident title cannot be null or empty", "title");
@@ -37,22 +43,19 @@ namespace TechSupport.Model
             {
                 throw new ArgumentOutOfRangeException("customerID", "Customer ID needs to be higher than 0");
             }
-
+           
+          
             this.Title = title;
             this.Description = description;
             this.CustomerID = customerID;
         }
-
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public Incident()
         {
-
         }
 
-    
-        public string ProductCode { get; set; }
-        public DateTime DateOpened { get; set; }
-        public string CustomerName { get; set; }
-        public string TechnicianName { get; set; }
 
     }
 }

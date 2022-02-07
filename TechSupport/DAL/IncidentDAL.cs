@@ -18,11 +18,15 @@ namespace TechSupport.DAL
              new Incident("Computer not turning on", "Sending from phone...", 7640),
              new Incident("Mouse", "Not detecting mouse bluetooth", 7640)
             };
-
+        /// <summary>
+        /// Returns the list of incidents
+        /// </summary>
+        /// <returns></returns>
         public List<Incident> GetIncidentList()
         {
             return _incidents;
         }
+
         public void Add(Incident incident)
         {
             if (incident == null)
@@ -32,6 +36,19 @@ namespace TechSupport.DAL
 
             _incidents.Add(incident);
         
+        }
+        /// <summary>
+        /// Returns a list of incidents that include only the customerID passed through the method
+        /// </summary>
+        /// <param name="customerID">The customer searched for</param>
+        /// <returns></returns>
+        public List<Incident> GetIncidentList(int customerID)
+        {
+            List<Incident> searchList = new List<Incident>();
+
+            searchList = _incidents.FindAll(s => s.CustomerID.Equals(customerID));
+           
+            return searchList;
         }
     }
 }

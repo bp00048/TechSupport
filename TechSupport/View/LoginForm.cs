@@ -4,7 +4,9 @@ using System.Windows.Forms;
 
 namespace TechSupport.View
 {
-   
+   /// <summary>
+   /// This class displays a login form for the user to log in with designated username and password.
+   /// </summary>
     public partial class LoginForm : Form
         
     {

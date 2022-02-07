@@ -13,14 +13,16 @@ namespace TechSupport.View
     public partial class AddIncidentDialog : Form
     {
         private readonly IncidentController incidentController;
-        
+        /// <summary>
+        /// Constructor. Initializes the component and a new incident controller.
+        /// </summary>
         public AddIncidentDialog()
         {
             InitializeComponent();
             this.incidentController = new IncidentController();
         }
 
-        private void addIncidentButton_Click(object sender, System.EventArgs e)
+        private void AddIncidentButton_Click(object sender, System.EventArgs e)
         {
 
             try
@@ -39,9 +41,10 @@ namespace TechSupport.View
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
+
     }
 }

@@ -4,11 +4,18 @@ using TechSupport.Controller;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// This class displays the current in-memory incident list and updates when loaded.
+    /// </summary>
 
     public partial class LoadIncidentUserControl : UserControl
     {
         private readonly IncidentController incidentController;
 
+        /// <summary>
+        /// Initializes the component, a new incidentcontroller object and a load event handler. It also refreshes the datagrid
+        /// to display an up-to-date list.
+        /// </summary>
         public LoadIncidentUserControl()
         {
             InitializeComponent();

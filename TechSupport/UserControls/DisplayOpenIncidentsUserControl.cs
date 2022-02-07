@@ -6,10 +6,15 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// Displays the open incidents in the tech support database.
+    /// </summary>
     public partial class DisplayOpenIncidentsUserControl : UserControl
     {
         private IncidentController inController;
-
+        /// <summary>
+        /// Initializes the component and a new incident controller.
+        /// </summary>
         public DisplayOpenIncidentsUserControl()
         {
             InitializeComponent();
@@ -41,7 +46,7 @@ namespace TechSupport.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("All incidents cleared.", "No open incidents.");
+                    MessageBox.Show("No open incidents.");
                 }
             }
             catch (Exception ex)
