@@ -51,7 +51,7 @@ namespace TechSupport.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show(ex.Message);
 
             }
             

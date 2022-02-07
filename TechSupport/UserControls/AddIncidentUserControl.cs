@@ -30,7 +30,7 @@ namespace TechSupport.UserControls
         /// <param name="e"></param>
         private void AddIncidentButton_Click(object sender, System.EventArgs e)
         {
-
+         
             try
             {
                 var title = this.titleTextBox.Text;
@@ -40,16 +40,16 @@ namespace TechSupport.UserControls
                 this.incidentController.Add(new Model.Incident(title, description, customerID));
                 this.messageLabel.Text = "Incident is added!";
             }
-
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (FormatException)
             {
                 MessageBox.Show("Customer ID must be a number \n", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
+           
+           
           
         }
 

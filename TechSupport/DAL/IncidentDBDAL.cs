@@ -43,8 +43,7 @@ namespace TechSupport.DAL
 
                 while (reader.Read())
                 {
-                    Incident incident = new Incident();
-          
+                    Incident Incident = new Incident();
 
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];

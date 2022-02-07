@@ -31,12 +31,12 @@ namespace TechSupport.Model
 
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentException("Incident title cannot be null or empty", "title");
+                throw new ArgumentException("Incident title cannot be null or empty");
             }
         
             if (string.IsNullOrEmpty(description))
             {
-                throw new ArgumentException("Incident description cannot be null or empty", "description");
+                throw new ArgumentException("Incident description cannot be null or empty");
             }
             
             if (customerID < 0) 
@@ -44,6 +44,8 @@ namespace TechSupport.Model
                 throw new ArgumentOutOfRangeException("customerID", "Customer ID needs to be higher than 0");
             }
            
+           
+
           
             this.Title = title;
             this.Description = description;
