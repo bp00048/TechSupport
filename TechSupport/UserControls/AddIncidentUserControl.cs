@@ -36,11 +36,11 @@ namespace TechSupport.UserControls
          
             try
             {
-               // var title = this.titleTextBox.Text;
-               // var description = this.descriptionTextBox.Text;
+                var title = this.titleTextBox.Text;
+                var description = this.descriptionTextBox.Text;
                
 
-               // this.incidentController.Add(new Model.Incident(title, description, customerID));
+               // this.incidentController.Add(new Model.Incident(title, description, 01));
                // this.messageLabel.Text = "Incident is added!";
             }
             catch (ArgumentException ex)

@@ -24,11 +24,13 @@ namespace TechSupport.DAL
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
-              "SELECT ProductCode, DateOpened, " +
-              "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Product.Name as productName " +
+              "SELECT Incidents.ProductCode, DateOpened, " +
+              "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Products.Name as productName " +
               "FROM Incidents " +
               "JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
+              "JOIN Products " +
+              "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
               "ON Incidents.techID = Technicians.techID " +
               "WHERE DateClosed IS NULL ";

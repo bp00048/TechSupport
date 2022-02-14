@@ -70,26 +70,26 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(300, 275);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(400, 275);
             this.tableLayoutPanel.TabIndex = 10;
             // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.descriptionTextBox.Location = new System.Drawing.Point(131, 110);
+            this.descriptionTextBox.Location = new System.Drawing.Point(173, 120);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(166, 44);
+            this.descriptionTextBox.Size = new System.Drawing.Size(224, 75);
             this.descriptionTextBox.TabIndex = 4;
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLabel.Location = new System.Drawing.Point(3, 116);
+            this.descriptionLabel.Location = new System.Drawing.Point(45, 142);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(122, 32);
             this.descriptionLabel.TabIndex = 10;
@@ -100,7 +100,7 @@ namespace TechSupport.UserControls
             // 
             this.productLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.productLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productLabel.Location = new System.Drawing.Point(3, 32);
+            this.productLabel.Location = new System.Drawing.Point(45, 32);
             this.productLabel.Name = "productLabel";
             this.productLabel.Size = new System.Drawing.Size(122, 38);
             this.productLabel.TabIndex = 7;
@@ -112,7 +112,7 @@ namespace TechSupport.UserControls
             this.messageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.messageLabel.AutoSize = true;
             this.tableLayoutPanel.SetColumnSpan(this.messageLabel, 2);
-            this.messageLabel.Location = new System.Drawing.Point(150, 102);
+            this.messageLabel.Location = new System.Drawing.Point(200, 102);
             this.messageLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(0, 5);
@@ -122,7 +122,7 @@ namespace TechSupport.UserControls
             // 
             this.addIncidentButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addIncidentButton.Location = new System.Drawing.Point(18, 160);
+            this.addIncidentButton.Location = new System.Drawing.Point(39, 212);
             this.addIncidentButton.Name = "addIncidentButton";
             this.addIncidentButton.Size = new System.Drawing.Size(92, 32);
             this.addIncidentButton.TabIndex = 5;
@@ -134,7 +134,7 @@ namespace TechSupport.UserControls
             // 
             this.clearButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(161, 160);
+            this.clearButton.Location = new System.Drawing.Point(232, 212);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(106, 32);
             this.clearButton.TabIndex = 5;
@@ -147,7 +147,7 @@ namespace TechSupport.UserControls
             // 
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 70);
+            this.titleLabel.Location = new System.Drawing.Point(45, 70);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(122, 32);
             this.titleLabel.TabIndex = 2;
@@ -157,9 +157,9 @@ namespace TechSupport.UserControls
             // titleTextBox
             // 
             this.titleTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.titleTextBox.Location = new System.Drawing.Point(131, 76);
+            this.titleTextBox.Location = new System.Drawing.Point(173, 76);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(166, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(224, 20);
             this.titleTextBox.TabIndex = 3;
             this.titleTextBox.TextChanged += new System.EventHandler(this.TextBoxChanged);
             // 
@@ -167,32 +167,31 @@ namespace TechSupport.UserControls
             // 
             this.customerLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.customerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerLabel.Location = new System.Drawing.Point(3, 0);
+            this.customerLabel.Location = new System.Drawing.Point(45, 0);
             this.customerLabel.Name = "customerLabel";
             this.customerLabel.Size = new System.Drawing.Size(122, 32);
             this.customerLabel.TabIndex = 0;
             this.customerLabel.Text = "Customer:";
             this.customerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-
             // 
             // productComboBox
             // 
             this.productComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(130, 40);
+            this.productComboBox.Location = new System.Drawing.Point(172, 40);
             this.productComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.productComboBox.Name = "productComboBox";
-            this.productComboBox.Size = new System.Drawing.Size(168, 21);
+            this.productComboBox.Size = new System.Drawing.Size(226, 21);
             this.productComboBox.TabIndex = 2;
             // 
             // customerComboBox
             // 
             this.customerComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(130, 5);
+            this.customerComboBox.Location = new System.Drawing.Point(172, 5);
             this.customerComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(168, 21);
+            this.customerComboBox.Size = new System.Drawing.Size(226, 21);
             this.customerComboBox.TabIndex = 1;
             // 
             // AddIncidentUserControl
@@ -201,9 +200,9 @@ namespace TechSupport.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel);
-            this.MaximumSize = new System.Drawing.Size(300, 275);
+            this.MaximumSize = new System.Drawing.Size(400, 275);
             this.Name = "AddIncidentUserControl";
-            this.Size = new System.Drawing.Size(300, 275);
+            this.Size = new System.Drawing.Size(400, 275);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

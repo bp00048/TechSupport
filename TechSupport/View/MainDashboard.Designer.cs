@@ -31,7 +31,6 @@ namespace TechSupport.View
         {
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.AddIncidentTab = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.LoadIncidentsTab = new System.Windows.Forms.TabPage();
             this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.SearchIncidentsTab = new System.Windows.Forms.TabPage();
@@ -40,6 +39,7 @@ namespace TechSupport.View
             this.displayOpenIncidentsUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.currentUsernameLabel = new System.Windows.Forms.Label();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.mainTabControl.SuspendLayout();
             this.AddIncidentTab.SuspendLayout();
             this.LoadIncidentsTab.SuspendLayout();
@@ -73,17 +73,6 @@ namespace TechSupport.View
             this.AddIncidentTab.TabIndex = 0;
             this.AddIncidentTab.Text = "Add Incident";
             this.AddIncidentTab.UseVisualStyleBackColor = true;
-            // 
-            // addIncidentUserControl1
-            // 
-            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(67, -3);
-            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(550, 508);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(473, 388);
-            this.addIncidentUserControl1.TabIndex = 0;
-    
             // 
             // LoadIncidentsTab
             // 
@@ -164,6 +153,16 @@ namespace TechSupport.View
             this.currentUsernameLabel.Name = "currentUsernameLabel";
             this.currentUsernameLabel.Size = new System.Drawing.Size(0, 17);
             this.currentUsernameLabel.TabIndex = 5;
+            // 
+            // addIncidentUserControl1
+            // 
+            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(6, 0);
+            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(733, 508);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(596, 379);
+            this.addIncidentUserControl1.TabIndex = 0;
             // 
             // MainDashboard
             // 
