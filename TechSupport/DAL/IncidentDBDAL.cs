@@ -25,7 +25,7 @@ namespace TechSupport.DAL
 
             string selectStatement =
               "SELECT ProductCode, DateOpened, " +
-              "Customers.Name as customerName, Technicians.Name as techniciansName, Title " +
+              "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Product.Name as productName " +
               "FROM Incidents " +
               "JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
@@ -46,6 +46,7 @@ namespace TechSupport.DAL
                     Incident Incident = new Incident();
 
                     Incident.ProductCode = reader["ProductCode"].ToString();
+                    Incident.ProductName = reader["productName"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
                     Incident.CustomerName = reader["customerName"].ToString();
                     Incident.TechnicianName = reader["techniciansName"].ToString();

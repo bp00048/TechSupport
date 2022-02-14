@@ -36,6 +36,8 @@ namespace TechSupport.View
                 Application.Exit();
             }
         }
+
+      
     }
 }
 
