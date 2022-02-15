@@ -61,6 +61,7 @@ namespace TechSupport.View
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(621, 422);
             this.mainTabControl.TabIndex = 0;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.DisplayOpenIncidents_Load);
             // 
             // AddIncidentTab
             // 

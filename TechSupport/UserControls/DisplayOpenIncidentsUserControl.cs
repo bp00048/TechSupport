@@ -61,7 +61,7 @@ namespace TechSupport.UserControls
 
         private void DisplayOpenIncidentsUserControl_Load(object sender, EventArgs e)
         {
-
+            this.DisplayOpenIncidents();
         }
     }
 }
