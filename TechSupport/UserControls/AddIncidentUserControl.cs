@@ -27,7 +27,7 @@ namespace TechSupport.UserControls
 
         }
         /// <summary>
-        /// Triggered by the user clicking the add button. It attempts to submit the inputted text as the title, description and customerID. If 
+        /// Triggered by the user clicking the add button. It attempts to submit the inputted text as the title, description and selected customer and product. If 
         /// successful, "incident is added!" alerts the user and the incident is added. If not, a message box appears indicating the issue and the incident
         /// is not added.
         /// </summary>

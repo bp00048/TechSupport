@@ -22,6 +22,9 @@ namespace TechSupport.UserControls
         }
 
        
+        /// <summary>
+        /// Displays the date opened, product code, customer name, technician name and title of all open incidents.
+        /// </summary>
 
         public void DisplayOpenIncidents()
         {

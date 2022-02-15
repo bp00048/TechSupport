@@ -80,11 +80,19 @@ namespace TechSupport.Controller
 
             incidentDBSource.Add(incident);
         }
+
+        /// <summary>
+        /// Returns the customer id and name from the database.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, string> GetCustomers()
         {
             return incidentDBSource.GetCustomers();
         }
-
+        /// <summary>
+        /// Returns the product code and name from the database.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetProducts()
         {
             return incidentDBSource.GetProducts();

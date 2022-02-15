@@ -25,20 +25,20 @@ namespace TechSupport.DAL
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
-              "SELECT Incidents.ProductCode, DateOpened, " +
+              "SELECT Products.ProductCode, DateOpened, " +
               "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Products.Name as productName " +
               "FROM Incidents " +
-              "JOIN Customers " +
+              "LEFT JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
-              "JOIN Products " +
+              "LEFT JOIN Products " +
               "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
               "ON Incidents.techID=Technicians.techID " +
-              "WHERE DateClosed IS NULL ";
-            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+              "WHERE DateClosed IS NULL";
+
             SqlDataReader reader = null;
 
-            try
+            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
                 connection.Open();
                 reader = selectCommand.ExecuteReader();
@@ -60,16 +60,14 @@ namespace TechSupport.DAL
 
             }
 
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-                if (reader != null)
-                    reader.Close();
-            }
+           
             return incidentList;
         }
 
+        /// <summary>
+        /// Returns the list of customers with their ID and name and returns in a Dictionary.
+        /// </summary>
+        /// <returns>A Dictionary object that includes both customerID and Name</returns>
         public Dictionary<int, string> GetCustomers()
         {
             var customerList = new Dictionary<int, string>();
@@ -79,10 +77,10 @@ namespace TechSupport.DAL
 
               "SELECT CustomerID, Name " +
               "FROM Customers ";
-            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+       
             SqlDataReader reader = null;
 
-            try
+            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
                 connection.Open();
                 reader = selectCommand.ExecuteReader();
@@ -95,16 +93,12 @@ namespace TechSupport.DAL
 
             }
 
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-                if (reader != null)
-                    reader.Close();
-            }
             return customerList;
         }
-
+        /// <summary>
+        /// Returns the list of products with their code and name and returns in a Dictionary.
+        /// </summary>
+        /// <returns>A Dictionary object that includes both productCode and Name</returns>
         public Dictionary<string, string> GetProducts()
         {
             var productList = new Dictionary<string, string>();
@@ -114,10 +108,10 @@ namespace TechSupport.DAL
 
               "SELECT Name, ProductCode " +
               "FROM Products ";
-            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+         
             SqlDataReader reader = null;
 
-            try
+            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
                 connection.Open();
                 reader = selectCommand.ExecuteReader();
@@ -130,56 +124,12 @@ namespace TechSupport.DAL
 
             }
 
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-                if (reader != null)
-                    reader.Close();
-            }
             return productList;
         }
-
-        public List<Incident> GetProductNames()
-        {
-            List<Incident> incidentList = new List<Incident>();
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
-
-            string selectStatement =
-
-              "SELECT ProductName " +
-              "FROM Products " +
-              "GROUP BY ProductName";
-            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-            SqlDataReader reader = null;
-
-            try
-            {
-                connection.Open();
-                reader = selectCommand.ExecuteReader();
-
-
-                while (reader.Read())
-                {
-                    Incident Incident = new Incident();
-
-                    Incident.ProductName = reader["ProductName"].ToString();
-
-                    incidentList.Add(Incident);
-                }
-
-            }
-
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-                if (reader != null)
-                    reader.Close();
-            }
-            return incidentList;
-        }
-
+        /// <summary>
+        /// Adds a new incident into the tech support database
+        /// </summary>
+        /// <param name="incident">Includes the customerid, product code, title, description and the current date.</param>
         public void Add(Incident incident)
         {
             if (incident == null)
