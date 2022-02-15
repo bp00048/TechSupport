@@ -68,5 +68,56 @@ namespace TechSupport.DAL
             }
             return incidentList;
         }
+
+        public static void Add(Incident incident)
+        {
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string query = "INSERT INTO Incidents (CustomerID, ProductCode, Title, Description) VALUES(@customerName, @productCode, @title, @description)";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@customerID", incident.CustomerID);
+            command.Parameters["@customerID"].Value = incident.CustomerID;
+            command.Parameters.AddWithValue("@productCode", incident.ProductCode);
+            command.Parameters["@productCode"].Value = incident.ProductCode;
+            command.Parameters.AddWithValue("@title", incident.Title);
+            command.Parameters["@title"].Value = incident.Title;
+            command.Parameters.AddWithValue("@description", incident.Description);
+            command.Parameters["@description"].Value = incident.Description;
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                Console.WriteLine("Records Inserted Successfully");
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error Generated. Details: " + e.ToString());
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            public static int Authenticate(Incident incident)
+        {
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string query = "SELECT COUNT(*) " +
+                "FROM INCIDENTS " +
+                "WHERE customerName = @customerName" +
+                "AND productName = @productName";
+
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@customerName", incident.CustomerName);
+                cmd.Parameters["@customerName"].Value = incident.CustomerName;
+                cmd.Parameters.AddWithValue("@productName", incident.ProductName);
+                cmd.Parameters["@productName"].Value = incident.ProductName;
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count;
+            }
+        }
     } 
+
 }  
