@@ -34,16 +34,9 @@ namespace TechSupport.UserControls
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AddIncidentButton_Click(object sender, System.EventArgs e)
-        {
-            if (this.customerComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Must select customer.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (this.productComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Must select product.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (this.titleTextBox.Text == null || this.titleTextBox.Text == "")
+
+        { 
+            if (this.titleTextBox.Text == null || this.titleTextBox.Text == "")
             {
                 MessageBox.Show("Must have a title.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

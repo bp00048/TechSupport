@@ -187,7 +187,7 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null.");
             }
             
-            if (this.Authenticate(incident) != -1 || this.Authenticate(incident) != -2)
+            if (this.Authenticate(incident) > 0)
             {
                 throw new ArgumentException("Product not registered with customer.");
             }
@@ -196,20 +196,20 @@ namespace TechSupport.DAL
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string query = "INSERT INTO " +
                 "Incidents (CustomerID, ProductCode, Title, " +
-                "Description, DateOpened) VALUES(@customerName," +
+                "Description, DateOpened) VALUES(@customerID," +
                 "@productCode, @title, @description, CURRENT_TIMESTAMP)";
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
    
                 command.Parameters.AddWithValue("@customerID", incident.CustomerID);
-                command.Parameters["@customerID"].Value = incident.CustomerID;
+          
                 command.Parameters.AddWithValue("@productCode", incident.ProductCode);
-                command.Parameters["@productCode"].Value = incident.ProductCode;
+             
                 command.Parameters.AddWithValue("@title", incident.Title);
-                command.Parameters["@title"].Value = incident.Title;
+                
                 command.Parameters.AddWithValue("@description", incident.Description);
-                command.Parameters["@description"].Value = incident.Description;
+                
                 connection.Open();
                 command.ExecuteScalar();
                 

@@ -9,7 +9,7 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainDashboard : Form
     {
-      
+        IncidentController inController = new IncidentController();
 
         private readonly IncidentController incidentController;
         bool logOut;
@@ -37,7 +37,12 @@ namespace TechSupport.View
             }
         }
 
-      
+
+
+        private void DisplayOpenIncidents_Load(object sender, System.EventArgs e)
+        {
+            displayOpenIncidentsUserControl.DisplayOpenIncidents();
+        }
     }
 }
 

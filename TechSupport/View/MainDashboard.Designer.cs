@@ -31,15 +31,15 @@ namespace TechSupport.View
         {
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.AddIncidentTab = new System.Windows.Forms.TabPage();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.LoadIncidentsTab = new System.Windows.Forms.TabPage();
             this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.SearchIncidentsTab = new System.Windows.Forms.TabPage();
             this.searchIncidentsUserControl1 = new TechSupport.UserControls.SearchIncidentsUserControl();
             this.DisplayOpenIncidentsTab = new System.Windows.Forms.TabPage();
-            this.displayOpenIncidentsUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.currentUsernameLabel = new System.Windows.Forms.Label();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.displayOpenIncidentsUserControl = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
             this.mainTabControl.SuspendLayout();
             this.AddIncidentTab.SuspendLayout();
             this.LoadIncidentsTab.SuspendLayout();
@@ -73,6 +73,16 @@ namespace TechSupport.View
             this.AddIncidentTab.TabIndex = 0;
             this.AddIncidentTab.Text = "Add Incident";
             this.AddIncidentTab.UseVisualStyleBackColor = true;
+            // 
+            // addIncidentUserControl1
+            // 
+            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(6, 0);
+            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(733, 508);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(596, 379);
+            this.addIncidentUserControl1.TabIndex = 0;
             // 
             // LoadIncidentsTab
             // 
@@ -116,7 +126,7 @@ namespace TechSupport.View
             // 
             // DisplayOpenIncidentsTab
             // 
-            this.DisplayOpenIncidentsTab.Controls.Add(this.displayOpenIncidentsUserControl1);
+            this.DisplayOpenIncidentsTab.Controls.Add(this.displayOpenIncidentsUserControl);
             this.DisplayOpenIncidentsTab.Location = new System.Drawing.Point(4, 33);
             this.DisplayOpenIncidentsTab.Margin = new System.Windows.Forms.Padding(2);
             this.DisplayOpenIncidentsTab.Name = "DisplayOpenIncidentsTab";
@@ -125,14 +135,6 @@ namespace TechSupport.View
             this.DisplayOpenIncidentsTab.TabIndex = 3;
             this.DisplayOpenIncidentsTab.Text = "DisplayOpenIncidents";
             this.DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
-            // 
-            // displayOpenIncidentsUserControl1
-            // 
-            this.displayOpenIncidentsUserControl1.Location = new System.Drawing.Point(0, -13);
-            this.displayOpenIncidentsUserControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.displayOpenIncidentsUserControl1.Name = "displayOpenIncidentsUserControl1";
-            this.displayOpenIncidentsUserControl1.Size = new System.Drawing.Size(607, 400);
-            this.displayOpenIncidentsUserControl1.TabIndex = 0;
             // 
             // logoutLabel
             // 
@@ -154,15 +156,14 @@ namespace TechSupport.View
             this.currentUsernameLabel.Size = new System.Drawing.Size(0, 17);
             this.currentUsernameLabel.TabIndex = 5;
             // 
-            // addIncidentUserControl1
+            // displayOpenIncidentsUserControl
             // 
-            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(6, 0);
-            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(733, 508);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(596, 379);
-            this.addIncidentUserControl1.TabIndex = 0;
+            this.displayOpenIncidentsUserControl.Location = new System.Drawing.Point(28, 45);
+            this.displayOpenIncidentsUserControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.displayOpenIncidentsUserControl.Name = "displayOpenIncidentsUserControl";
+            this.displayOpenIncidentsUserControl.Size = new System.Drawing.Size(555, 356);
+            this.displayOpenIncidentsUserControl.TabIndex = 0;
+            this.displayOpenIncidentsUserControl.Load += new System.EventHandler(this.DisplayOpenIncidents_Load);
             // 
             // MainDashboard
             // 
@@ -197,7 +198,7 @@ namespace TechSupport.View
         private UserControls.SearchIncidentsUserControl searchIncidentsUserControl1;
         private UserControls.LoadIncidentUserControl loadIncidentUserControl1;
         private System.Windows.Forms.TabPage DisplayOpenIncidentsTab;
-        private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl1;
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
+        private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl;
     }
 }

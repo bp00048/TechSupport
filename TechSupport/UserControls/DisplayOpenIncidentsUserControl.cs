@@ -21,7 +21,9 @@ namespace TechSupport.UserControls
             inController = new IncidentController();
         }
 
-        private void DisplayOpenIncidents_Load(object sender, EventArgs e)
+       
+
+        public void DisplayOpenIncidents()
         {
             List<Incident> incidentList;
             try
@@ -36,6 +38,7 @@ namespace TechSupport.UserControls
 
                         incident = incidentList[i];
                         OpenIncidentsListView.Items.Add(incident.ProductCode);
+                    
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.DateOpened.ToShortDateString());
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.CustomerName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.TechnicianName);
@@ -56,7 +59,10 @@ namespace TechSupport.UserControls
             
         }
 
-     
+        private void DisplayOpenIncidentsUserControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
