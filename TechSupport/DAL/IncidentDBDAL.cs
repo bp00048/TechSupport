@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using TechSupport.Model;
@@ -18,7 +19,7 @@ namespace TechSupport.DAL
         /// </summary>
         /// <returns></returns>
 
-        public static List<Incident> GetOpenIncidents()
+        public List<Incident> GetOpenIncidents()
         {
             List<Incident> incidentList = new List<Incident>();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
@@ -32,7 +33,7 @@ namespace TechSupport.DAL
               "JOIN Products " +
               "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
-              "ON Incidents.techID = Technicians.techID " +
+              "ON Incidents.techID=Technicians.techID " +
               "WHERE DateClosed IS NULL ";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             SqlDataReader reader = null;
@@ -46,13 +47,123 @@ namespace TechSupport.DAL
                 while (reader.Read())
                 {
                     Incident Incident = new Incident();
-
+                   
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.ProductName = reader["productName"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
                     Incident.CustomerName = reader["customerName"].ToString();
                     Incident.TechnicianName = reader["techniciansName"].ToString();
                     Incident.Title = reader["Title"].ToString();
+
+                    incidentList.Add(Incident);
+                }
+
+            }
+
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return incidentList;
+        }
+
+        public Dictionary<int, string> GetCustomers()
+        {
+            var customerList = new Dictionary<int, string>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
+            string selectStatement =
+
+              "SELECT CustomerID, Name " +
+              "FROM Customers ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    customerList.Add((int)reader["CustomerID"], (string)reader["Name"]);
+                }
+
+            }
+
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return customerList;
+        }
+
+        public Dictionary<string, string> GetProducts()
+        {
+            var productList = new Dictionary<string, string>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
+            string selectStatement =
+
+              "SELECT Name, ProductCode " +
+              "FROM Products ";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    productList.Add((string)reader["ProductCode"], (string)reader["Name"]);
+                }
+
+            }
+
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
+            return productList;
+        }
+
+        public List<Incident> GetProductNames()
+        {
+            List<Incident> incidentList = new List<Incident>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
+            string selectStatement =
+
+              "SELECT ProductName " +
+              "FROM Products " +
+              "GROUP BY ProductName";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+
+            try
+            {
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    Incident Incident = new Incident();
+
+                    Incident.ProductName = reader["ProductName"].ToString();
 
                     incidentList.Add(Incident);
                 }
@@ -76,9 +187,9 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null.");
             }
             
-            if (this.Authenticate(incident) >= 0)
+            if (this.Authenticate(incident) != -1 || this.Authenticate(incident) != -2)
             {
-                return;
+                throw new ArgumentException("Product not registered with customer.");
             }
 
 
@@ -86,7 +197,7 @@ namespace TechSupport.DAL
             string query = "INSERT INTO " +
                 "Incidents (CustomerID, ProductCode, Title, " +
                 "Description, DateOpened) VALUES(@customerName," +
-                " @productCode, @title, @description, CURRENT_TIMESTAMP)";
+                "@productCode, @title, @description, CURRENT_TIMESTAMP)";
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -107,12 +218,13 @@ namespace TechSupport.DAL
         }
 
 
-            private int Authenticate(Incident incident)
-            {
+        private int Authenticate(Incident incident)
+        {
+
             SqlConnection connection = TechSupportDBConnection.GetConnection();
-            string query = "SELECT COUNT(*) FROM Registrations" +
-                            "WHERE CustomerID = @customerID " +
-                            "AND ProductCode = @productCode";
+            string query = "SELECT COUNT(*) FROM Registrations " +
+                            "WHERE CustomerID=@customerID " +
+                            "AND ProductCode=@productCode";
             
             using (SqlCommand command = new SqlCommand(query, connection))
             {

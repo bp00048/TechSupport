@@ -70,8 +70,8 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(400, 275);
             this.tableLayoutPanel.TabIndex = 10;
@@ -79,17 +79,17 @@ namespace TechSupport.UserControls
             // descriptionTextBox
             // 
             this.descriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.descriptionTextBox.Location = new System.Drawing.Point(173, 120);
+            this.descriptionTextBox.Location = new System.Drawing.Point(173, 110);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(224, 75);
+            this.descriptionTextBox.Size = new System.Drawing.Size(224, 56);
             this.descriptionTextBox.TabIndex = 4;
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLabel.Location = new System.Drawing.Point(45, 142);
+            this.descriptionLabel.Location = new System.Drawing.Point(45, 122);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(122, 32);
             this.descriptionLabel.TabIndex = 10;
@@ -122,7 +122,7 @@ namespace TechSupport.UserControls
             // 
             this.addIncidentButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addIncidentButton.Location = new System.Drawing.Point(39, 212);
+            this.addIncidentButton.Location = new System.Drawing.Point(39, 172);
             this.addIncidentButton.Name = "addIncidentButton";
             this.addIncidentButton.Size = new System.Drawing.Size(92, 32);
             this.addIncidentButton.TabIndex = 5;
@@ -134,7 +134,7 @@ namespace TechSupport.UserControls
             // 
             this.clearButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(232, 212);
+            this.clearButton.Location = new System.Drawing.Point(232, 172);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(106, 32);
             this.clearButton.TabIndex = 5;

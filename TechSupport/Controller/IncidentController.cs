@@ -6,11 +6,12 @@ using TechSupport.Model;
 
 namespace TechSupport.Controller
 {
-    
-    
-    public  class IncidentController
+
+
+    public class IncidentController
     {
         private IncidentDAL incidentSource;
+        private IncidentDBDAL incidentDBSource;
 
         /// <summary>
         /// This controller class interacts with the Incident data source
@@ -19,6 +20,8 @@ namespace TechSupport.Controller
         public IncidentController()
         {
             this.incidentSource = new IncidentDAL();
+            this.incidentDBSource = new IncidentDBDAL();
+
         }
 
         /// <summary>
@@ -30,7 +33,7 @@ namespace TechSupport.Controller
         {
             return this.incidentSource.GetIncidentList();
         }
-        
+
         /// <summary>
         /// Overloaded constructor. Returns incident list that only
         /// includes the customerId that was passed to the method.
@@ -61,12 +64,27 @@ namespace TechSupport.Controller
         /// <returns></returns>
         public List<Incident> GetOpenIncidents()
         {
-            return IncidentDBDAL.GetOpenIncidents();
+            return incidentDBSource.GetOpenIncidents();
         }
 
-    }
+        public void AddOpenIncident(Incident incident)
+        {
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
 
+            incidentDBSource.Add(incident);
+        }
+        public Dictionary<int, string> GetCustomers()
+        {
+            return incidentDBSource.GetCustomers();
+        }
 
- 
+        public Dictionary<string, string> GetProducts()
+        {
+            return incidentDBSource.GetProducts();
+        }
     }
+}
 

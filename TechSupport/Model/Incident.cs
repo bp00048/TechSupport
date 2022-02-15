@@ -20,6 +20,7 @@ namespace TechSupport.Model
         public string CustomerName { get; set; }
         public string TechnicianName { get; set; }
 
+
         /// <summary>
         /// Overloaded constructor. Assigns the title, description and customer Id assuming it follows the correct critera (cannot be null/empty and customer
         /// id must be a number). If it doesnt, an error is thrown.

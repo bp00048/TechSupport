@@ -13,7 +13,9 @@ namespace TechSupport.UserControls
     {
 
         private IncidentController inController;
-       
+        private List<Incident> incidentList;
+
+
         /// <summary>
         /// Constructor that intializes the component and a new Incident controller object.
         /// </summary>
@@ -33,51 +35,82 @@ namespace TechSupport.UserControls
         /// <param name="e"></param>
         private void AddIncidentButton_Click(object sender, System.EventArgs e)
         {
-         
-            try
+            if (this.customerComboBox.SelectedIndex == 0)
             {
-                var title = this.titleTextBox.Text;
-                var description = this.descriptionTextBox.Text;
-               
+                MessageBox.Show("Must select customer.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (this.productComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Must select product.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (this.titleTextBox.Text == null || this.titleTextBox.Text == "")
+            {
+                MessageBox.Show("Must have a title.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (this.descriptionTextBox.Text == null || this.descriptionTextBox.Text == "")
+            {
+                MessageBox.Show("Must have a description", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-               // this.incidentController.Add(new Model.Incident(title, description, 01));
-               // this.messageLabel.Text = "Incident is added!";
-            }
-            catch (ArgumentException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.AddOpenIncident();
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("Customer ID must be a number \n", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
-           
-          
         }
+
+
+
+
+            private void AddOpenIncident()
+            {
+                try
+                {
+                   var customerID = ((KeyValuePair<int, string>)this.customerComboBox.SelectedItem).Key;
+                   var productCode = ((KeyValuePair<string, string>)this.productComboBox.SelectedItem).Key;
+                   var title = this.titleTextBox.Text;
+                   var description = this.descriptionTextBox.Text;
+                    
+                   Incident newAddedIncident = new Incident();
+
+                    newAddedIncident.CustomerID = int.Parse(customerID.ToString());
+                    newAddedIncident.Title = title;
+                    newAddedIncident.Description = description;
+                    newAddedIncident.ProductCode = productCode.ToString();
+
+
+                    inController.AddOpenIncident(newAddedIncident);
+                    this.messageLabel.Text = "Open Incident successfully added!";
+
+
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+
 
         private void AddIncidentUserControl_Load(object sender, EventArgs e)
         {
-            List<Incident> incidentList;
+          
             try
             {
                 incidentList = this.inController.GetOpenIncidents();
 
                 if (incidentList.Count > 0)
                 {
-                    customerComboBox.Items.Add("--Please Select--");
-                    productComboBox.Items.Add("--Please Select--");
-                    Incident incident;
-                    for (int i = 0; i < incidentList.Count; i++)
-                    {
-
-                        incident = incidentList[i];
-
-                        customerComboBox.Items.Add(incident.CustomerName);
-                        productComboBox.Items.Add(incident.ProductName);
-                      
-
-                    }
+    
+                    this.customerComboBox.DataSource = new BindingSource(this.inController.GetCustomers(), null);
+                    this.customerComboBox.DisplayMember = "Value";
+                    this.customerComboBox.ValueMember = "Key";
+                    this.productComboBox.DataSource = new BindingSource(this.inController.GetProducts(), null);
+                    this.productComboBox.DisplayMember = "Value";
+                    this.productComboBox.ValueMember = "Key";
                     customerComboBox.SelectedIndex = 0;
                     productComboBox.SelectedIndex = 0;
                 }
@@ -100,7 +133,8 @@ namespace TechSupport.UserControls
         {
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
-       
+            customerComboBox.SelectedIndex = 0;
+            productComboBox.SelectedIndex = 0;
             this.messageLabel.Text = "";
         }
 
