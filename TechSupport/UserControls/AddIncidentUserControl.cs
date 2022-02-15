@@ -72,8 +72,11 @@ namespace TechSupport.UserControls
 
 
                     inController.AddOpenIncident(newAddedIncident);
-                    this.messageLabel.Text = "Open Incident successfully added!";
+                this.Clear();
+                this.messageLabel.Text = "Open Incident successfully added!";
+                    
 
+              
 
                 }
                 catch (NullReferenceException ex)
@@ -120,15 +123,20 @@ namespace TechSupport.UserControls
 
         }
     
-
-
-    private void ClearButton_Click(object sender, EventArgs e)
+    private void Clear()
         {
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
             customerComboBox.SelectedIndex = 0;
             productComboBox.SelectedIndex = 0;
             this.messageLabel.Text = "";
+
+        }
+
+    private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.Clear();
+        
         }
 
         private void TextBoxChanged(object sender, EventArgs e)

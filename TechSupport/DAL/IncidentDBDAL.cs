@@ -137,7 +137,7 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null.");
             }
             
-            if (this.Authenticate(incident) > 0)
+            if (this.Authenticate(incident) == 0)
             {
                 throw new ArgumentException("Product not registered with customer.");
             }
@@ -153,7 +153,7 @@ namespace TechSupport.DAL
             {
    
                 command.Parameters.AddWithValue("@customerID", incident.CustomerID);
-          
+              
                 command.Parameters.AddWithValue("@productCode", incident.ProductCode);
              
                 command.Parameters.AddWithValue("@title", incident.Title);
