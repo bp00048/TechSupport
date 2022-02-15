@@ -42,6 +42,10 @@ namespace TechSupport.Controller
         /// <returns>List of data incidents that only are involved with the ID specified.</returns>
         public List<Incident> GetIncidentList(int customerID)
         {
+            if (customerID < 0)
+            {
+                throw new Exception("customerID must be number");
+            }
             return this.incidentSource.GetIncidentList(customerID);
         }
 
