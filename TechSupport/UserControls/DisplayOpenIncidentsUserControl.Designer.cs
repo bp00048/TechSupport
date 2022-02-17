@@ -73,7 +73,7 @@ namespace TechSupport.UserControls
             this.OpenIncidentsListView.HideSelection = false;
             this.OpenIncidentsListView.Location = new System.Drawing.Point(3, 22);
             this.OpenIncidentsListView.Name = "OpenIncidentsListView";
-            this.OpenIncidentsListView.Size = new System.Drawing.Size(564, 383);
+            this.OpenIncidentsListView.Size = new System.Drawing.Size(509, 342);
             this.OpenIncidentsListView.TabIndex = 6;
             this.OpenIncidentsListView.UseCompatibleStateImageBehavior = false;
             this.OpenIncidentsListView.View = System.Windows.Forms.View.Details;

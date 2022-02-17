@@ -192,27 +192,28 @@ namespace TechSupport.DAL
         public Incident getIncident(int incidentID)
         {
 
-            Incident incident = new Incident();
+        
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
-              "SELECT Customer.Name, Product.ProductCode, Technician.Name " +
-              "Incident.Title, Incident.DateOpened, Incident.Description" +
+              "SELECT Customers.Name as customerName, Products.ProductCode as productCode, Technicians.Name as techName, " +
+              "Incidents.Title as title, Incidents.DateOpened as dateOpened, Incidents.Description as description " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
               "LEFT JOIN Products " +
               "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
-              "ON Incidents.techID=Technicians.techID " +
-              "WHERE IncidentID = @incidentID";
+              "ON Incidents.TechID=Technicians.TechID " +
+              "WHERE Incidents.IncidentID=@incidentID";
 
+            Incident incident = new Incident();
             SqlDataReader reader = null;
-
             using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
-                selectCommand.Parameters.AddWithValue("@customerID", incident.CustomerID);
-                selectCommand.Parameters["@customerID"].Value = incident.CustomerID;
+                
+                selectCommand.Parameters.AddWithValue("@incidentID", incidentID);
+                selectCommand.Parameters["@incidentID"].Value = incidentID;
                 connection.Open();
                 reader = selectCommand.ExecuteReader();
 
@@ -220,12 +221,12 @@ namespace TechSupport.DAL
                 while (reader.Read())
                 {
 
-                    incident.ProductCode = reader["ProductCode"].ToString();
-                    incident.ProductName = reader["productName"].ToString();
-                    incident.DateOpened = (DateTime)reader["DateOpened"];
                     incident.CustomerName = reader["customerName"].ToString();
-                    incident.TechnicianName = reader["techniciansName"].ToString();
-                    incident.Title = reader["Title"].ToString();
+                    incident.ProductCode = reader["productCode"].ToString();
+                    incident.DateOpened = (DateTime)reader["dateOpened"];
+                    incident.TechnicianName = reader["techName"].ToString();
+                    incident.Description = reader["description"].ToString();
+                    incident.Title = reader["title"].ToString();
 
                 }
 

@@ -40,7 +40,7 @@ namespace TechSupport.UserControls
             this.incidentIDTextBox = new System.Windows.Forms.TextBox();
             this.customerNameTextBox = new System.Windows.Forms.TextBox();
             this.productCodeTextBox = new System.Windows.Forms.TextBox();
-            this.titleComboBox = new System.Windows.Forms.TextBox();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
             this.dateOpenedTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.textToAddTextBox = new System.Windows.Forms.TextBox();
@@ -63,7 +63,7 @@ namespace TechSupport.UserControls
             // customerNameLabel
             // 
             this.customerNameLabel.AutoSize = true;
-            this.customerNameLabel.Location = new System.Drawing.Point(17, 48);
+            this.customerNameLabel.Location = new System.Drawing.Point(17, 46);
             this.customerNameLabel.Name = "customerNameLabel";
             this.customerNameLabel.Size = new System.Drawing.Size(82, 20);
             this.customerNameLabel.TabIndex = 1;
@@ -72,7 +72,7 @@ namespace TechSupport.UserControls
             // productCodeLabel
             // 
             this.productCodeLabel.AutoSize = true;
-            this.productCodeLabel.Location = new System.Drawing.Point(17, 83);
+            this.productCodeLabel.Location = new System.Drawing.Point(17, 81);
             this.productCodeLabel.Name = "productCodeLabel";
             this.productCodeLabel.Size = new System.Drawing.Size(68, 20);
             this.productCodeLabel.TabIndex = 2;
@@ -81,7 +81,7 @@ namespace TechSupport.UserControls
             // technicianLabel
             // 
             this.technicianLabel.AutoSize = true;
-            this.technicianLabel.Location = new System.Drawing.Point(17, 117);
+            this.technicianLabel.Location = new System.Drawing.Point(17, 115);
             this.technicianLabel.Name = "technicianLabel";
             this.technicianLabel.Size = new System.Drawing.Size(89, 20);
             this.technicianLabel.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace TechSupport.UserControls
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(17, 149);
+            this.titleLabel.Location = new System.Drawing.Point(17, 147);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(42, 20);
             this.titleLabel.TabIndex = 4;
@@ -99,7 +99,7 @@ namespace TechSupport.UserControls
             // dateOpenedLabel
             // 
             this.dateOpenedLabel.AutoSize = true;
-            this.dateOpenedLabel.Location = new System.Drawing.Point(17, 188);
+            this.dateOpenedLabel.Location = new System.Drawing.Point(17, 179);
             this.dateOpenedLabel.Name = "dateOpenedLabel";
             this.dateOpenedLabel.Size = new System.Drawing.Size(109, 20);
             this.dateOpenedLabel.TabIndex = 5;
@@ -108,7 +108,7 @@ namespace TechSupport.UserControls
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(17, 226);
+            this.descriptionLabel.Location = new System.Drawing.Point(17, 205);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(93, 20);
             this.descriptionLabel.TabIndex = 6;
@@ -117,7 +117,7 @@ namespace TechSupport.UserControls
             // textToAddLabel
             // 
             this.textToAddLabel.AutoSize = true;
-            this.textToAddLabel.Location = new System.Drawing.Point(17, 312);
+            this.textToAddLabel.Location = new System.Drawing.Point(17, 262);
             this.textToAddLabel.Name = "textToAddLabel";
             this.textToAddLabel.Size = new System.Drawing.Size(98, 20);
             this.textToAddLabel.TabIndex = 7;
@@ -132,61 +132,62 @@ namespace TechSupport.UserControls
             // 
             // customerNameTextBox
             // 
-            this.customerNameTextBox.Location = new System.Drawing.Point(160, 45);
+            this.customerNameTextBox.Location = new System.Drawing.Point(160, 43);
             this.customerNameTextBox.Name = "customerNameTextBox";
             this.customerNameTextBox.Size = new System.Drawing.Size(372, 26);
             this.customerNameTextBox.TabIndex = 9;
             // 
             // productCodeTextBox
             // 
-            this.productCodeTextBox.Location = new System.Drawing.Point(160, 77);
+            this.productCodeTextBox.Location = new System.Drawing.Point(160, 75);
             this.productCodeTextBox.Name = "productCodeTextBox";
             this.productCodeTextBox.Size = new System.Drawing.Size(372, 26);
             this.productCodeTextBox.TabIndex = 10;
             // 
-            // titleComboBox
+            // titleTextBox
             // 
-            this.titleComboBox.Location = new System.Drawing.Point(160, 143);
-            this.titleComboBox.Name = "titleComboBox";
-            this.titleComboBox.Size = new System.Drawing.Size(372, 26);
-            this.titleComboBox.TabIndex = 11;
+            this.titleTextBox.Location = new System.Drawing.Point(160, 141);
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(372, 26);
+            this.titleTextBox.TabIndex = 11;
             // 
             // dateOpenedTextBox
             // 
-            this.dateOpenedTextBox.Location = new System.Drawing.Point(160, 182);
+            this.dateOpenedTextBox.Location = new System.Drawing.Point(160, 173);
             this.dateOpenedTextBox.Name = "dateOpenedTextBox";
             this.dateOpenedTextBox.Size = new System.Drawing.Size(122, 26);
             this.dateOpenedTextBox.TabIndex = 12;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(160, 223);
+            this.descriptionTextBox.Location = new System.Drawing.Point(160, 205);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(372, 80);
+            this.descriptionTextBox.Size = new System.Drawing.Size(340, 48);
             this.descriptionTextBox.TabIndex = 13;
             // 
             // textToAddTextBox
             // 
-            this.textToAddTextBox.Location = new System.Drawing.Point(160, 309);
+            this.textToAddTextBox.Location = new System.Drawing.Point(160, 259);
             this.textToAddTextBox.Multiline = true;
             this.textToAddTextBox.Name = "textToAddTextBox";
-            this.textToAddTextBox.Size = new System.Drawing.Size(372, 83);
+            this.textToAddTextBox.Size = new System.Drawing.Size(340, 54);
             this.textToAddTextBox.TabIndex = 14;
             // 
             // technicianComboBox
             // 
             this.technicianComboBox.FormattingEnabled = true;
-            this.technicianComboBox.Location = new System.Drawing.Point(160, 109);
+            this.technicianComboBox.Location = new System.Drawing.Point(160, 107);
             this.technicianComboBox.Name = "technicianComboBox";
             this.technicianComboBox.Size = new System.Drawing.Size(372, 28);
             this.technicianComboBox.TabIndex = 15;
             // 
             // getIncidentButton
             // 
-            this.getIncidentButton.Location = new System.Drawing.Point(330, 7);
+            this.getIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.getIncidentButton.Location = new System.Drawing.Point(300, 9);
             this.getIncidentButton.Name = "getIncidentButton";
-            this.getIncidentButton.Size = new System.Drawing.Size(105, 35);
+            this.getIncidentButton.Size = new System.Drawing.Size(81, 27);
             this.getIncidentButton.TabIndex = 16;
             this.getIncidentButton.Text = "Get";
             this.getIncidentButton.UseVisualStyleBackColor = true;
@@ -194,27 +195,30 @@ namespace TechSupport.UserControls
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(166, 398);
+            this.updateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateButton.Location = new System.Drawing.Point(170, 315);
             this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(94, 48);
+            this.updateButton.Size = new System.Drawing.Size(72, 28);
             this.updateButton.TabIndex = 17;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(302, 398);
+            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.Location = new System.Drawing.Point(280, 315);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(94, 48);
+            this.closeButton.Size = new System.Drawing.Size(72, 28);
             this.closeButton.TabIndex = 18;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(438, 398);
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(402, 315);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(94, 48);
+            this.clearButton.Size = new System.Drawing.Size(72, 28);
             this.clearButton.TabIndex = 19;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -231,7 +235,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.textToAddTextBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.dateOpenedTextBox);
-            this.Controls.Add(this.titleComboBox);
+            this.Controls.Add(this.titleTextBox);
             this.Controls.Add(this.productCodeTextBox);
             this.Controls.Add(this.customerNameTextBox);
             this.Controls.Add(this.incidentIDTextBox);
@@ -244,7 +248,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.customerNameLabel);
             this.Controls.Add(this.incidentIDLabel);
             this.Name = "UpdateUserControl";
-            this.Size = new System.Drawing.Size(552, 464);
+            this.Size = new System.Drawing.Size(547, 347);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,7 +267,7 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.TextBox incidentIDTextBox;
         private System.Windows.Forms.TextBox customerNameTextBox;
         private System.Windows.Forms.TextBox productCodeTextBox;
-        private System.Windows.Forms.TextBox titleComboBox;
+        private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.TextBox dateOpenedTextBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TextBox textToAddTextBox;

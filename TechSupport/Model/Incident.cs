@@ -19,6 +19,8 @@ namespace TechSupport.Model
         public DateTime DateOpened { get; set; }
         public string CustomerName { get; set; }
         public string TechnicianName { get; set; }
+        public string IncidentID { get; set; }
+
 
 
         /// <summary>

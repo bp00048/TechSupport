@@ -51,10 +51,10 @@ namespace TechSupport.View
             this.mainTabControl.Controls.Add(this.DisplayOpenIncidentsTab);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mainTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainTabControl.Location = new System.Drawing.Point(0, 49);
+            this.mainTabControl.Location = new System.Drawing.Point(0, 204);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(725, 614);
+            this.mainTabControl.Size = new System.Drawing.Size(984, 757);
             this.mainTabControl.TabIndex = 0;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.DisplayOpenIncidents_Load);
             // 
@@ -64,7 +64,7 @@ namespace TechSupport.View
             this.AddIncidentTab.Location = new System.Drawing.Point(4, 33);
             this.AddIncidentTab.Name = "AddIncidentTab";
             this.AddIncidentTab.Padding = new System.Windows.Forms.Padding(3);
-            this.AddIncidentTab.Size = new System.Drawing.Size(717, 577);
+            this.AddIncidentTab.Size = new System.Drawing.Size(976, 720);
             this.AddIncidentTab.TabIndex = 0;
             this.AddIncidentTab.Text = "Add Incident";
             this.AddIncidentTab.UseVisualStyleBackColor = true;
@@ -72,11 +72,11 @@ namespace TechSupport.View
             // addIncidentUserControl1
             // 
             this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(12, 67);
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(-4, 0);
             this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(9);
             this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(1100, 782);
             this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(689, 401);
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(980, 724);
             this.addIncidentUserControl1.TabIndex = 0;
             // 
             // UpdateTab
@@ -85,17 +85,17 @@ namespace TechSupport.View
             this.UpdateTab.Location = new System.Drawing.Point(4, 33);
             this.UpdateTab.Name = "UpdateTab";
             this.UpdateTab.Padding = new System.Windows.Forms.Padding(3);
-            this.UpdateTab.Size = new System.Drawing.Size(717, 577);
+            this.UpdateTab.Size = new System.Drawing.Size(976, 720);
             this.UpdateTab.TabIndex = 1;
             this.UpdateTab.Text = "Update";
             this.UpdateTab.UseVisualStyleBackColor = true;
             // 
             // updateUserControl1
             // 
-            this.updateUserControl1.Location = new System.Drawing.Point(5, 8);
-            this.updateUserControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.updateUserControl1.Location = new System.Drawing.Point(-4, 4);
+            this.updateUserControl1.Margin = new System.Windows.Forms.Padding(4);
             this.updateUserControl1.Name = "updateUserControl1";
-            this.updateUserControl1.Size = new System.Drawing.Size(717, 754);
+            this.updateUserControl1.Size = new System.Drawing.Size(976, 709);
             this.updateUserControl1.TabIndex = 0;
             // 
             // DisplayOpenIncidentsTab
@@ -104,7 +104,7 @@ namespace TechSupport.View
             this.DisplayOpenIncidentsTab.Location = new System.Drawing.Point(4, 33);
             this.DisplayOpenIncidentsTab.Name = "DisplayOpenIncidentsTab";
             this.DisplayOpenIncidentsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DisplayOpenIncidentsTab.Size = new System.Drawing.Size(717, 577);
+            this.DisplayOpenIncidentsTab.Size = new System.Drawing.Size(976, 720);
             this.DisplayOpenIncidentsTab.TabIndex = 3;
             this.DisplayOpenIncidentsTab.Text = "DisplayOpenIncidents";
             this.DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@ namespace TechSupport.View
             this.displayOpenIncidentsUserControl.Location = new System.Drawing.Point(10, 9);
             this.displayOpenIncidentsUserControl.Margin = new System.Windows.Forms.Padding(6);
             this.displayOpenIncidentsUserControl.Name = "displayOpenIncidentsUserControl";
-            this.displayOpenIncidentsUserControl.Size = new System.Drawing.Size(711, 509);
+            this.displayOpenIncidentsUserControl.Size = new System.Drawing.Size(1013, 715);
             this.displayOpenIncidentsUserControl.TabIndex = 0;
             this.displayOpenIncidentsUserControl.Load += new System.EventHandler(this.DisplayOpenIncidents_Load);
             // 
@@ -122,13 +122,14 @@ namespace TechSupport.View
             // 
             this.logoutLabel.AutoSize = true;
             this.logoutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutLabel.Location = new System.Drawing.Point(564, 29);
+            this.logoutLabel.Location = new System.Drawing.Point(485, 71);
             this.logoutLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.logoutLabel.Name = "logoutLabel";
             this.logoutLabel.Size = new System.Drawing.Size(52, 17);
             this.logoutLabel.TabIndex = 1;
             this.logoutLabel.TabStop = true;
             this.logoutLabel.Text = "Logout";
+            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logoutLabel_LinkClicked);
             // 
             // currentUsernameLabel
             // 
@@ -144,7 +145,7 @@ namespace TechSupport.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 663);
+            this.ClientSize = new System.Drawing.Size(984, 961);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.currentUsernameLabel);
             this.Controls.Add(this.logoutLabel);

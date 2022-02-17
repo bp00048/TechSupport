@@ -41,6 +41,7 @@ namespace TechSupport.View
             {
                 
                 MainDashboard newMainDashboard = new MainDashboard(this);
+                
                 newMainDashboard.Show();
                 this.Hide();
             

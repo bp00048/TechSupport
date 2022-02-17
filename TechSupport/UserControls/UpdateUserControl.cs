@@ -28,6 +28,7 @@ namespace TechSupport.UserControls
             Incident incident;
             incidentID = int.Parse(this.incidentIDTextBox.Text);
             incident = inController.getIncident(incidentID);
+            this.FillForm(incident);
 
 
         }
@@ -36,8 +37,9 @@ namespace TechSupport.UserControls
         {
             this.customerNameTextBox.Text = incident.CustomerName;
             this.productCodeTextBox.Text = incident.ProductCode;
-            this.titleLabel.Text = incident.Title;
             this.dateOpenedTextBox.Text = incident.DateOpened.ToString();
+            this.titleTextBox.Text = incident.Title;
+            
             this.descriptionTextBox.Text = incident.Description;
 
         }
