@@ -71,22 +71,20 @@ namespace TechSupport.UserControls
             this.Technician,
             this.Title});
             this.OpenIncidentsListView.HideSelection = false;
-            this.OpenIncidentsListView.Location = new System.Drawing.Point(2, 14);
-            this.OpenIncidentsListView.Margin = new System.Windows.Forms.Padding(2);
+            this.OpenIncidentsListView.Location = new System.Drawing.Point(3, 22);
             this.OpenIncidentsListView.Name = "OpenIncidentsListView";
-            this.OpenIncidentsListView.Size = new System.Drawing.Size(299, 125);
+            this.OpenIncidentsListView.Size = new System.Drawing.Size(564, 383);
             this.OpenIncidentsListView.TabIndex = 6;
             this.OpenIncidentsListView.UseCompatibleStateImageBehavior = false;
             this.OpenIncidentsListView.View = System.Windows.Forms.View.Details;
             // 
             // DisplayOpenIncidentsUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.OpenIncidentsListView);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DisplayOpenIncidentsUserControl";
-            this.Size = new System.Drawing.Size(303, 141);
+            this.Size = new System.Drawing.Size(570, 408);
             this.Load += new System.EventHandler(this.DisplayOpenIncidentsUserControl_Load);
             this.ResumeLayout(false);
 

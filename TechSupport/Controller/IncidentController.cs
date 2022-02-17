@@ -97,6 +97,11 @@ namespace TechSupport.Controller
         {
             return incidentDBSource.GetProducts();
         }
+
+        public Incident getIncident(int incidentID)
+        {
+            return incidentDBSource.getIncident(incidentID);
+        }
     }
 }
 

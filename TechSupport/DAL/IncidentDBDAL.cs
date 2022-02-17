@@ -42,12 +42,12 @@ namespace TechSupport.DAL
             {
                 connection.Open();
                 reader = selectCommand.ExecuteReader();
-              
+
 
                 while (reader.Read())
                 {
                     Incident Incident = new Incident();
-                   
+
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.ProductName = reader["productName"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
@@ -60,7 +60,7 @@ namespace TechSupport.DAL
 
             }
 
-           
+
             return incidentList;
         }
 
@@ -77,7 +77,7 @@ namespace TechSupport.DAL
 
               "SELECT CustomerID, Name " +
               "FROM Customers ";
-       
+
             SqlDataReader reader = null;
 
             using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
@@ -108,7 +108,7 @@ namespace TechSupport.DAL
 
               "SELECT Name, ProductCode " +
               "FROM Products ";
-         
+
             SqlDataReader reader = null;
 
             using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
@@ -136,7 +136,7 @@ namespace TechSupport.DAL
             {
                 throw new ArgumentNullException("Incident cannot be null.");
             }
-            
+
             if (this.Authenticate(incident) == 0)
             {
                 throw new ArgumentException("Product not registered with customer.");
@@ -151,18 +151,18 @@ namespace TechSupport.DAL
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-   
+
                 command.Parameters.AddWithValue("@customerID", incident.CustomerID);
-              
+
                 command.Parameters.AddWithValue("@productCode", incident.ProductCode);
-             
+
                 command.Parameters.AddWithValue("@title", incident.Title);
-                
+
                 command.Parameters.AddWithValue("@description", incident.Description);
-                
+
                 connection.Open();
                 command.ExecuteScalar();
-                
+
             }
 
         }
@@ -175,7 +175,7 @@ namespace TechSupport.DAL
             string query = "SELECT COUNT(*) FROM Registrations " +
                             "WHERE CustomerID=@customerID " +
                             "AND ProductCode=@productCode";
-            
+
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@customerID", incident.CustomerID);
@@ -188,6 +188,52 @@ namespace TechSupport.DAL
             }
 
         }
-    } 
 
-}  
+        public Incident getIncident(int incidentID)
+        {
+
+            Incident incident = new Incident();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
+            string selectStatement =
+              "SELECT Customer.Name, Product.ProductCode, Technician.Name " +
+              "Incident.Title, Incident.DateOpened, Incident.Description" +
+              "FROM Incidents " +
+              "LEFT JOIN Customers " +
+              "ON Customers.CustomerID=Incidents.CustomerID " +
+              "LEFT JOIN Products " +
+              "ON Products.ProductCode=Incidents.ProductCode " +
+              "LEFT JOIN Technicians " +
+              "ON Incidents.techID=Technicians.techID " +
+              "WHERE IncidentID = @incidentID";
+
+            SqlDataReader reader = null;
+
+            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+            {
+                selectCommand.Parameters.AddWithValue("@customerID", incident.CustomerID);
+                selectCommand.Parameters["@customerID"].Value = incident.CustomerID;
+                connection.Open();
+                reader = selectCommand.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    incident.ProductCode = reader["ProductCode"].ToString();
+                    incident.ProductName = reader["productName"].ToString();
+                    incident.DateOpened = (DateTime)reader["DateOpened"];
+                    incident.CustomerName = reader["customerName"].ToString();
+                    incident.TechnicianName = reader["techniciansName"].ToString();
+                    incident.Title = reader["Title"].ToString();
+
+                }
+
+            }
+
+            return incident;
+        }
+    }
+}
+
+
