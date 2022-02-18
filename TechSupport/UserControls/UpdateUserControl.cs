@@ -13,13 +13,20 @@ using TechSupport.Model;
 namespace TechSupport.UserControls
 {
 
-    
     public partial class UpdateUserControl : UserControl
     {
         IncidentController inController = new IncidentController();
+        Incident Incident;
         public UpdateUserControl()
         {
             InitializeComponent();
+            this.customerNameTextBox.ReadOnly = true;
+            this.productCodeTextBox.ReadOnly = true;
+            this.titleTextBox.ReadOnly = true;
+            this.dateOpenedTextBox.ReadOnly = true;
+            this.descriptionTextBox.ReadOnly = true;
+            this.technicianComboBox.Items.Insert(0, "--Unassigned--");
+            this.technicianComboBox.SelectedIndex = 0;
         }
 
         private void GetIncidentButton_Click(object sender, EventArgs e)
@@ -35,8 +42,8 @@ namespace TechSupport.UserControls
                int incidentID = int.Parse(this.incidentIDTextBox.Text);
                 if (inController.checkIncident(incidentID))
                 {
-                    Incident incident = inController.getIncident(incidentID);
-                    this.FillForm(incident);
+                    Incident = inController.getIncident(incidentID);
+                    this.FillForm(Incident);
                 }
                 else
                 {
@@ -54,6 +61,37 @@ namespace TechSupport.UserControls
 
         }
 
+        private void AddTechNameToComboBox()
+        {
+
+            try
+            {
+
+                List<Incident> incidentList = this.inController.GetOpenIncidents();
+                if (incidentList.Count > 0)
+                {
+                    
+                    this.technicianComboBox.DataSource = new BindingSource(this.inController.GetTechnicians(), null);
+                    this.technicianComboBox.DisplayMember = "Value";
+                    this.technicianComboBox.ValueMember = "Key";
+                   
+                    this.technicianComboBox.SelectedIndex = this.technicianComboBox.FindString(Incident.TechnicianName.ToString());
+               
+                }
+                else
+                {
+                    MessageBox.Show("No open incidents.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+        }
+    
+
         private void FillForm(Incident incident)
         {
             
@@ -61,8 +99,8 @@ namespace TechSupport.UserControls
             this.productCodeTextBox.Text = incident.ProductCode;
             this.dateOpenedTextBox.Text = incident.DateOpened.ToString();
             this.titleTextBox.Text = incident.Title;
-            
             this.descriptionTextBox.Text = incident.Description;
+            this.AddTechNameToComboBox();
 
         }
     }

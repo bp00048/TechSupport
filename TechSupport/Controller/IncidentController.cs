@@ -111,6 +111,11 @@ namespace TechSupport.Controller
             return (incidentDBSource.checkIncidentRegistration(incidentID) > 0);
 
         }
+
+        public Dictionary<int, string> GetTechnicians()
+        {
+            return incidentDBSource.GetTechnicians();
+        }
     }
 }
 
