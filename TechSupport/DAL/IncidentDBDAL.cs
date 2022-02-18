@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using TechSupport.Model;
 
 namespace TechSupport.DAL
@@ -188,11 +189,36 @@ namespace TechSupport.DAL
             }
 
         }
+        public int checkIncidentRegistration(int incidentID)
+        {
+          
+      
 
-        public Incident getIncident(int incidentID)
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
+            string selectStatement =
+              "SELECT COUNT(*) FROM Incidents " +
+              "WHERE Incidents.IncidentID=@incidentID";
+
+            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+            {
+
+                selectCommand.Parameters.AddWithValue("@incidentID", incidentID);
+                selectCommand.Parameters["@incidentID"].Value = incidentID;
+                connection.Open();
+
+                int count = Convert.ToInt32(selectCommand.ExecuteScalar());
+                return count;
+
+            }
+
+         
+        }
+    
+    public Incident getIncident(int incidentID)
         {
 
-        
+          
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =

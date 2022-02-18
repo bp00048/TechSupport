@@ -24,17 +24,39 @@ namespace TechSupport.UserControls
 
         private void GetIncidentButton_Click(object sender, EventArgs e)
         {
-            int incidentID;
-            Incident incident;
-            incidentID = int.Parse(this.incidentIDTextBox.Text);
-            incident = inController.getIncident(incidentID);
-            this.FillForm(incident);
+            if (this.incidentIDTextBox.Text == null || this.incidentIDTextBox.Text == "")
+            {
+                MessageBox.Show("The incidentID cannot be empty.");
+             
+            } else { 
+
+            try
+            {
+               int incidentID = int.Parse(this.incidentIDTextBox.Text);
+                if (inController.checkIncident(incidentID))
+                {
+                    Incident incident = inController.getIncident(incidentID);
+                    this.FillForm(incident);
+                }
+                else
+                {
+                    MessageBox.Show("There are no incidents assigned to that ID.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something is wrong with the input \n" + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            }
 
 
         }
 
         private void FillForm(Incident incident)
         {
+            
             this.customerNameTextBox.Text = incident.CustomerName;
             this.productCodeTextBox.Text = incident.ProductCode;
             this.dateOpenedTextBox.Text = incident.DateOpened.ToString();

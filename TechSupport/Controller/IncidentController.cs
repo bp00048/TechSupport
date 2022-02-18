@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using TechSupport.DAL;
 using TechSupport.Model;
 
@@ -100,7 +101,15 @@ namespace TechSupport.Controller
 
         public Incident getIncident(int incidentID)
         {
+           
             return incidentDBSource.getIncident(incidentID);
+        }
+
+        public bool checkIncident(int incidentID)
+        {
+
+            return (incidentDBSource.checkIncidentRegistration(incidentID) > 0);
+
         }
     }
 }
