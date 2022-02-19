@@ -25,6 +25,8 @@ namespace TechSupport.UserControls
             this.titleTextBox.ReadOnly = true;
             this.dateOpenedTextBox.ReadOnly = true;
             this.descriptionTextBox.ReadOnly = true;
+            this.updateButton.Enabled = false;
+            this.closeButton.Enabled = false;
             this.technicianComboBox.Items.Insert(0, "--Unassigned--");
             this.technicianComboBox.SelectedIndex = 0;
         }
@@ -44,6 +46,7 @@ namespace TechSupport.UserControls
                 {
                     Incident = inController.getIncident(incidentID);
                     this.FillForm(Incident);
+                    this.enableButtons();
                 }
                 else
                 {
@@ -70,12 +73,21 @@ namespace TechSupport.UserControls
                 List<Incident> incidentList = this.inController.GetOpenIncidents();
                 if (incidentList.Count > 0)
                 {
-                    
-                    this.technicianComboBox.DataSource = new BindingSource(this.inController.GetTechnicians(), null);
+                    var technicianSource = new BindingSource(this.inController.GetTechnicians(), null);
+                    technicianSource.Add(new KeyValuePair<int, string>(0, "--Unassigned--"));
+                   
+                    this.technicianComboBox.DataSource = technicianSource;
                     this.technicianComboBox.DisplayMember = "Value";
                     this.technicianComboBox.ValueMember = "Key";
-                   
-                    this.technicianComboBox.SelectedIndex = this.technicianComboBox.FindString(Incident.TechnicianName.ToString());
+                    if(Incident.TechnicianName.ToString() == "")
+                    {
+                        this.technicianComboBox.SelectedIndex = this.technicianComboBox.Items.Count - 1;
+                    } else 
+                    {
+                        this.technicianComboBox.SelectedIndex = this.technicianComboBox.FindString(Incident.TechnicianName.ToString());
+                       
+                    }
+                
                
                 }
                 else
@@ -91,7 +103,11 @@ namespace TechSupport.UserControls
 
         }
     
-
+        private void enableButtons()
+        {
+            this.updateButton.Enabled = true;
+            this.closeButton.Enabled = true;
+        }
         private void FillForm(Incident incident)
         {
             
@@ -102,6 +118,11 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Text = incident.Description;
             this.AddTechNameToComboBox();
 
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+        //    if(((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;)
         }
     }
 }

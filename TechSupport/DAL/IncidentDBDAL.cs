@@ -26,7 +26,7 @@ namespace TechSupport.DAL
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
-              "SELECT Products.ProductCode, DateOpened, " +
+              "SELECT Incidents.IncidentID as incidentID, Products.ProductCode, DateOpened, " +
               "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Products.Name as productName " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
@@ -48,7 +48,7 @@ namespace TechSupport.DAL
                 while (reader.Read())
                 {
                     Incident Incident = new Incident();
-
+                    Incident.IncidentID = reader["incidentID"].ToString();
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.ProductName = reader["productName"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
