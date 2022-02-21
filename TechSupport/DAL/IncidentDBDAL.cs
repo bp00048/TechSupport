@@ -160,7 +160,8 @@ namespace TechSupport.DAL
             string selectStatement =
 
               "SELECT CustomerID, Name " +
-              "FROM Customers ";
+              "FROM Customers " +
+              "ORDER BY Name ASC";
 
             SqlDataReader reader = null;
 
@@ -191,7 +192,8 @@ namespace TechSupport.DAL
             string selectStatement =
 
               "SELECT Name, ProductCode " +
-              "FROM Products ";
+              "FROM Products " +
+              "ORDER BY Name ASC ";
 
             SqlDataReader reader = null;
 
