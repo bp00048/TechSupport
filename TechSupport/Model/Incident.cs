@@ -19,7 +19,9 @@ namespace TechSupport.Model
         public DateTime DateOpened { get; set; }
         public string CustomerName { get; set; }
         public string TechnicianName { get; set; }
-        public string IncidentID { get; set; }
+        public int IncidentID { get; set; }
+        public int TechID { get; set; }
+        public string DateClosed { get; set; }
 
 
 
@@ -60,6 +62,7 @@ namespace TechSupport.Model
         /// </summary>
         public Incident()
         {
+            DateClosed = null;
         }
 
 

@@ -31,6 +31,7 @@ namespace TechSupport.UserControls
             List<Incident> incidentList;
             try
             {
+                OpenIncidentsListView.Items.Clear();
                 incidentList = this.inController.GetOpenIncidents();
 
                 if (incidentList.Count > 0)
@@ -40,12 +41,13 @@ namespace TechSupport.UserControls
                     {
 
                         incident = incidentList[i];
-                        OpenIncidentsListView.Items.Add(incident.IncidentID);
-                        OpenIncidentsListView.Items[i].SubItems.Add(incident.ProductCode);
+                        
+                        OpenIncidentsListView.Items.Add(incident.ProductCode);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.DateOpened.ToShortDateString());
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.CustomerName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.TechnicianName);
-                        OpenIncidentsListView.Items[i].SubItems.Add(incident.Title);
+                        OpenIncidentsListView.Items[i].SubItems.Add(incident.Description);
+                        OpenIncidentsListView.Items[i].SubItems.Add(incident.DateClosed);
 
                     }
                 }

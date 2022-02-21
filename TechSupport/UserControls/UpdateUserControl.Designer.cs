@@ -117,7 +117,7 @@ namespace TechSupport.UserControls
             // textToAddLabel
             // 
             this.textToAddLabel.AutoSize = true;
-            this.textToAddLabel.Location = new System.Drawing.Point(17, 262);
+            this.textToAddLabel.Location = new System.Drawing.Point(17, 275);
             this.textToAddLabel.Name = "textToAddLabel";
             this.textToAddLabel.Size = new System.Drawing.Size(98, 20);
             this.textToAddLabel.TabIndex = 7;
@@ -163,15 +163,17 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Location = new System.Drawing.Point(160, 205);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(340, 48);
+            this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.descriptionTextBox.Size = new System.Drawing.Size(340, 64);
             this.descriptionTextBox.TabIndex = 13;
             // 
             // textToAddTextBox
             // 
-            this.textToAddTextBox.Location = new System.Drawing.Point(160, 259);
+            this.textToAddTextBox.Location = new System.Drawing.Point(160, 275);
             this.textToAddTextBox.Multiline = true;
             this.textToAddTextBox.Name = "textToAddTextBox";
-            this.textToAddTextBox.Size = new System.Drawing.Size(340, 54);
+            this.textToAddTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textToAddTextBox.Size = new System.Drawing.Size(340, 62);
             this.textToAddTextBox.TabIndex = 14;
             // 
             // technicianComboBox
@@ -196,7 +198,7 @@ namespace TechSupport.UserControls
             // updateButton
             // 
             this.updateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.Location = new System.Drawing.Point(170, 315);
+            this.updateButton.Location = new System.Drawing.Point(172, 343);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(72, 28);
             this.updateButton.TabIndex = 17;
@@ -207,17 +209,18 @@ namespace TechSupport.UserControls
             // closeButton
             // 
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.Location = new System.Drawing.Point(280, 315);
+            this.closeButton.Location = new System.Drawing.Point(282, 343);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(72, 28);
             this.closeButton.TabIndex = 18;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // clearButton
             // 
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(402, 315);
+            this.clearButton.Location = new System.Drawing.Point(404, 343);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(72, 28);
             this.clearButton.TabIndex = 19;
@@ -249,7 +252,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.customerNameLabel);
             this.Controls.Add(this.incidentIDLabel);
             this.Name = "UpdateUserControl";
-            this.Size = new System.Drawing.Size(547, 347);
+            this.Size = new System.Drawing.Size(547, 387);
             this.ResumeLayout(false);
             this.PerformLayout();
 

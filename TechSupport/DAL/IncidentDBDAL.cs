@@ -27,15 +27,14 @@ namespace TechSupport.DAL
 
             string selectStatement =
               "SELECT Incidents.IncidentID as incidentID, Products.ProductCode, DateOpened, " +
-              "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Products.Name as productName " +
+              "Customers.Name as customerName, Technicians.Name as techniciansName, Description, Products.Name as productName, DateClosed " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
               "LEFT JOIN Products " +
               "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
-              "ON Incidents.techID=Technicians.techID " +
-              "WHERE DateClosed IS NULL";
+              "ON Incidents.techID=Technicians.techID ";
 
             SqlDataReader reader = null;
 
@@ -48,13 +47,14 @@ namespace TechSupport.DAL
                 while (reader.Read())
                 {
                     Incident Incident = new Incident();
-                    Incident.IncidentID = reader["incidentID"].ToString();
+                    Incident.IncidentID = (int)reader["incidentID"];
                     Incident.ProductCode = reader["ProductCode"].ToString();
                     Incident.ProductName = reader["productName"].ToString();
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
                     Incident.CustomerName = reader["customerName"].ToString();
                     Incident.TechnicianName = reader["techniciansName"].ToString();
-                    Incident.Title = reader["Title"].ToString();
+                    Incident.Description = reader["Description"].ToString();
+                    Incident.DateClosed = reader["DateClosed"].ToString();
 
                     incidentList.Add(Incident);
                 }
@@ -63,6 +63,89 @@ namespace TechSupport.DAL
 
 
             return incidentList;
+        }
+        public void UpdateIncident(Incident incident)
+        {
+
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null.");
+            }
+
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string query = "UPDATE Incidents " +
+                "SET TechID=@techID, Description=@description " +
+                "WHERE IncidentID=@incidentID";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+
+                command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
+                command.Parameters["@incidentID"].Value = incident.IncidentID;
+                command.Parameters.AddWithValue("@techID", incident.TechID);
+                command.Parameters["@techID"].Value = incident.TechID;
+                command.Parameters.AddWithValue("@description", incident.Description);
+                command.Parameters["@description"].Value = incident.Description;
+
+                connection.Open();
+                command.ExecuteScalar();
+            }
+        }
+
+        public int CheckChanges(Incident incident)
+        {
+
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string query = "SELECT COUNT(*) FROM Incidents " +
+                            "WHERE IncidentID=@incidentID " +
+                            "AND DateClosed IS NULL " +
+                            "AND Description=@description ";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
+                command.Parameters["@incidentID"].Value = incident.IncidentID;
+                command.Parameters.AddWithValue("@description", incident.Description);
+                command.Parameters["@description"].Value = incident.Description;
+                connection.Open();
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count;
+            }
+        }
+
+      
+            public void CloseIncident(Incident incident)
+        {
+
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null.");
+            }
+
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string query = "UPDATE Incidents " +
+                "SET DateClosed=@closeDate, TechID=@techID, Description=@description " +
+                "WHERE IncidentID=@incidentID";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+
+                command.Parameters.AddWithValue("@closeDate", incident.DateClosed);
+                command.Parameters["@closeDate"].Value = incident.DateClosed;
+
+                command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
+                command.Parameters["@incidentID"].Value = incident.IncidentID;
+
+                command.Parameters.AddWithValue("@techID", incident.TechID);
+                command.Parameters["@techID"].Value = incident.TechID;
+
+                command.Parameters.AddWithValue("@description", incident.Description);
+                command.Parameters["@description"].Value = incident.Description;
+
+
+                connection.Open();
+                command.ExecuteScalar();
+            }
         }
 
         /// <summary>
@@ -138,12 +221,6 @@ namespace TechSupport.DAL
                 throw new ArgumentNullException("Incident cannot be null.");
             }
 
-            if (this.Authenticate(incident) == 0)
-            {
-                throw new ArgumentException("Product not registered with customer.");
-            }
-
-
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string query = "INSERT INTO " +
                 "Incidents (CustomerID, ProductCode, Title, " +
@@ -195,7 +272,7 @@ namespace TechSupport.DAL
             return techniciansList;
         }
 
-        private int Authenticate(Incident incident)
+        public int IsRegistered(Incident incident)
         {
 
             SqlConnection connection = TechSupportDBConnection.GetConnection();
@@ -215,16 +292,15 @@ namespace TechSupport.DAL
             }
 
         }
-        public int checkIncidentRegistration(int incidentID)
+        public int CheckIncidentRegistration(int incidentID)
         {
-          
-      
 
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
               "SELECT COUNT(*) FROM Incidents " +
-              "WHERE Incidents.IncidentID=@incidentID";
+              "WHERE Incidents.IncidentID=@incidentID " +
+              "AND DateClosed IS NULL";
 
             using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
@@ -241,14 +317,12 @@ namespace TechSupport.DAL
          
         }
     
-    public Incident getIncident(int incidentID)
+    public Incident GetIncident(int incidentID)
         {
-
-          
             SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
-              "SELECT Customers.Name as customerName, Products.ProductCode as productCode, Technicians.Name as techName, " +
+              "SELECT Incidents.IncidentID as incidentID, Customers.Name as customerName, Products.ProductCode as productCode, Technicians.Name as techName, " +
               "Incidents.Title as title, Incidents.DateOpened as dateOpened, Incidents.Description as description " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
@@ -272,7 +346,7 @@ namespace TechSupport.DAL
 
                 while (reader.Read())
                 {
-
+                    incident.IncidentID = (int)reader["incidentID"];
                     incident.CustomerName = reader["customerName"].ToString();
                     incident.ProductCode = reader["productCode"].ToString();
                     incident.DateOpened = (DateTime)reader["dateOpened"];

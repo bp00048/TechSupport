@@ -56,6 +56,7 @@ namespace TechSupport.UserControls
 
             private void AddOpenIncident()
             {
+         
                 try
                 {
                    var customerID = ((KeyValuePair<int, string>)this.customerComboBox.SelectedItem).Key;
@@ -70,11 +71,15 @@ namespace TechSupport.UserControls
                     newAddedIncident.Description = description;
                     newAddedIncident.ProductCode = productCode.ToString();
 
-
+                if (inController.IsRegistered(newAddedIncident))
+                {
                     inController.AddOpenIncident(newAddedIncident);
-                this.Clear();
-                this.messageLabel.Text = "Open Incident successfully added!";
-                    
+                    this.Clear();
+                    this.messageLabel.Text = "Open Incident successfully added!";
+                } else
+                {
+                    MessageBox.Show("Customer is not registered to that product", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
               
 

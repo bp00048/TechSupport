@@ -35,7 +35,7 @@ namespace TechSupport.UserControls
             this.Technician = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.OpenIncidentsListView = new System.Windows.Forms.ListView();
-            this.IncidentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DateClosed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // ProductCode
@@ -66,31 +66,33 @@ namespace TechSupport.UserControls
             // OpenIncidentsListView
             // 
             this.OpenIncidentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.IncidentID,
             this.ProductCode,
             this.DateOpened,
             this.Customer,
             this.Technician,
-            this.Title});
+            this.Title,
+            this.DateClosed});
             this.OpenIncidentsListView.HideSelection = false;
-            this.OpenIncidentsListView.Location = new System.Drawing.Point(12, 22);
+            this.OpenIncidentsListView.Location = new System.Drawing.Point(8, 14);
+            this.OpenIncidentsListView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OpenIncidentsListView.Name = "OpenIncidentsListView";
-            this.OpenIncidentsListView.Size = new System.Drawing.Size(509, 342);
+            this.OpenIncidentsListView.Size = new System.Drawing.Size(363, 224);
             this.OpenIncidentsListView.TabIndex = 6;
             this.OpenIncidentsListView.UseCompatibleStateImageBehavior = false;
             this.OpenIncidentsListView.View = System.Windows.Forms.View.Details;
             // 
-            // IncidentID
+            // DateClosed
             // 
-            this.IncidentID.Text = "IncidentID";
+            this.DateClosed.Text = "DateClosed";
             // 
             // DisplayOpenIncidentsUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.OpenIncidentsListView);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DisplayOpenIncidentsUserControl";
-            this.Size = new System.Drawing.Size(570, 408);
+            this.Size = new System.Drawing.Size(380, 265);
             this.Load += new System.EventHandler(this.DisplayOpenIncidentsUserControl_Load);
             this.ResumeLayout(false);
 
@@ -104,6 +106,6 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.ColumnHeader Technician;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ListView OpenIncidentsListView;
-        private System.Windows.Forms.ColumnHeader IncidentID;
+        private System.Windows.Forms.ColumnHeader DateClosed;
     }
 }

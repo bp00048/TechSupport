@@ -99,22 +99,41 @@ namespace TechSupport.Controller
             return incidentDBSource.GetProducts();
         }
 
-        public Incident getIncident(int incidentID)
+        public Incident GetIncident(int incidentID)
         {
            
-            return incidentDBSource.getIncident(incidentID);
+            return incidentDBSource.GetIncident(incidentID);
         }
 
-        public bool checkIncident(int incidentID)
+        public bool CheckIncident(int incidentID)
         {
 
-            return (incidentDBSource.checkIncidentRegistration(incidentID) > 0);
+            return (incidentDBSource.CheckIncidentRegistration(incidentID) > 0);
 
         }
 
+        public bool CheckChanges(Incident incident)
+        {
+            return (incidentDBSource.CheckChanges(incident) > 0);
+        }
+
+        public void UpdateIncident(Incident incident)
+        {
+            incidentDBSource.UpdateIncident(incident);
+        }
         public Dictionary<int, string> GetTechnicians()
         {
             return incidentDBSource.GetTechnicians();
+        }
+
+        public void CloseIncident(Incident incident)
+        {
+            incidentDBSource.CloseIncident(incident);
+        }
+
+        public bool IsRegistered(Incident incident)
+        {
+            return (incidentDBSource.IsRegistered(incident) > 0);
         }
     }
 }
