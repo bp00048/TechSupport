@@ -198,30 +198,37 @@ namespace TechSupport.UserControls
 
         private void CloseIncident(Incident incident)
         {
-            if (inController.CheckChanges(incident))
+            try
             {
-                MessageBox.Show("Incident has been updated already. Please reload incident.");
+                if (ConfirmationClose() == DialogResult.OK)
+                {
+                    inController.CloseIncident(Incident);
+                    this.textToAddTextBox.Clear();
+                    this.descriptionTextBox.Text = Incident.Description;
+                    MessageBox.Show("Incident has been closed.");
+                }
             }
-            else if (ConfirmationClose() == DialogResult.OK)
+            catch (Exception ex)
             {
-                inController.CloseIncident(Incident);
-                this.textToAddTextBox.Clear();
-                this.descriptionTextBox.Text = Incident.Description;
-                MessageBox.Show("Incident has been closed.");
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void UpdateIncident(Incident incident)
         {
-            if (inController.CheckChanges(incident))
+            try
             {
-                MessageBox.Show("Incident has been updated already. Please reload incident.");
+                inController.UpdateIncident(Incident);
+                this.textToAddTextBox.Clear();
+                this.descriptionTextBox.Text = Incident.Description;
+                MessageBox.Show("Incident has been updated.");
             }
-            inController.UpdateIncident(Incident);
-            this.textToAddTextBox.Clear();
-            this.descriptionTextBox.Text = Incident.Description;
-            MessageBox.Show("Incident has been updated.");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private DialogResult CheckTextLength()
         {

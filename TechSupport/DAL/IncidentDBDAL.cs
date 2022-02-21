@@ -19,11 +19,15 @@ namespace TechSupport.DAL
         /// from the selected tables. It then returns a list of the designated incidents objects.
         /// </summary>
         /// <returns></returns>
+        ///
+
+        
 
         public List<Incident> GetOpenIncidents()
         {
             List<Incident> incidentList = new List<Incident>();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
+           
 
             string selectStatement =
               "SELECT Incidents.IncidentID as incidentID, Products.ProductCode, DateOpened, " +
@@ -71,6 +75,8 @@ namespace TechSupport.DAL
             {
                 throw new ArgumentNullException("Incident cannot be null.");
             }
+            
+           
 
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string query = "UPDATE Incidents " +
@@ -92,24 +98,29 @@ namespace TechSupport.DAL
             }
         }
 
-        public int CheckChanges(Incident incident)
+        public Incident CheckChanges(Incident incident)
         {
-
+            Incident newIncident = new Incident();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
-            string query = "SELECT COUNT(*) FROM Incidents " +
-                            "WHERE IncidentID=@incidentID " +
-                            "AND DateClosed IS NULL " +
-                            "AND Description=@description ";
-
+            string query = "SELECT Description, DateClosed FROM Incidents " +
+                            "WHERE IncidentID=@incidentID ";
+            SqlDataReader reader = null;
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
                 command.Parameters["@incidentID"].Value = incident.IncidentID;
-                command.Parameters.AddWithValue("@description", incident.Description);
-                command.Parameters["@description"].Value = incident.Description;
+              
                 connection.Open();
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count;
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    
+                    newIncident.Description = reader["Description"].ToString();
+                    newIncident.DateClosed = reader["DateClosed"].ToString();
+                  
+                }
+                return newIncident;
             }
         }
 
@@ -121,6 +132,8 @@ namespace TechSupport.DAL
             {
                 throw new ArgumentNullException("Incident cannot be null.");
             }
+            
+           
 
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string query = "UPDATE Incidents " +
@@ -129,7 +142,7 @@ namespace TechSupport.DAL
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-
+                
                 command.Parameters.AddWithValue("@closeDate", incident.DateClosed);
                 command.Parameters["@closeDate"].Value = incident.DateClosed;
 
@@ -294,7 +307,7 @@ namespace TechSupport.DAL
             }
 
         }
-        public int CheckIncidentRegistration(int incidentID)
+        public int CheckIncidentStatus(int incidentID)
         {
 
             SqlConnection connection = TechSupportDBConnection.GetConnection();
@@ -334,33 +347,35 @@ namespace TechSupport.DAL
               "LEFT JOIN Technicians " +
               "ON Incidents.TechID=Technicians.TechID " +
               "WHERE Incidents.IncidentID=@incidentID";
-
-            Incident incident = new Incident();
+           
+            Incident gotIncident = new Incident();
             SqlDataReader reader = null;
+
             using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
             {
-                
+               
                 selectCommand.Parameters.AddWithValue("@incidentID", incidentID);
                 selectCommand.Parameters["@incidentID"].Value = incidentID;
                 connection.Open();
+                
                 reader = selectCommand.ExecuteReader();
 
 
                 while (reader.Read())
                 {
-                    incident.IncidentID = (int)reader["incidentID"];
-                    incident.CustomerName = reader["customerName"].ToString();
-                    incident.ProductCode = reader["productCode"].ToString();
-                    incident.DateOpened = (DateTime)reader["dateOpened"];
-                    incident.TechnicianName = reader["techName"].ToString();
-                    incident.Description = reader["description"].ToString();
-                    incident.Title = reader["title"].ToString();
+                    gotIncident.IncidentID = (int)reader["incidentID"];
+                    gotIncident.CustomerName = reader["customerName"].ToString();
+                    gotIncident.ProductCode = reader["productCode"].ToString();
+                    gotIncident.DateOpened = (DateTime)reader["dateOpened"];
+                    gotIncident.TechnicianName = reader["techName"].ToString();
+                    gotIncident.Description = reader["description"].ToString();
+                    gotIncident.Title = reader["title"].ToString();
 
                 }
 
             }
 
-            return incident;
+            return gotIncident;
         }
     }
 }

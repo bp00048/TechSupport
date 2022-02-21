@@ -62,7 +62,7 @@ namespace TechSupport.Model
         /// </summary>
         public Incident()
         {
-            DateClosed = null;
+          
         }
 
 

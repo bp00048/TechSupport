@@ -13,6 +13,7 @@ namespace TechSupport.Controller
     {
         private IncidentDAL incidentSource;
         private IncidentDBDAL incidentDBSource;
+        private Incident gotIncident;
 
         /// <summary>
         /// This controller class interacts with the Incident data source
@@ -101,24 +102,30 @@ namespace TechSupport.Controller
 
         public Incident GetIncident(int incidentID)
         {
-           
-            return incidentDBSource.GetIncident(incidentID);
+            this.gotIncident = incidentDBSource.GetIncident(incidentID);
+            return this.gotIncident;
         }
 
         public bool CheckIncident(int incidentID)
         {
 
-            return (incidentDBSource.CheckIncidentRegistration(incidentID) > 0);
+            return (incidentDBSource.CheckIncidentStatus(incidentID) > 0);
 
         }
 
-        public bool CheckChanges(Incident incident)
+        private bool CheckChanges()
         {
-            return (incidentDBSource.CheckChanges(incident) > 0);
+            Incident newIncident = GetIncident(this.gotIncident.IncidentID);
+            return newIncident.DateClosed == this.gotIncident.DateClosed && newIncident.Description == this.gotIncident.Description;
+           
         }
 
         public void UpdateIncident(Incident incident)
         {
+            if (!CheckChanges())
+            {
+                throw new Exception("Incident has been updated. Please reload incident.");
+            }
             incidentDBSource.UpdateIncident(incident);
         }
         public Dictionary<int, string> GetTechnicians()
@@ -128,6 +135,10 @@ namespace TechSupport.Controller
 
         public void CloseIncident(Incident incident)
         {
+            if (!CheckChanges())
+            {
+                throw new Exception("Incident has been updated. Please reload incident.");
+            }
             incidentDBSource.CloseIncident(incident);
         }
 
