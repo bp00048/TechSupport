@@ -100,48 +100,76 @@ namespace TechSupport.Controller
             return incidentDBSource.GetProducts();
         }
 
+        /// <summary>
+        /// Returns the incident based on the incident id passed from the database.
+        /// </summary>
+        /// <param name="incidentID">the ID of the incident being fetched</param>
+        /// <returns></returns>
+
         public Incident GetIncident(int incidentID)
         {
             this.gotIncident = incidentDBSource.GetIncident(incidentID);
             return this.gotIncident;
         }
-
-        public bool CheckIncident(int incidentID)
+        /// <summary>
+        /// Makes sure the Incident being updated/closed is open.
+        /// </summary>
+        /// <param name="incidentID">Id of the incident being compared</param>
+        /// <returns></returns>
+        public bool CheckIncidentStatus(int incidentID)
         {
-
             return (incidentDBSource.CheckIncidentStatus(incidentID) > 0);
 
         }
-
-        private bool CheckChanges()
+        /// <summary>
+        /// uses CheckIncidentStatus to ensure the incident has not already been closed. Uses CheckChanges to make sure the incident
+        /// has not been updated since it has been gotten.
+        /// </summary>
+        /// <param name="incident">The incident being compared</param>
+        private void Validate(Incident incident)
         {
-            Incident newIncident = GetIncident(this.gotIncident.IncidentID);
-            return newIncident.DateClosed == this.gotIncident.DateClosed && newIncident.Description == this.gotIncident.Description;
-           
+            if (!CheckIncidentStatus(incident.IncidentID))
+            {
+                throw new Exception("Incident has already been closed. Please reload incident.");
+            }
+            if (incidentDBSource.CheckChanges(incident) > 0)
+            {
+                throw new Exception("Incident has already been updated. Please reload incident.");
+            }
         }
-
+        /// <summary>
+        /// Validates that the incident can be updated and sends the incident to be updated in the database.
+        /// </summary>
+        /// <param name="incident">The incident being updated.</param>
         public void UpdateIncident(Incident incident)
         {
-            if (!CheckChanges())
-            {
-                throw new Exception("Incident has been updated. Please reload incident.");
-            }
+            this.Validate(incident);
             incidentDBSource.UpdateIncident(incident);
         }
+
+        /// <summary>
+        /// Gets a Dictionary list of current technicians with their names and IDs.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, string> GetTechnicians()
         {
             return incidentDBSource.GetTechnicians();
         }
 
+        /// <summary>
+        /// Validates that the incident can be closed and sends the incident to be updated (closed) in the database.
+        /// </summary>
+        /// <param name="incident">The incident being closed</param>
         public void CloseIncident(Incident incident)
         {
-            if (!CheckChanges())
-            {
-                throw new Exception("Incident has been updated. Please reload incident.");
-            }
+            this.Validate(incident);
             incidentDBSource.CloseIncident(incident);
         }
-
+        /// <summary>
+        /// Makes sure the incident being added is registered to the customer it is being added with.
+        /// </summary>
+        /// <param name="incident">The incident being added</param>
+        /// <returns></returns>
         public bool IsRegistered(Incident incident)
         {
             return (incidentDBSource.IsRegistered(incident) > 0);

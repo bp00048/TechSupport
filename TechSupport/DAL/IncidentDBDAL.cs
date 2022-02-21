@@ -31,7 +31,7 @@ namespace TechSupport.DAL
 
             string selectStatement =
               "SELECT Incidents.IncidentID as incidentID, Products.ProductCode, DateOpened, " +
-              "Customers.Name as customerName, Technicians.Name as techniciansName, Description, Products.Name as productName, DateClosed " +
+              "Customers.Name as customerName, Technicians.Name as techniciansName, Title, Products.Name as productName, DateClosed " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
@@ -57,8 +57,9 @@ namespace TechSupport.DAL
                     Incident.DateOpened = (DateTime)reader["DateOpened"];
                     Incident.CustomerName = reader["customerName"].ToString();
                     Incident.TechnicianName = reader["techniciansName"].ToString();
-                    Incident.Description = reader["Description"].ToString();
+                    Incident.Title = reader["Title"].ToString();
                     Incident.DateClosed = reader["DateClosed"].ToString();
+                   
 
                     incidentList.Add(Incident);
                 }
@@ -68,6 +69,11 @@ namespace TechSupport.DAL
 
             return incidentList;
         }
+
+        /// <summary>
+        /// Updates the incident in the database using techID, description and IncidentID.
+        /// </summary>
+        /// <param name="incident">The incident being updated</param>
         public void UpdateIncident(Incident incident)
         {
 
@@ -97,34 +103,39 @@ namespace TechSupport.DAL
                 command.ExecuteScalar();
             }
         }
-
-        public Incident CheckChanges(Incident incident)
+        /// <summary>
+        /// Gets all the incidents that match the exact description and incidentID of the current incident attempting to be updated or closed
+        /// to make sure they have not been updated or closed already.
+        /// </summary>
+        /// <param name="incident"></param>
+        /// <returns></returns>
+        public int CheckChanges(Incident incident)
         {
             Incident newIncident = new Incident();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
-            string query = "SELECT Description, DateClosed FROM Incidents " +
-                            "WHERE IncidentID=@incidentID ";
-            SqlDataReader reader = null;
+            string query = "SELECT COUNT(*) FROM Incidents " +
+                            "WHERE IncidentID=@incidentID " +
+                            "AND Description=@description ";
+           
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
                 command.Parameters["@incidentID"].Value = incident.IncidentID;
-              
-                connection.Open();
-                reader = command.ExecuteReader();
+                command.Parameters.AddWithValue("@description", incident.Description);
+                command.Parameters["@description"].Value = incident.Description;
 
-                while (reader.Read())
-                {
-                    
-                    newIncident.Description = reader["Description"].ToString();
-                    newIncident.DateClosed = reader["DateClosed"].ToString();
-                  
-                }
-                return newIncident;
-            }
+                connection.Open();
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count;
+            
+
+        }
         }
 
-      
+      /// <summary>
+      /// Updates the Incident's CloseDate with the current DateTime to signify the Incident has been closed.
+      /// </summary>
+      /// <param name="incident">The incident being updated/closed</param>
             public void CloseIncident(Incident incident)
         {
 
@@ -259,6 +270,10 @@ namespace TechSupport.DAL
             }
 
         }
+        /// <summary>
+        /// Returns a list of TechID's and the Technian's names.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<int, string> GetTechnicians()
         {
             var techniciansList = new Dictionary<int, string>();
@@ -286,7 +301,11 @@ namespace TechSupport.DAL
 
             return techniciansList;
         }
-
+        /// <summary>
+        /// Gets all database submissions that have the same matching customerID and productCode to check to make sure the product is registered to the customer.
+        /// </summary>
+        /// <param name="incident">The incident being compared</param>
+        /// <returns></returns>
         public int IsRegistered(Incident incident)
         {
 
@@ -307,6 +326,12 @@ namespace TechSupport.DAL
             }
 
         }
+        /// <summary>
+        /// Checks to make sure the Incident being closed or updated is not closed by getting all incidents with the same ID as the incident being compared
+        /// and the DateClosed column being null (empty).
+        /// </summary>
+        /// <param name="incidentID">The incident being compared</param>
+        /// <returns></returns>
         public int CheckIncidentStatus(int incidentID)
         {
 
@@ -331,7 +356,11 @@ namespace TechSupport.DAL
 
          
         }
-    
+    /// <summary>
+    /// Returns the incidentID, customerName, productCode, technicianName, title, dateOpened, and description info from designated Incident as located by its ID.
+    /// </summary>
+    /// <param name="incidentID">the ID of the incident being found.</param>
+    /// <returns></returns>
     public Incident GetIncident(int incidentID)
         {
             SqlConnection connection = TechSupportDBConnection.GetConnection();
