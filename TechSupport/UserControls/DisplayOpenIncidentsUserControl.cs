@@ -42,8 +42,15 @@ namespace TechSupport.UserControls
 
                         incident = incidentList[i];
                         
-                        OpenIncidentsListView.Items.Add(incident.IncidentID.ToString());
-                        OpenIncidentsListView.Items[i].SubItems.Add(incident.DateOpened.ToShortDateString());
+                        OpenIncidentsListView.Items.Add(incident.ProductCode);
+                        if (incident.DateClosed == DateTime.MinValue.ToString())
+                        {
+                            OpenIncidentsListView.Items[i].SubItems.Add("");
+                        }
+                        else
+                        {
+                            OpenIncidentsListView.Items[i].SubItems.Add(incident.DateClosed);
+                        }
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.CustomerName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.TechnicianName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.Title);

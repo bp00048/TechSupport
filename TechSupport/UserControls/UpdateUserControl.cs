@@ -17,7 +17,9 @@ namespace TechSupport.UserControls
         /// <summary>
         /// Incident is for the incident currently being manipulated by the form.
         /// </summary>
-        Incident Incident;
+     
+        Incident newIncident;
+    
 
         /// <summary>
         /// Initializes the component and sets customerName, productCode, title, dateOpened, and description text boxes as read only
@@ -51,25 +53,24 @@ namespace TechSupport.UserControls
 
                 try
                 {
-                    int incidentID = int.Parse(this.incidentIDTextBox.Text);
+                    int gotIncidentID = int.Parse(this.incidentIDTextBox.Text);
                     Incident searchIncident = new Incident();
-                    searchIncident.IncidentID = incidentID;
-                    if (inController.CheckIncidentStatus(searchIncident))
-                    {
-                        Incident = inController.GetIncident(searchIncident);
-                        this.FillForm(Incident);
-                        this.enableButtons();
-                    }
-                    else
-                    {
-                        MessageBox.Show("There are no open incidents assigned to that ID.");
-                    }
+                    searchIncident.IncidentID = gotIncidentID;
+                    inController.CheckIncidentStatus(searchIncident);
+                    newIncident = inController.GetIncident(searchIncident);
+                    this.FillForm(newIncident);
+                    this.enableButtons();
+                   
 
                 }
                 catch (FormatException)
                 {
                     MessageBox.Show("ID must be a number", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("That incident has already been closed.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -92,13 +93,13 @@ namespace TechSupport.UserControls
                     this.technicianComboBox.DataSource = technicianSource;
                     this.technicianComboBox.DisplayMember = "Value";
                     this.technicianComboBox.ValueMember = "Key";
-                    if (Incident.TechnicianName.ToString() == "")
+                    if (newIncident.TechnicianName.ToString() == "")
                     {
                         this.technicianComboBox.SelectedIndex = this.technicianComboBox.Items.Count - 1;
                     }
                     else
                     {
-                        this.technicianComboBox.SelectedIndex = this.technicianComboBox.FindString(Incident.TechnicianName.ToString());
+                        this.technicianComboBox.SelectedIndex = this.technicianComboBox.FindString(newIncident.TechnicianName.ToString());
 
                     }
 
@@ -137,13 +138,13 @@ namespace TechSupport.UserControls
         {
 
             var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
-            string textToAdd = Incident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > " + this.textToAddTextBox.Text;
-            if (this.textToAddTextBox.Text == "" && (techID == 0 || techID == Incident.TechID))
+            string textToAdd = newIncident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > " + this.textToAddTextBox.Text;
+            if (this.textToAddTextBox.Text == "" && (techID == 0 || techID == newIncident.TechID))
             {
 
                 MessageBox.Show("You must either change the technician or add text.");
 }
-            else if (this.Incident.Description.Length > 200 && (techID == 0 || techID == Incident.TechID))
+            else if (this.newIncident.Description.Length >= 200 && (techID == 0 || techID == newIncident.TechID))
             {
                 MessageBox.Show("You cannot add any more to the description. You may only change the technician.");
             }
@@ -153,65 +154,47 @@ namespace TechSupport.UserControls
                     if (CheckTextLength() == DialogResult.OK)
                     {
 
-                        this.UpdateIncident(Incident, techID, textToAdd.Substring(0, 200));
+                        this.UpdateIncident(newIncident, techID, textToAdd.Substring(0, 200));
                     }
 
              }
               else
                 {
 
-                    this.UpdateIncident(Incident, techID, textToAdd);
+                    this.UpdateIncident(newIncident, techID, textToAdd);
                 }
             
         }
 
       
-        private bool validateForm()
-        {
-            var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
-            if (techID == 0)
-            {
-                MessageBox.Show("Must select a technician.");
-                return false;
-            }
-            else if (techID == Incident.TechID)
-            {
-                if (this.textToAddTextBox.Text == "")
-                {
-
-                    MessageBox.Show("Must add text or change technician to update incident.");
-                    return false;
-                }
-                else if (this.descriptionTextBox.Text.Length >= 200 && this.textToAddTextBox.Text.Length != 0)
-                {
-                    MessageBox.Show("You cannot add any more added text. Please remove added text and try again.");
-                    return false;
-                }
-            }
-            return true;
-        }
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            
-            string textToAdd = Incident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > Closed " + this.textToAddTextBox.Text;
-            var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
 
+            var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
+            string textToAdd = newIncident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > Closed " + this.textToAddTextBox.Text;
             if (techID == 0)
             {
-                MessageBox.Show("Must have assigned Technician!");
-         
-            } else if ((this.descriptionTextBox.Text.Length >= 200 && this.textToAddTextBox.Text.Length != 0) || (this.textToAddTextBox.Text.Length > 200))
+
+                MessageBox.Show("You must assign a technician to close an incident.");
+            }
+            else if (this.newIncident.Description.Length >= 200  && this.textToAddTextBox.Text.Length != 0)
+            {
+                MessageBox.Show("You cannot add any more to the description.");
+            }
+            else if (textToAddTextBox.Text.Length > 200)
             {
 
-                 if (CheckTextLength() == DialogResult.OK)
+                if (CheckTextLength() == DialogResult.OK)
                 {
-                    this.CloseIncident(Incident, techID, textToAdd.Substring(0, 200));
+                    this.CloseIncident(newIncident, techID, textToAdd.Substring(0, 200));
                 }
-             
-            } else
-            {
-                this.CloseIncident(Incident, techID, textToAdd);
+
             }
+            else
+            {
+                this.CloseIncident(newIncident, techID, textToAdd);
+            }
+
 
         }
         private void CloseIncident(Incident incident, int techID, string description)
@@ -221,10 +204,17 @@ namespace TechSupport.UserControls
               
                     if (ConfirmationClose() == DialogResult.OK)
                     {
-                        Incident.DateClosed = DateTime.Now.ToString();
+                    Incident originalIncident = new Incident
+                    {
+                        IncidentID = int.Parse(this.incidentIDTextBox.Text)
+                    };
+                    Incident nextNewIncident = this.inController.GetIncident(originalIncident);
+
+                        incident.DateClosed = DateTime.Now.ToString();
                         incident.TechID = techID;
                         incident.Description = description;
-                        inController.CloseIncident(incident);
+                      
+                        inController.CloseIncident(incident, nextNewIncident);
                         this.textToAddTextBox.Clear();
                         this.descriptionTextBox.Text = incident.Description;
                         MessageBox.Show("Incident has been closed.");
@@ -241,15 +231,23 @@ namespace TechSupport.UserControls
         {
             try
             {
-               
+                
+                    Incident originalIncident = new Incident
+                    {
+                        IncidentID = int.Parse(this.incidentIDTextBox.Text)
+                    };
+                    Incident nextNewIncident = this.inController.GetIncident(originalIncident);
+
                     incident.TechID = techID;
                     incident.Description = description;
-                    inController.UpdateIncident(incident);
+         
+                    inController.UpdateIncident(incident, nextNewIncident);
                     this.textToAddTextBox.Clear();
+                    
                     this.descriptionTextBox.Text = incident.Description;
                     MessageBox.Show("Incident has been updated.");
                 
-            }
+                 }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);

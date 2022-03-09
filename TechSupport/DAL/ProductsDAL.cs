@@ -18,7 +18,6 @@ namespace TechSupport.DAL
         public Dictionary<string, string> GetProducts()
         {
             var productList = new Dictionary<string, string>();
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
 
             string selectStatement =
 
@@ -26,22 +25,27 @@ namespace TechSupport.DAL
               "FROM Products " +
               "ORDER BY Name ASC ";
 
-            SqlDataReader reader = null;
 
-            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();
-                reader = selectCommand.ExecuteReader();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
 
-
-                while (reader.Read())
                 {
-                    productList.Add((string)reader["ProductCode"], (string)reader["Name"]);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                       
+                        while (reader.Read())
+                        {
+                            productList.Add((string)reader["ProductCode"], (string)reader["Name"]);
+                        }
+
+                    }
+
+                    return productList;
                 }
-
             }
-
-            return productList;
         }
     }
 }

@@ -16,23 +16,25 @@ namespace TechSupport.DAL
         /// <returns></returns>
         public int IsRegistered(Incident incident)
         {
-
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
-            string query = "SELECT COUNT(*) FROM Registrations " +
+            string selectStatement = "SELECT COUNT(*) FROM Registrations " +
                             "WHERE CustomerID=@customerID " +
                             "AND ProductCode=@productCode";
 
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                command.Parameters.AddWithValue("@customerID", incident.CustomerID);
-                command.Parameters["@customerID"].Value = incident.CustomerID;
-                command.Parameters.AddWithValue("@productCode", incident.ProductCode);
-                command.Parameters["@productCode"].Value = incident.ProductCode;
                 connection.Open();
-                int count = Convert.ToInt32(command.ExecuteScalar());
-                return count;
-            }
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
 
+                {
+                    command.Parameters.AddWithValue("@customerID", incident.CustomerID);
+                    command.Parameters["@customerID"].Value = incident.CustomerID;
+                    command.Parameters.AddWithValue("@productCode", incident.ProductCode);
+                    command.Parameters["@productCode"].Value = incident.ProductCode;
+            
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count;
+                }
+            }
         }
     }
 }

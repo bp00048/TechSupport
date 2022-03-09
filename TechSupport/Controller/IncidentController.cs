@@ -125,24 +125,20 @@ namespace TechSupport.Controller
             {
                 throw new Exception("Incident has already been closed. Please reload incident.");
             }
-            if (incidentDBSource.CheckChanges(incident) > 0)
-            {
-                throw new Exception("Incident has already been updated. Please reload incident.");
-            }
+           
         }
         /// <summary>
         /// Validates that the incident can be updated and sends the incident to be updated in the database.
         /// </summary>
         /// <param name="incident">The incident being updated.</param>
-        public void UpdateIncident(Incident incident)
+        public void UpdateIncident(Incident newIncident, Incident oldIncident)
         {
-            if (incident == null)
+            if (newIncident == null || oldIncident == null)
             {
                 throw new ArgumentNullException("Incident cannot be null");
             }
-
-            this.Validate(incident);
-            incidentDBSource.UpdateIncident(incident);
+            this.Validate(oldIncident);
+            incidentDBSource.UpdateIncident(newIncident, oldIncident);
         }
 
         /// <summary>
@@ -158,15 +154,15 @@ namespace TechSupport.Controller
         /// Validates that the incident can be closed and sends the incident to be updated (closed) in the database.
         /// </summary>
         /// <param name="incident">The incident being closed</param>
-        public void CloseIncident(Incident incident)
+        public void CloseIncident(Incident newIncident, Incident oldIncident)
         {
-            if (incident == null)
+            if (newIncident == null || oldIncident == null)
             {
                 throw new ArgumentNullException("Incident cannot be null");
             }
 
-            this.Validate(incident);
-            incidentDBSource.CloseIncident(incident);
+            this.Validate(oldIncident);
+            incidentDBSource.CloseIncident(newIncident, oldIncident);
         }
         /// <summary>
         /// Makes sure the incident being added is registered to the customer it is being added with.

@@ -18,7 +18,7 @@ namespace TechSupport.DAL
         public Dictionary<int, string> GetCustomers()
         {
             var customerList = new Dictionary<int, string>();
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
+
 
             string selectStatement =
 
@@ -26,25 +26,27 @@ namespace TechSupport.DAL
               "FROM Customers " +
               "ORDER BY Name ASC";
 
-            SqlDataReader reader = null;
-
-            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();
-                reader = selectCommand.ExecuteReader();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
 
-
-                while (reader.Read())
                 {
-                    customerList.Add((int)reader["CustomerID"], (string)reader["Name"]);
-                }
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+        
+                        while (reader.Read())
+                        {
+                            customerList.Add((int)reader["CustomerID"], (string)reader["Name"]);
+                        }
 
+                    }
+
+                    return customerList;
+                }
             }
 
-            return customerList;
         }
     }
-
-
 
 }

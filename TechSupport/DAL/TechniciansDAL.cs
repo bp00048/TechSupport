@@ -17,29 +17,31 @@ namespace TechSupport.DAL
         public Dictionary<int, string> GetTechnicians()
         {
             var techniciansList = new Dictionary<int, string>();
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
-
             string selectStatement =
 
               "SELECT TechID, Name " +
               "FROM Technicians ";
 
-            SqlDataReader reader = null;
 
-            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();
-                reader = selectCommand.ExecuteReader();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
 
-
-                while (reader.Read())
                 {
-                    techniciansList.Add((int)reader["TechID"], (string)reader["Name"]);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            techniciansList.Add((int)reader["TechID"], (string)reader["Name"]);
+                        }
+
+                    }
+
+                    return techniciansList;
                 }
-
             }
-
-            return techniciansList;
         }
     }
 }
