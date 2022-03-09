@@ -34,8 +34,8 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.ReadOnly = true;
             this.updateButton.Enabled = false;
             this.closeButton.Enabled = false;
-            this.technicianComboBox.Items.Insert(0, "--Unassigned--");
-            this.technicianComboBox.SelectedIndex = 0;
+
+
         }
 
         private void GetIncidentButton_Click(object sender, EventArgs e)
@@ -45,16 +45,18 @@ namespace TechSupport.UserControls
                 MessageBox.Show("The incidentID cannot be empty.");
 
             }
-          
+
             else
             {
 
                 try
                 {
                     int incidentID = int.Parse(this.incidentIDTextBox.Text);
-                    if (inController.CheckIncidentStatus(incidentID))
+                    Incident searchIncident = new Incident();
+                    searchIncident.IncidentID = incidentID;
+                    if (inController.CheckIncidentStatus(searchIncident))
                     {
-                        Incident = inController.GetIncident(incidentID);
+                        Incident = inController.GetIncident(searchIncident);
                         this.FillForm(Incident);
                         this.enableButtons();
                     }
@@ -64,16 +66,16 @@ namespace TechSupport.UserControls
                     }
 
                 }
-                catch (Exception ex)
+                catch (FormatException)
                 {
-                    MessageBox.Show("Something is wrong with the input \n" + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ID must be a number", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
 
 
         }
-      
+
 
         private void AddTechNameToComboBox()
         {
@@ -81,7 +83,7 @@ namespace TechSupport.UserControls
             try
             {
 
-                List<Incident> incidentList = this.inController.GetOpenIncidents();
+                List<Incident> incidentList = this.inController.GetIncidents();
                 if (incidentList.Count > 0)
                 {
                     var technicianSource = new BindingSource(this.inController.GetTechnicians(), null);
@@ -133,67 +135,82 @@ namespace TechSupport.UserControls
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-           
+
             var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
             string textToAdd = Incident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > " + this.textToAddTextBox.Text;
-
-            if (this.textToAddTextBox.Text == "" || this.descriptionTextBox.Text.Length == 200)
+            if (this.textToAddTextBox.Text == "" && (techID == 0 || techID == Incident.TechID))
             {
-                MessageBox.Show("Must add text to update Incident.");
+
+                MessageBox.Show("You must either change the technician or add text.");
+}
+            else if (this.Incident.Description.Length > 200 && (techID == 0 || techID == Incident.TechID))
+            {
+                MessageBox.Show("You cannot add any more to the description. You may only change the technician.");
             }
-            else if(validateForm(textToAdd, techID))
-            { 
-                if (textToAdd.Length > 200)
+             else if (textToAddTextBox.Text.Length > 200)
                 {
+
                     if (CheckTextLength() == DialogResult.OK)
                     {
+
                         this.UpdateIncident(Incident, techID, textToAdd.Substring(0, 200));
                     }
-                }
-                else
+
+             }
+              else
                 {
+
                     this.UpdateIncident(Incident, techID, textToAdd);
                 }
-
-            }
+            
         }
-    
-        private bool validateForm(string textToAdd, int techID)
+
+      
+        private bool validateForm()
         {
+            var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
             if (techID == 0)
             {
-                MessageBox.Show("Must have assigned Technician!");
+                MessageBox.Show("Must select a technician.");
                 return false;
             }
-            else if (this.descriptionTextBox.Text.Length == 200 && this.textToAddTextBox.Text.Length != 0)
+            else if (techID == Incident.TechID)
             {
-                MessageBox.Show("Description cannot be any longer. Please leave additional text blank.");
-                return false;
+                if (this.textToAddTextBox.Text == "")
+                {
+
+                    MessageBox.Show("Must add text or change technician to update incident.");
+                    return false;
+                }
+                else if (this.descriptionTextBox.Text.Length >= 200 && this.textToAddTextBox.Text.Length != 0)
+                {
+                    MessageBox.Show("You cannot add any more added text. Please remove added text and try again.");
+                    return false;
+                }
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
-
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
             
             string textToAdd = Incident.Description + "\r\n< " + DateTime.Now.ToShortDateString() + " > Closed " + this.textToAddTextBox.Text;
             var techID = ((KeyValuePair<int, string>)this.technicianComboBox.SelectedItem).Key;
 
-            if (validateForm(textToAdd, techID))
+            if (techID == 0)
             {
-                if (textToAdd.Length > 200 && CheckTextLength() == DialogResult.OK)
+                MessageBox.Show("Must have assigned Technician!");
+         
+            } else if ((this.descriptionTextBox.Text.Length >= 200 && this.textToAddTextBox.Text.Length != 0) || (this.textToAddTextBox.Text.Length > 200))
+            {
+
+                 if (CheckTextLength() == DialogResult.OK)
                 {
                     this.CloseIncident(Incident, techID, textToAdd.Substring(0, 200));
-
                 }
-                else
-                {
-                    this.CloseIncident(Incident, techID, textToAdd);
-                }
+             
+            } else
+            {
+                this.CloseIncident(Incident, techID, textToAdd);
             }
 
         }
@@ -201,12 +218,7 @@ namespace TechSupport.UserControls
         {
             try
             {
-                if (Incident.IncidentID != int.Parse(incidentIDTextBox.Text))
-                {
-                    MessageBox.Show("Incident ID does not match Incident ID from gotten Incident. Please reload incident.");
-                }
-                else
-                {
+              
                     if (ConfirmationClose() == DialogResult.OK)
                     {
                         Incident.DateClosed = DateTime.Now.ToString();
@@ -217,7 +229,7 @@ namespace TechSupport.UserControls
                         this.descriptionTextBox.Text = incident.Description;
                         MessageBox.Show("Incident has been closed.");
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -229,19 +241,14 @@ namespace TechSupport.UserControls
         {
             try
             {
-                if (Incident.IncidentID != int.Parse(incidentIDTextBox.Text))
-                {
-                    MessageBox.Show("Incident ID does not match Incident ID from gotten Incident. Please reload incident.");
-                }
-                else
-                {
+               
                     incident.TechID = techID;
                     incident.Description = description;
                     inController.UpdateIncident(incident);
                     this.textToAddTextBox.Clear();
                     this.descriptionTextBox.Text = incident.Description;
                     MessageBox.Show("Incident has been updated.");
-                }
+                
             }
             catch (Exception ex)
             {
@@ -266,6 +273,17 @@ namespace TechSupport.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.incidentIDTextBox.Clear();
+            this.clearForm();
+        }
+
+        private void incidentIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            this.clearForm();
+        }
+        
+        private void clearForm()
+        {
+            
             this.textToAddTextBox.Clear();
             this.descriptionTextBox.Clear();
             this.technicianComboBox.SelectedIndex = -1;

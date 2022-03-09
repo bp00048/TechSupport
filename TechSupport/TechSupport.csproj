@@ -62,8 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\IncidentController.cs" />
+    <Compile Include="DAL\CustomersDAL.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="DAL\IncidentDBDAL.cs" />
+    <Compile Include="DAL\ProductsDAL.cs" />
+    <Compile Include="DAL\RegistrationDAL.cs" />
+    <Compile Include="DAL\TechniciansDAL.cs" />
     <Compile Include="DAL\TechSupportDBConnection.cs" />
     <Compile Include="Model\Incident.cs" />
     <Compile Include="Controller\Program.cs" />
@@ -79,18 +83,6 @@
     </Compile>
     <Compile Include="UserControls\DisplayOpenIncidentsUserControl.Designer.cs">
       <DependentUpon>DisplayOpenIncidentsUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\LoadIncidentUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\LoadIncidentUserControl.Designer.cs">
-      <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\SearchIncidentsUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\SearchIncidentsUserControl.Designer.cs">
-      <DependentUpon>SearchIncidentsUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UpdateUserControl.cs">
       <SubType>UserControl</SubType>
@@ -109,18 +101,6 @@
     </Compile>
     <Compile Include="View\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchIncidentDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SearchIncidentDialog.Designer.cs">
-      <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainDashboard.cs">
       <SubType>Form</SubType>
@@ -143,12 +123,6 @@
     <EmbeddedResource Include="UserControls\DisplayOpenIncidentsUserControl.resx">
       <DependentUpon>DisplayOpenIncidentsUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\LoadIncidentUserControl.resx">
-      <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SearchIncidentsUserControl.resx">
-      <DependentUpon>SearchIncidentsUserControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UpdateUserControl.resx">
       <DependentUpon>UpdateUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,12 +131,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SearchIncidentDialog.resx">
-      <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>

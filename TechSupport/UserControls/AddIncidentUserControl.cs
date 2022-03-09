@@ -63,17 +63,18 @@ namespace TechSupport.UserControls
                    var productCode = ((KeyValuePair<string, string>)this.productComboBox.SelectedItem).Key;
                    var title = this.titleTextBox.Text;
                    var description = this.descriptionTextBox.Text;
-                    
-                   Incident newAddedIncident = new Incident();
 
-                    newAddedIncident.CustomerID = int.Parse(customerID.ToString());
-                    newAddedIncident.Title = title;
-                    newAddedIncident.Description = description;
-                    newAddedIncident.ProductCode = productCode.ToString();
+                Incident newAddedIncident = new Incident
+                {
+                    CustomerID = int.Parse(customerID.ToString()),
+                    Title = title,
+                    Description = description,
+                    ProductCode = productCode.ToString()
+                };
 
                 if (inController.IsRegistered(newAddedIncident))
                 {
-                    inController.AddOpenIncident(newAddedIncident);
+                    inController.AddIncident(newAddedIncident);
                     this.Clear();
                     this.messageLabel.Text = "Open Incident successfully added!";
                 } else
@@ -101,7 +102,7 @@ namespace TechSupport.UserControls
           
             try
             {
-                incidentList = this.inController.GetOpenIncidents();
+                incidentList = this.inController.GetIncidents();
 
                 if (incidentList.Count > 0)
                 {

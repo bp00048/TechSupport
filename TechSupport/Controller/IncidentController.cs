@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using TechSupport.DAL;
 using TechSupport.Model;
 
@@ -13,6 +12,10 @@ namespace TechSupport.Controller
     {
         private IncidentDAL incidentSource;
         private IncidentDBDAL incidentDBSource;
+        private CustomersDAL customerSource;
+        private RegistrationDAL registrationSource;
+        private TechniciansDAL technicianSource;
+        private ProductsDAL productSource;
         private Incident gotIncident;
 
         /// <summary>
@@ -21,35 +24,15 @@ namespace TechSupport.Controller
         /// </summary>
         public IncidentController()
         {
+            this.productSource = new ProductsDAL();
+            this.technicianSource = new TechniciansDAL();
+            this.customerSource = new CustomersDAL();
+            this.registrationSource = new RegistrationDAL();
             this.incidentSource = new IncidentDAL();
             this.incidentDBSource = new IncidentDBDAL();
 
         }
 
-        /// <summary>
-        /// Returns the incident list from the DAL to be displayed
-        /// </summary>
-        /// <returns></returns>
-
-        public List<Incident> GetIncidentList()
-        {
-            return this.incidentSource.GetIncidentList();
-        }
-
-        /// <summary>
-        /// Overloaded constructor. Returns incident list that only
-        /// includes the customerId that was passed to the method.
-        /// </summary>
-        /// <param name="customerID">Customer's unique id.</param>
-        /// <returns>List of data incidents that only are involved with the ID specified.</returns>
-        public List<Incident> GetIncidentList(int customerID)
-        {
-            if (customerID < 0)
-            {
-                throw new Exception("customerID must be number");
-            }
-            return this.incidentSource.GetIncidentList(customerID);
-        }
 
         /// <summary>
         /// Adds an incident to the DAL list 
@@ -68,12 +51,12 @@ namespace TechSupport.Controller
         /// Returns the incident list from the DBDAL to be displayed
         /// </summary>
         /// <returns></returns>
-        public List<Incident> GetOpenIncidents()
+        public List<Incident> GetIncidents()
         {
-            return incidentDBSource.GetOpenIncidents();
+            return incidentDBSource.GetIncidents();
         }
 
-        public void AddOpenIncident(Incident incident)
+        public void AddIncident(Incident incident)
         {
             if (incident == null)
             {
@@ -89,7 +72,7 @@ namespace TechSupport.Controller
         /// <returns></returns>
         public Dictionary<int, string> GetCustomers()
         {
-            return incidentDBSource.GetCustomers();
+            return customerSource.GetCustomers();
         }
         /// <summary>
         /// Returns the product code and name from the database.
@@ -97,7 +80,7 @@ namespace TechSupport.Controller
         /// <returns></returns>
         public Dictionary<string, string> GetProducts()
         {
-            return incidentDBSource.GetProducts();
+            return productSource.GetProducts();
         }
 
         /// <summary>
@@ -106,9 +89,14 @@ namespace TechSupport.Controller
         /// <param name="incidentID">the ID of the incident being fetched</param>
         /// <returns></returns>
 
-        public Incident GetIncident(int incidentID)
+        public Incident GetIncident(Incident incident)
         {
-            this.gotIncident = incidentDBSource.GetIncident(incidentID);
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
+            this.gotIncident = incidentDBSource.GetIncident(incident);
             return this.gotIncident;
         }
         /// <summary>
@@ -116,9 +104,14 @@ namespace TechSupport.Controller
         /// </summary>
         /// <param name="incidentID">Id of the incident being compared</param>
         /// <returns></returns>
-        public bool CheckIncidentStatus(int incidentID)
+        public bool CheckIncidentStatus(Incident incident)
         {
-            return (incidentDBSource.CheckIncidentStatus(incidentID) > 0);
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
+            return (incidentDBSource.CheckIncidentStatus(incident) > 0);
 
         }
         /// <summary>
@@ -128,7 +121,7 @@ namespace TechSupport.Controller
         /// <param name="incident">The incident being compared</param>
         private void Validate(Incident incident)
         {
-            if (!CheckIncidentStatus(incident.IncidentID))
+            if (!CheckIncidentStatus(incident))
             {
                 throw new Exception("Incident has already been closed. Please reload incident.");
             }
@@ -143,6 +136,11 @@ namespace TechSupport.Controller
         /// <param name="incident">The incident being updated.</param>
         public void UpdateIncident(Incident incident)
         {
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
             this.Validate(incident);
             incidentDBSource.UpdateIncident(incident);
         }
@@ -153,7 +151,7 @@ namespace TechSupport.Controller
         /// <returns></returns>
         public Dictionary<int, string> GetTechnicians()
         {
-            return incidentDBSource.GetTechnicians();
+            return technicianSource.GetTechnicians();
         }
 
         /// <summary>
@@ -162,6 +160,11 @@ namespace TechSupport.Controller
         /// <param name="incident">The incident being closed</param>
         public void CloseIncident(Incident incident)
         {
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
             this.Validate(incident);
             incidentDBSource.CloseIncident(incident);
         }
@@ -172,7 +175,12 @@ namespace TechSupport.Controller
         /// <returns></returns>
         public bool IsRegistered(Incident incident)
         {
-            return (incidentDBSource.IsRegistered(incident) > 0);
+            if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
+            return (registrationSource.IsRegistered(incident) > 0);
         }
     }
 }

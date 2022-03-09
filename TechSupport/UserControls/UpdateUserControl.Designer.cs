@@ -54,159 +54,143 @@ namespace TechSupport.UserControls
             // incidentIDLabel
             // 
             this.incidentIDLabel.AutoSize = true;
-            this.incidentIDLabel.Location = new System.Drawing.Point(11, 9);
-            this.incidentIDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.incidentIDLabel.Location = new System.Drawing.Point(16, 14);
             this.incidentIDLabel.Name = "incidentIDLabel";
-            this.incidentIDLabel.Size = new System.Drawing.Size(62, 13);
+            this.incidentIDLabel.Size = new System.Drawing.Size(91, 20);
             this.incidentIDLabel.TabIndex = 0;
             this.incidentIDLabel.Text = "Incident ID:";
             // 
             // customerNameLabel
             // 
             this.customerNameLabel.AutoSize = true;
-            this.customerNameLabel.Location = new System.Drawing.Point(11, 30);
-            this.customerNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.customerNameLabel.Location = new System.Drawing.Point(16, 46);
             this.customerNameLabel.Name = "customerNameLabel";
-            this.customerNameLabel.Size = new System.Drawing.Size(54, 13);
+            this.customerNameLabel.Size = new System.Drawing.Size(82, 20);
             this.customerNameLabel.TabIndex = 1;
             this.customerNameLabel.Text = "Customer:";
             // 
             // productCodeLabel
             // 
             this.productCodeLabel.AutoSize = true;
-            this.productCodeLabel.Location = new System.Drawing.Point(11, 53);
-            this.productCodeLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.productCodeLabel.Location = new System.Drawing.Point(16, 82);
             this.productCodeLabel.Name = "productCodeLabel";
-            this.productCodeLabel.Size = new System.Drawing.Size(47, 13);
+            this.productCodeLabel.Size = new System.Drawing.Size(68, 20);
             this.productCodeLabel.TabIndex = 2;
             this.productCodeLabel.Text = "Product:";
             // 
             // technicianLabel
             // 
             this.technicianLabel.AutoSize = true;
-            this.technicianLabel.Location = new System.Drawing.Point(11, 75);
-            this.technicianLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.technicianLabel.Location = new System.Drawing.Point(16, 115);
             this.technicianLabel.Name = "technicianLabel";
-            this.technicianLabel.Size = new System.Drawing.Size(63, 13);
+            this.technicianLabel.Size = new System.Drawing.Size(89, 20);
             this.technicianLabel.TabIndex = 3;
             this.technicianLabel.Text = "Technician:";
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(11, 96);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLabel.Location = new System.Drawing.Point(16, 148);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(30, 13);
+            this.titleLabel.Size = new System.Drawing.Size(42, 20);
             this.titleLabel.TabIndex = 4;
             this.titleLabel.Text = "Title:";
             // 
             // dateOpenedLabel
             // 
             this.dateOpenedLabel.AutoSize = true;
-            this.dateOpenedLabel.Location = new System.Drawing.Point(11, 116);
-            this.dateOpenedLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.dateOpenedLabel.Location = new System.Drawing.Point(16, 178);
             this.dateOpenedLabel.Name = "dateOpenedLabel";
-            this.dateOpenedLabel.Size = new System.Drawing.Size(74, 13);
+            this.dateOpenedLabel.Size = new System.Drawing.Size(109, 20);
             this.dateOpenedLabel.TabIndex = 5;
             this.dateOpenedLabel.Text = "Date Opened:";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(11, 133);
-            this.descriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.descriptionLabel.Location = new System.Drawing.Point(16, 205);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(63, 13);
+            this.descriptionLabel.Size = new System.Drawing.Size(93, 20);
             this.descriptionLabel.TabIndex = 6;
             this.descriptionLabel.Text = "Description:";
             // 
             // textToAddLabel
             // 
             this.textToAddLabel.AutoSize = true;
-            this.textToAddLabel.Location = new System.Drawing.Point(11, 179);
-            this.textToAddLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.textToAddLabel.Location = new System.Drawing.Point(16, 275);
             this.textToAddLabel.Name = "textToAddLabel";
-            this.textToAddLabel.Size = new System.Drawing.Size(69, 13);
+            this.textToAddLabel.Size = new System.Drawing.Size(98, 20);
             this.textToAddLabel.TabIndex = 7;
             this.textToAddLabel.Text = "Text To Add:";
             // 
             // incidentIDTextBox
             // 
-            this.incidentIDTextBox.Location = new System.Drawing.Point(107, 7);
-            this.incidentIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.incidentIDTextBox.Location = new System.Drawing.Point(160, 11);
             this.incidentIDTextBox.Name = "incidentIDTextBox";
-            this.incidentIDTextBox.Size = new System.Drawing.Size(83, 20);
+            this.incidentIDTextBox.Size = new System.Drawing.Size(122, 26);
             this.incidentIDTextBox.TabIndex = 8;
+            this.incidentIDTextBox.TextChanged += new System.EventHandler(this.incidentIDTextBox_TextChanged);
             // 
             // customerNameTextBox
             // 
-            this.customerNameTextBox.Location = new System.Drawing.Point(107, 28);
-            this.customerNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customerNameTextBox.Location = new System.Drawing.Point(160, 43);
             this.customerNameTextBox.Name = "customerNameTextBox";
-            this.customerNameTextBox.Size = new System.Drawing.Size(249, 20);
+            this.customerNameTextBox.Size = new System.Drawing.Size(372, 26);
             this.customerNameTextBox.TabIndex = 9;
             // 
             // productCodeTextBox
             // 
-            this.productCodeTextBox.Location = new System.Drawing.Point(107, 49);
-            this.productCodeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.productCodeTextBox.Location = new System.Drawing.Point(160, 75);
             this.productCodeTextBox.Name = "productCodeTextBox";
-            this.productCodeTextBox.Size = new System.Drawing.Size(249, 20);
+            this.productCodeTextBox.Size = new System.Drawing.Size(372, 26);
             this.productCodeTextBox.TabIndex = 10;
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(107, 92);
-            this.titleTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.titleTextBox.Location = new System.Drawing.Point(160, 142);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.Size = new System.Drawing.Size(249, 20);
+            this.titleTextBox.Size = new System.Drawing.Size(372, 26);
             this.titleTextBox.TabIndex = 11;
             // 
             // dateOpenedTextBox
             // 
-            this.dateOpenedTextBox.Location = new System.Drawing.Point(107, 112);
-            this.dateOpenedTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateOpenedTextBox.Location = new System.Drawing.Point(160, 172);
             this.dateOpenedTextBox.Name = "dateOpenedTextBox";
-            this.dateOpenedTextBox.Size = new System.Drawing.Size(83, 20);
+            this.dateOpenedTextBox.Size = new System.Drawing.Size(122, 26);
             this.dateOpenedTextBox.TabIndex = 12;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(107, 133);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descriptionTextBox.Location = new System.Drawing.Point(160, 205);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(228, 43);
+            this.descriptionTextBox.Size = new System.Drawing.Size(340, 64);
             this.descriptionTextBox.TabIndex = 13;
             // 
             // textToAddTextBox
             // 
-            this.textToAddTextBox.Location = new System.Drawing.Point(107, 179);
-            this.textToAddTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textToAddTextBox.Location = new System.Drawing.Point(160, 275);
             this.textToAddTextBox.Multiline = true;
             this.textToAddTextBox.Name = "textToAddTextBox";
             this.textToAddTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textToAddTextBox.Size = new System.Drawing.Size(228, 42);
+            this.textToAddTextBox.Size = new System.Drawing.Size(340, 62);
             this.textToAddTextBox.TabIndex = 14;
             // 
             // technicianComboBox
             // 
             this.technicianComboBox.FormattingEnabled = true;
-            this.technicianComboBox.Location = new System.Drawing.Point(107, 70);
-            this.technicianComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.technicianComboBox.Location = new System.Drawing.Point(160, 108);
             this.technicianComboBox.Name = "technicianComboBox";
-            this.technicianComboBox.Size = new System.Drawing.Size(249, 21);
+            this.technicianComboBox.Size = new System.Drawing.Size(372, 28);
             this.technicianComboBox.TabIndex = 15;
             // 
             // getIncidentButton
             // 
             this.getIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.getIncidentButton.Location = new System.Drawing.Point(200, 6);
-            this.getIncidentButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.getIncidentButton.Location = new System.Drawing.Point(300, 9);
             this.getIncidentButton.Name = "getIncidentButton";
-            this.getIncidentButton.Size = new System.Drawing.Size(54, 18);
+            this.getIncidentButton.Size = new System.Drawing.Size(81, 28);
             this.getIncidentButton.TabIndex = 16;
             this.getIncidentButton.Text = "Get";
             this.getIncidentButton.UseVisualStyleBackColor = true;
@@ -215,10 +199,9 @@ namespace TechSupport.UserControls
             // updateButton
             // 
             this.updateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.Location = new System.Drawing.Point(115, 223);
-            this.updateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.updateButton.Location = new System.Drawing.Point(172, 343);
             this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(48, 18);
+            this.updateButton.Size = new System.Drawing.Size(72, 28);
             this.updateButton.TabIndex = 17;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
@@ -227,10 +210,9 @@ namespace TechSupport.UserControls
             // closeButton
             // 
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.Location = new System.Drawing.Point(188, 223);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.closeButton.Location = new System.Drawing.Point(282, 343);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(48, 18);
+            this.closeButton.Size = new System.Drawing.Size(72, 28);
             this.closeButton.TabIndex = 18;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -239,10 +221,9 @@ namespace TechSupport.UserControls
             // clearButton
             // 
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(269, 223);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clearButton.Location = new System.Drawing.Point(404, 343);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(48, 18);
+            this.clearButton.Size = new System.Drawing.Size(72, 28);
             this.clearButton.TabIndex = 19;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -250,7 +231,7 @@ namespace TechSupport.UserControls
             // 
             // UpdateUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.closeButton);
@@ -272,9 +253,8 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.productCodeLabel);
             this.Controls.Add(this.customerNameLabel);
             this.Controls.Add(this.incidentIDLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UpdateUserControl";
-            this.Size = new System.Drawing.Size(365, 252);
+            this.Size = new System.Drawing.Size(548, 388);
             this.ResumeLayout(false);
             this.PerformLayout();
 
