@@ -57,9 +57,11 @@ namespace TechSupport.DAL
             List<Technician> techniciansList = new List<Technician>();
 
             string selectStatement =
-
-              "SELECT TechID, Name, Email, Phone " +
-              "FROM Technicians ";
+              "SELECT Technicians.TechID as techID, Name, Email, Phone " +
+              "FROM Technicians " +
+              "LEFT JOIN Incidents " +
+              "ON Incidents.TechID=Technicians.TechID " +
+              "WHERE Incidents.TechID IS NOT NULL";
 
             try
             {
@@ -76,7 +78,7 @@ namespace TechSupport.DAL
                             {
                                 Technician newTech = new Technician
                                 {
-                                    TechID = (int)reader["TechID"],
+                                    TechID = (int)reader["techID"],
                                     Name = reader["Name"].ToString(),
                                     Phone = reader["Phone"].ToString(),
                                     Email = reader["Email"].ToString()

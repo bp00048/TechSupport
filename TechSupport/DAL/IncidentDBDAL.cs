@@ -287,6 +287,62 @@ namespace TechSupport.DAL
 
 
         }
+
+        public List<Incident> GetAllIncidentsByTechnician(int techID)
+        {
+            List<Incident> incidentList = new List<Incident>();
+
+            string selectStatement =
+
+              "SELECT Products.Name as productName, Incidents.DateOpened as dateOpened, " +
+              "Customers.Name as customerName, Title " +
+              "FROM Incidents " +
+              "LEFT JOIN Customers " +
+              "ON Customers.CustomerID=Incidents.CustomerID " +
+              "LEFT JOIN Products " +
+              "ON Products.ProductCode=Incidents.ProductCode " +
+              "LEFT JOIN Technicians " +
+              "ON Incidents.techID=Technicians.techID " +
+              "WHERE Technicians.TechID = @techID";
+
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+
+                {
+
+                    selectCommand.Parameters.AddWithValue("@techID", techID);
+                    selectCommand.Parameters["@techID"].Value = techID;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                       
+
+                        while (reader.Read())
+                        {
+                            Incident newIncident = new Incident
+                            {
+                                ProductName = reader["productName"].ToString(),
+                                DateOpened = (DateTime)reader["dateOpened"],
+                                CustomerName = reader["customerName"].ToString(),
+                                Title = reader["Title"].ToString()
+
+                            };
+                            incidentList.Add(newIncident);
+                        }
+
+                    }
+
+                }
+            }
+
+            return incidentList;
+
+        }
+
+
+
         /// <summary>
         /// Returns the incidentID, customerName, productCode, technicianName, title, dateOpened, and description info from designated Incident as located by its ID.
         /// </summary>
@@ -317,16 +373,11 @@ namespace TechSupport.DAL
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
 
                 {
+                    command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
+                    command.Parameters["@incidentID"].Value = incident.IncidentID;
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-
-
-                        command.Parameters.AddWithValue("@incidentID", incident.IncidentID);
-                        command.Parameters["@incidentID"].Value = incident.IncidentID;
-                        connection.Open();
-
-
-
 
                         while (reader.Read())
                         {
@@ -361,6 +412,7 @@ namespace TechSupport.DAL
                 }
             }
         }
+
     }
 }
 

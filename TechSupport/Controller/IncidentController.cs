@@ -56,6 +56,11 @@ namespace TechSupport.Controller
             return incidentDBSource.GetIncidents();
         }
 
+        public List<Incident> GetAllIncidentsByTechnician(int techID)
+        {
+
+            return this.incidentDBSource.GetAllIncidentsByTechnician(techID);
+        }
         public void AddIncident(Incident incident)
         {
             if (incident == null)
@@ -178,6 +183,8 @@ namespace TechSupport.Controller
 
             return (registrationSource.IsRegistered(incident) > 0);
         }
+
+      
     }
 }
 

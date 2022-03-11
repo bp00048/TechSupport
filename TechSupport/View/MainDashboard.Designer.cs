@@ -158,10 +158,10 @@ namespace TechSupport.View
             // 
             // displayIncidentsByTechnicianUserControl1
             // 
-            this.displayIncidentsByTechnicianUserControl1.Location = new System.Drawing.Point(6, 6);
+            this.displayIncidentsByTechnicianUserControl1.Location = new System.Drawing.Point(5, -36);
             this.displayIncidentsByTechnicianUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.displayIncidentsByTechnicianUserControl1.Name = "displayIncidentsByTechnicianUserControl1";
-            this.displayIncidentsByTechnicianUserControl1.Size = new System.Drawing.Size(630, 509);
+            this.displayIncidentsByTechnicianUserControl1.Size = new System.Drawing.Size(637, 547);
             this.displayIncidentsByTechnicianUserControl1.TabIndex = 0;
             // 
             // MainDashboard

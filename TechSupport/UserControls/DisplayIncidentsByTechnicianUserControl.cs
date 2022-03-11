@@ -10,11 +10,15 @@ namespace TechSupport.UserControls
     {
 
         private TechnicianController techController;
+        IncidentController inController;
+
+        List<Incident> incidentList;
         private List<Technician> technicianList;
         public DisplayIncidentsByTechnicianUserControl()
         {
             InitializeComponent();
             techController = new TechnicianController();
+            inController = new IncidentController();
             this.emailTextBox.ReadOnly = true;
             this.phoneTextBox.ReadOnly = true;
 
@@ -22,8 +26,10 @@ namespace TechSupport.UserControls
 
         private void DisplayIncidentsByTechnicianUserControl_Load(object sender, EventArgs e)
         {
+            
             technicianList = techController.GetAllTechnicians();
             nameComboBox.DataSource = technicianList;
+
 
         }
 
@@ -39,6 +45,9 @@ namespace TechSupport.UserControls
             Technician technician = technicianList[nameComboBox.SelectedIndex];
             technicianBindingSource.Clear();
             technicianBindingSource.Add(technician);
+
+            incidentList = inController.GetAllIncidentsByTechnician(technician.TechID);
+            incidentByTechnicianDataGridView.DataSource = incidentList;
         }
     }
     }
