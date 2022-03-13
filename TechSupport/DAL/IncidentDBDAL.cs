@@ -288,6 +288,12 @@ namespace TechSupport.DAL
 
         }
 
+        /// <summary>
+        /// Returns product name, date opened, customer name and title of all incidents based on the technician ID. 
+        /// Used in the DisplayIncidentsByTechnician user control data grid view. Formats the date into day/month/year only.
+        /// </summary>
+        /// <param name="techID"></param>
+        /// <returns></returns>
         public List<Incident> GetAllIncidentsByTechnician(int techID)
         {
             List<Incident> incidentList = new List<Incident>();
@@ -325,6 +331,7 @@ namespace TechSupport.DAL
                             {
                                 ProductName = reader["productName"].ToString(),
                                 DateOpened = (DateTime)reader["dateOpened"],
+                                DateOpenedString = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]),
                                 CustomerName = reader["customerName"].ToString(),
                                 Title = reader["Title"].ToString()
 

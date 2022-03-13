@@ -6,6 +6,9 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// Class that allows the user to select a technician from the dropdown and display all incidents designated to that technician.
+    /// </summary>
     public partial class DisplayIncidentsByTechnicianUserControl : UserControl
     {
 
@@ -14,6 +17,10 @@ namespace TechSupport.UserControls
 
         List<Incident> incidentList;
         private List<Technician> technicianList;
+        /// <summary>
+        /// Constructor that initializes the TechnicianController and IncidentController. 
+        /// Also changes the emailTextBox and phoneTextBox to be disabled/read only.
+        /// </summary>
         public DisplayIncidentsByTechnicianUserControl()
         {
             InitializeComponent();
@@ -37,17 +44,25 @@ namespace TechSupport.UserControls
         {
             if (nameComboBox.SelectedIndex < 0)
             {
-
                 return;
-
             }
+            try
+            {
+                Technician technician = technicianList[nameComboBox.SelectedIndex];
+                technicianBindingSource.Clear();
+                technicianBindingSource.Add(technician);
 
-            Technician technician = technicianList[nameComboBox.SelectedIndex];
-            technicianBindingSource.Clear();
-            technicianBindingSource.Add(technician);
-
-            incidentList = inController.GetAllIncidentsByTechnician(technician.TechID);
-            incidentByTechnicianDataGridView.DataSource = incidentList;
+                incidentList = inController.GetAllIncidentsByTechnician(technician.TechID);
+                incidentByTechnicianDataGridView.DataSource = incidentList;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Technician ID is invalid.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
     }

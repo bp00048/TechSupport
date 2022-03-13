@@ -56,11 +56,25 @@ namespace TechSupport.Controller
             return incidentDBSource.GetIncidents();
         }
 
+        /// <summary>
+        /// Returns a list of incidents given a specific techID.
+        /// </summary>
+        /// <param name="techID"></param>
+        /// <returns></returns>
         public List<Incident> GetAllIncidentsByTechnician(int techID)
         {
+            if (techID < 0)
+            {
+                throw new ArgumentNullException("TechID is invalid.");
+            }
 
             return this.incidentDBSource.GetAllIncidentsByTechnician(techID);
         }
+
+        /// <summary>
+        /// Adds an incident to the database.
+        /// </summary>
+        /// <param name="incident"></param>
         public void AddIncident(Incident incident)
         {
             if (incident == null)
@@ -125,7 +139,12 @@ namespace TechSupport.Controller
         /// </summary>
         /// <param name="incident">The incident being compared</param>
         private void Validate(Incident incident)
-        {
+            { 
+                 if (incident == null)
+            {
+                throw new ArgumentNullException("Incident cannot be null");
+            }
+
             if (!CheckIncidentStatus(incident))
             {
                 throw new Exception("Incident has already been closed. Please reload incident.");

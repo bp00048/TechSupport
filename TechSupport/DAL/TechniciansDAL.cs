@@ -52,19 +52,23 @@ namespace TechSupport.DAL
             }
         }
 
+        /// <summary>
+        /// Returns the list of technicians that have incidents
+        /// </summary>
+        /// <returns></returns>
+
         public static List<Technician> GetAllTechnicians()
         {
             List<Technician> techniciansList = new List<Technician>();
 
             string selectStatement =
-              "SELECT Technicians.TechID as techID, Name, Email, Phone " +
+              "SELECT DISTINCT Technicians.TechID as techID, Name, Email, Phone " +
               "FROM Technicians " +
               "LEFT JOIN Incidents " +
               "ON Incidents.TechID=Technicians.TechID " +
               "WHERE Incidents.TechID IS NOT NULL";
 
-            try
-            {
+           
                 using (SqlConnection connection = TechSupportDBConnection.GetConnection())
                 {
                     connection.Open();
@@ -91,12 +95,7 @@ namespace TechSupport.DAL
 
                     }
                 }
-              
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+          
             return techniciansList;
         }
     }
