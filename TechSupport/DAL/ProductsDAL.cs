@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace TechSupport.DAL
 {
+
+    /// <summary>
+    /// DAL for the Products table in the database.
+    /// </summary>
     class ProductsDAL
     {
 

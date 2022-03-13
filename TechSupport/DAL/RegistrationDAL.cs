@@ -6,6 +6,9 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// DAL for the Registrations table in the database.
+    /// </summary>
     class RegistrationDAL
     {
 

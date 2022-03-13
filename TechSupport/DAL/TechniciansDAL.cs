@@ -9,6 +9,9 @@ using TechSupport.Model;
 
 namespace TechSupport.DAL
 {
+    /// <summary>
+    /// DAL for the Technicians table in the database.
+    /// </summary>
     class TechniciansDAL
     {
 
