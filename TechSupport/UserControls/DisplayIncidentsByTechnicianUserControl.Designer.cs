@@ -40,7 +40,7 @@ namespace TechSupport.UserControls
             this.incidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.incidentByTechnicianDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateOpened = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             phoneLabel = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@ namespace TechSupport.UserControls
             this.incidentByTechnicianDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.incidentByTechnicianDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn7,
+            this.DateOpened,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn1});
             this.incidentByTechnicianDataGridView.DataSource = this.incidentBindingSource;
@@ -135,11 +135,11 @@ namespace TechSupport.UserControls
             this.dataGridViewTextBoxColumn5.HeaderText = "ProductName";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // dataGridViewTextBoxColumn7
+            // DateOpened
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "DateOpenedString";
-            this.dataGridViewTextBoxColumn7.HeaderText = "DateOpened";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.DateOpened.DataPropertyName = "DateOpened";
+            this.DateOpened.HeaderText = "DateOpened";
+            this.DateOpened.Name = "DateOpened";
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -185,7 +185,7 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.BindingSource incidentBindingSource;
         private System.Windows.Forms.DataGridView incidentByTechnicianDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateOpened;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }

@@ -43,7 +43,7 @@ namespace TechSupport.UserControls
                         incident = incidentList[i];
                         
                         OpenIncidentsListView.Items.Add(incident.ProductCode);
-                        OpenIncidentsListView.Items[i].SubItems.Add(incident.DateOpened.ToShortDateString());
+                        OpenIncidentsListView.Items[i].SubItems.Add(incident.DateOpened);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.CustomerName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.TechnicianName);
                         OpenIncidentsListView.Items[i].SubItems.Add(incident.Title);

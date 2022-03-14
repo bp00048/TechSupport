@@ -57,14 +57,14 @@ namespace TechSupport.DAL
                             Incident.IncidentID = (int)reader["incidentID"];
                             Incident.ProductCode = reader["ProductCode"].ToString();
                             Incident.ProductName = reader["productName"].ToString();
-                            Incident.DateOpened = (DateTime)reader["DateOpened"];
+                            Incident.DateOpened = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]);
                             Incident.CustomerName = reader["customerName"].ToString();
                             Incident.TechnicianName = reader["techniciansName"].ToString();
                             Incident.Title = reader["Title"].ToString();
 
-                            if (reader["dateClosed"].ToString() != DateTime.MinValue.ToString())
+                            if (String.Format("{0:MM/dd/yyyy}", reader["dateClosed"]) != String.Format("{0:MM/dd/yyyy}", DateTime.MinValue))
                             {
-                                Incident.DateClosed = reader["DateClosed"].ToString();
+                                Incident.DateClosed = String.Format("{0:MM/dd/yyyy}", reader["DateClosed"]);
 
                             }
                             else
@@ -330,8 +330,7 @@ namespace TechSupport.DAL
                             Incident newIncident = new Incident
                             {
                                 ProductName = reader["productName"].ToString(),
-                                DateOpened = (DateTime)reader["dateOpened"],
-                                DateOpenedString = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]),
+                                DateOpened = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]),
                                 CustomerName = reader["customerName"].ToString(),
                                 Title = reader["Title"].ToString()
 
@@ -395,20 +394,22 @@ namespace TechSupport.DAL
                             }
                             gotIncident.CustomerName = reader["customerName"].ToString();
                             gotIncident.ProductCode = reader["productCode"].ToString();
-                            gotIncident.DateOpened = (DateTime)reader["dateOpened"];
+                            gotIncident.DateOpened = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]);
                             gotIncident.TechnicianName = reader["techName"].ToString();
                             gotIncident.Description = reader["description"].ToString();
                             gotIncident.Title = reader["title"].ToString();
 
-                            if (reader["dateClosed"].ToString() != DateTime.MinValue.ToString())
+                             if (String.Format("{0:MM/dd/yyyy}", reader["dateClosed"]) != String.Format("{0:MM/dd/yyyy}", DateTime.MinValue))
                             {
-                                gotIncident.DateClosed = reader["DateClosed"].ToString();
+                                gotIncident.DateClosed = String.Format("{0:MM/dd/yyyy}", reader["DateClosed"]);
 
                             }
                             else
                             {
                                 gotIncident.DateClosed = "";
                             }
+
+                            
 
 
                         }

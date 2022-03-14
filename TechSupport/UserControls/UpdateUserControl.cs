@@ -127,7 +127,7 @@ namespace TechSupport.UserControls
 
             this.customerNameTextBox.Text = incident.CustomerName;
             this.productCodeTextBox.Text = incident.ProductCode;
-            this.dateOpenedTextBox.Text = incident.DateOpened.ToShortDateString();
+            this.dateOpenedTextBox.Text = incident.DateOpened;
             this.titleTextBox.Text = incident.Title;
             this.descriptionTextBox.Text = incident.Description;
             this.AddTechNameToComboBox();
