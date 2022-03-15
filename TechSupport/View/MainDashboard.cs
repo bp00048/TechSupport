@@ -50,10 +50,9 @@ namespace TechSupport.View
 
         }
 
-
-        private void addIncidentUserControl1_Load(object sender, System.EventArgs e)
+        private void Load_Report(object sender, System.EventArgs e)
         {
-
+            this.ReportUserControl.LoadReport();
         }
     }
 }

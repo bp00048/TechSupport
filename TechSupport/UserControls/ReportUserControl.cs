@@ -12,11 +12,14 @@ namespace TechSupport.UserControls
 
       private void Report_Load(object sender, System.EventArgs e)
         {
-            // TODO: This line of code loads data into the 'techSupportDataSetForIncidentsByTechnicians.OpenIncidentsByTechnicians' table. You can move, or remove it, as needed.
+            this.LoadReport();
+        }
+
+      public void LoadReport()
+        {
             this.openIncidentsByTechniciansTableAdapter.Fill(this.techSupportDataSetForIncidentsByTechnicians.OpenIncidentsByTechnicians);
 
             this.reportViewer.RefreshReport();
         }
-
     }
 }

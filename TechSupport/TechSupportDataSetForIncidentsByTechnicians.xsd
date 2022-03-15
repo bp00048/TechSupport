@@ -28,15 +28,16 @@
               <DbSource ConnectionRef="TechSupportConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT Products.Name as ProductName, Customers.Name as CustomerName, Technicians.Name as TechnicianName,Incidents.DateOpened as DateOpened, Incidents.Title as Title, Incidents.IncidentID
+                    <CommandText>SELECT Products.Name as ProductName, Customers.Name as CustomerName, Incidents.DateOpened as DateOpened,Technicians.Name as TechnicianName, Incidents.Title as Title, Incidents.IncidentID
 FROM dbo.Incidents
-INNER JOIN Products
+JOIN Products
 ON Products.ProductCode = Incidents.ProductCode
-INNER JOIN Customers
+ JOIN Customers
 ON Customers.CustomerID = Incidents.CustomerId
-INNER JOIN Technicians
+JOIN Technicians
 ON Technicians.TechID = Incidents.TechID
-WHERE Incidents.DateClosed IS NOT NULL
+WHERE Incidents.DateClosed IS NULL
+AND Incidents.TechID IS NOT NULL
 </CommandText>
                     <Parameters />
                   </DbCommand>
@@ -93,7 +94,7 @@ WHERE Incidents.DateClosed IS NOT NULL
   <xs:element name="TechSupportDataSetForIncidentsByTechnicians" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TechSupportDataSetForIncidentsByTechnicians" msprop:Generator_UserDSName="TechSupportDataSetForIncidentsByTechnicians">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Customers" msprop:Generator_TableClassName="CustomersDataTable" msprop:Generator_TableVarName="tableCustomers" msprop:Generator_TablePropName="Customers" msprop:Generator_RowDeletingName="CustomersRowDeleting" msprop:Generator_RowChangingName="CustomersRowChanging" msprop:Generator_RowEvHandlerName="CustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomersRowDeleted" msprop:Generator_UserTableName="Customers" msprop:Generator_RowChangedName="CustomersRowChanged" msprop:Generator_RowEvArgName="CustomersRowChangeEvent" msprop:Generator_RowClassName="CustomersRow">
+        <xs:element name="Customers" msprop:Generator_TableClassName="CustomersDataTable" msprop:Generator_TableVarName="tableCustomers" msprop:Generator_RowChangedName="CustomersRowChanged" msprop:Generator_TablePropName="Customers" msprop:Generator_RowDeletingName="CustomersRowDeleting" msprop:Generator_RowChangingName="CustomersRowChanging" msprop:Generator_RowEvHandlerName="CustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomersRowDeleted" msprop:Generator_RowClassName="CustomersRow" msprop:Generator_UserTableName="Customers" msprop:Generator_RowEvArgName="CustomersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
@@ -106,7 +107,7 @@ WHERE Incidents.DateClosed IS NOT NULL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="OpenIncidentsByTechnicians" msprop:Generator_TableClassName="OpenIncidentsByTechniciansDataTable" msprop:Generator_TableVarName="tableOpenIncidentsByTechnicians" msprop:Generator_TablePropName="OpenIncidentsByTechnicians" msprop:Generator_RowDeletingName="OpenIncidentsByTechniciansRowDeleting" msprop:Generator_RowChangingName="OpenIncidentsByTechniciansRowChanging" msprop:Generator_RowEvHandlerName="OpenIncidentsByTechniciansRowChangeEventHandler" msprop:Generator_RowDeletedName="OpenIncidentsByTechniciansRowDeleted" msprop:Generator_UserTableName="OpenIncidentsByTechnicians" msprop:Generator_RowChangedName="OpenIncidentsByTechniciansRowChanged" msprop:Generator_RowEvArgName="OpenIncidentsByTechniciansRowChangeEvent" msprop:Generator_RowClassName="OpenIncidentsByTechniciansRow">
+        <xs:element name="OpenIncidentsByTechnicians" msprop:Generator_TableClassName="OpenIncidentsByTechniciansDataTable" msprop:Generator_TableVarName="tableOpenIncidentsByTechnicians" msprop:Generator_RowChangedName="OpenIncidentsByTechniciansRowChanged" msprop:Generator_TablePropName="OpenIncidentsByTechnicians" msprop:Generator_RowDeletingName="OpenIncidentsByTechniciansRowDeleting" msprop:Generator_RowChangingName="OpenIncidentsByTechniciansRowChanging" msprop:Generator_RowEvHandlerName="OpenIncidentsByTechniciansRowChangeEventHandler" msprop:Generator_RowDeletedName="OpenIncidentsByTechniciansRowDeleted" msprop:Generator_RowClassName="OpenIncidentsByTechniciansRow" msprop:Generator_UserTableName="OpenIncidentsByTechnicians" msprop:Generator_RowEvArgName="OpenIncidentsByTechniciansRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IncidentID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIncidentID" msprop:Generator_ColumnPropNameInRow="IncidentID" msprop:Generator_ColumnPropNameInTable="IncidentIDColumn" msprop:Generator_UserColumnName="IncidentID" type="xs:int" />
@@ -142,7 +143,7 @@ WHERE Incidents.DateClosed IS NOT NULL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_UserTableName="Products" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_RowEvArgName="ProductsRowChangeEvent" msprop:Generator_RowClassName="ProductsRow">
+        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_RowClassName="ProductsRow" msprop:Generator_UserTableName="Products" msprop:Generator_RowEvArgName="ProductsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
@@ -155,7 +156,7 @@ WHERE Incidents.DateClosed IS NOT NULL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Technicians" msprop:Generator_TableClassName="TechniciansDataTable" msprop:Generator_TableVarName="tableTechnicians" msprop:Generator_TablePropName="Technicians" msprop:Generator_RowDeletingName="TechniciansRowDeleting" msprop:Generator_RowChangingName="TechniciansRowChanging" msprop:Generator_RowEvHandlerName="TechniciansRowChangeEventHandler" msprop:Generator_RowDeletedName="TechniciansRowDeleted" msprop:Generator_UserTableName="Technicians" msprop:Generator_RowChangedName="TechniciansRowChanged" msprop:Generator_RowEvArgName="TechniciansRowChangeEvent" msprop:Generator_RowClassName="TechniciansRow">
+        <xs:element name="Technicians" msprop:Generator_TableClassName="TechniciansDataTable" msprop:Generator_TableVarName="tableTechnicians" msprop:Generator_RowChangedName="TechniciansRowChanged" msprop:Generator_TablePropName="Technicians" msprop:Generator_RowDeletingName="TechniciansRowDeleting" msprop:Generator_RowChangingName="TechniciansRowChanging" msprop:Generator_RowEvHandlerName="TechniciansRowChangeEventHandler" msprop:Generator_RowDeletedName="TechniciansRowDeleted" msprop:Generator_RowClassName="TechniciansRow" msprop:Generator_UserTableName="Technicians" msprop:Generator_RowEvArgName="TechniciansRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">

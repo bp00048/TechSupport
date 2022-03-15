@@ -2074,15 +2074,16 @@ namespace TechSupport.TechSupportDataSetForIncidentsByTechniciansTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Products.Name as ProductName, Customers.Name as CustomerName, Technicians.Name as TechnicianName,Incidents.DateOpened as DateOpened, Incidents.Title as Title, Incidents.IncidentID
+            this._commandCollection[0].CommandText = @"SELECT Products.Name as ProductName, Customers.Name as CustomerName, Incidents.DateOpened as DateOpened,Technicians.Name as TechnicianName, Incidents.Title as Title, Incidents.IncidentID
 FROM dbo.Incidents
-INNER JOIN Products
+JOIN Products
 ON Products.ProductCode = Incidents.ProductCode
-INNER JOIN Customers
+ JOIN Customers
 ON Customers.CustomerID = Incidents.CustomerId
-INNER JOIN Technicians
+JOIN Technicians
 ON Technicians.TechID = Incidents.TechID
-WHERE Incidents.DateClosed IS NOT NULL
+WHERE Incidents.DateClosed IS NULL
+AND Incidents.TechID IS NOT NULL
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
