@@ -49,6 +49,12 @@ namespace TechSupport.View
 
 
         }
+
+
+        private void addIncidentUserControl1_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
 

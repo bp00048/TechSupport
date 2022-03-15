@@ -29,30 +29,59 @@ namespace TechSupport.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.openIncidentsByTechniciansBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.techSupportDataSetForIncidentsByTechniciansBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.techSupportDataSetForIncidentsByTechnicians = new TechSupport.TechSupportDataSetForIncidentsByTechnicians();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.AddIncidentTab = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.UpdateTab = new System.Windows.Forms.TabPage();
-            this.updateUserControl1 = new TechSupport.UserControls.UpdateUserControl();
             this.DisplayOpenIncidentsTab = new System.Windows.Forms.TabPage();
-            this.displayOpenIncidentsUserControl = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
-            this.viewIncidentsByTechnicianTab = new System.Windows.Forms.TabPage();
-            this.displayIncidentsByTechnicianUserControl1 = new TechSupport.UserControls.DisplayIncidentsByTechnicianUserControl();
+            this.ViewIncidentsByTechnicianTab = new System.Windows.Forms.TabPage();
+            this.ReportTab = new System.Windows.Forms.TabPage();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.currentUsernameLabel = new System.Windows.Forms.Label();
+            this.openIncidentsByTechniciansBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.openIncidentsByTechniciansTableAdapter = new TechSupport.TechSupportDataSetForIncidentsByTechniciansTableAdapters.OpenIncidentsByTechniciansTableAdapter();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.updateUserControl1 = new TechSupport.UserControls.UpdateUserControl();
+            this.displayOpenIncidentsUserControl = new TechSupport.UserControls.DisplayOpenIncidentsUserControl();
+            this.displayIncidentsByTechnicianUserControl1 = new TechSupport.UserControls.DisplayIncidentsByTechnicianUserControl();
+            this.reportUserControl1 = new TechSupport.UserControls.ReportUserControl();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechniciansBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.AddIncidentTab.SuspendLayout();
             this.UpdateTab.SuspendLayout();
             this.DisplayOpenIncidentsTab.SuspendLayout();
-            this.viewIncidentsByTechnicianTab.SuspendLayout();
+            this.ViewIncidentsByTechnicianTab.SuspendLayout();
+            this.ReportTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // openIncidentsByTechniciansBindingSource1
+            // 
+            this.openIncidentsByTechniciansBindingSource1.DataMember = "OpenIncidentsByTechnicians";
+            this.openIncidentsByTechniciansBindingSource1.DataSource = this.techSupportDataSetForIncidentsByTechniciansBindingSource;
+            // 
+            // techSupportDataSetForIncidentsByTechniciansBindingSource
+            // 
+            this.techSupportDataSetForIncidentsByTechniciansBindingSource.DataSource = this.techSupportDataSetForIncidentsByTechnicians;
+            this.techSupportDataSetForIncidentsByTechniciansBindingSource.Position = 0;
+            // 
+            // techSupportDataSetForIncidentsByTechnicians
+            // 
+            this.techSupportDataSetForIncidentsByTechnicians.DataSetName = "TechSupportDataSetForIncidentsByTechnicians";
+            this.techSupportDataSetForIncidentsByTechnicians.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // mainTabControl
             // 
             this.mainTabControl.Controls.Add(this.AddIncidentTab);
             this.mainTabControl.Controls.Add(this.UpdateTab);
             this.mainTabControl.Controls.Add(this.DisplayOpenIncidentsTab);
-            this.mainTabControl.Controls.Add(this.viewIncidentsByTechnicianTab);
+            this.mainTabControl.Controls.Add(this.ViewIncidentsByTechnicianTab);
+            this.mainTabControl.Controls.Add(this.ReportTab);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mainTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainTabControl.Location = new System.Drawing.Point(0, 73);
@@ -75,16 +104,6 @@ namespace TechSupport.View
             this.AddIncidentTab.Text = "Add Incident";
             this.AddIncidentTab.UseVisualStyleBackColor = true;
             // 
-            // addIncidentUserControl1
-            // 
-            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(-3, 0);
-            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(733, 508);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(653, 471);
-            this.addIncidentUserControl1.TabIndex = 0;
-            // 
             // UpdateTab
             // 
             this.UpdateTab.Controls.Add(this.updateUserControl1);
@@ -96,14 +115,6 @@ namespace TechSupport.View
             this.UpdateTab.TabIndex = 1;
             this.UpdateTab.Text = "Update";
             this.UpdateTab.UseVisualStyleBackColor = true;
-            // 
-            // updateUserControl1
-            // 
-            this.updateUserControl1.Location = new System.Drawing.Point(-3, 3);
-            this.updateUserControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.updateUserControl1.Name = "updateUserControl1";
-            this.updateUserControl1.Size = new System.Drawing.Size(651, 523);
-            this.updateUserControl1.TabIndex = 0;
             // 
             // DisplayOpenIncidentsTab
             // 
@@ -117,33 +128,27 @@ namespace TechSupport.View
             this.DisplayOpenIncidentsTab.Text = "DisplayOpenIncidents";
             this.DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
             // 
-            // displayOpenIncidentsUserControl
+            // ViewIncidentsByTechnicianTab
             // 
-            this.displayOpenIncidentsUserControl.Location = new System.Drawing.Point(4, 12);
-            this.displayOpenIncidentsUserControl.Margin = new System.Windows.Forms.Padding(2);
-            this.displayOpenIncidentsUserControl.Name = "displayOpenIncidentsUserControl";
-            this.displayOpenIncidentsUserControl.Size = new System.Drawing.Size(641, 455);
-            this.displayOpenIncidentsUserControl.TabIndex = 0;
+            this.ViewIncidentsByTechnicianTab.Controls.Add(this.displayIncidentsByTechnicianUserControl1);
+            this.ViewIncidentsByTechnicianTab.Location = new System.Drawing.Point(4, 33);
+            this.ViewIncidentsByTechnicianTab.Margin = new System.Windows.Forms.Padding(2);
+            this.ViewIncidentsByTechnicianTab.Name = "ViewIncidentsByTechnicianTab";
+            this.ViewIncidentsByTechnicianTab.Padding = new System.Windows.Forms.Padding(2);
+            this.ViewIncidentsByTechnicianTab.Size = new System.Drawing.Size(648, 515);
+            this.ViewIncidentsByTechnicianTab.TabIndex = 4;
+            this.ViewIncidentsByTechnicianTab.Text = "View Incidents by Technician";
+            this.ViewIncidentsByTechnicianTab.UseVisualStyleBackColor = true;
             // 
-            // viewIncidentsByTechnicianTab
+            // ReportTab
             // 
-            this.viewIncidentsByTechnicianTab.Controls.Add(this.displayIncidentsByTechnicianUserControl1);
-            this.viewIncidentsByTechnicianTab.Location = new System.Drawing.Point(4, 33);
-            this.viewIncidentsByTechnicianTab.Margin = new System.Windows.Forms.Padding(2);
-            this.viewIncidentsByTechnicianTab.Name = "viewIncidentsByTechnicianTab";
-            this.viewIncidentsByTechnicianTab.Padding = new System.Windows.Forms.Padding(2);
-            this.viewIncidentsByTechnicianTab.Size = new System.Drawing.Size(648, 515);
-            this.viewIncidentsByTechnicianTab.TabIndex = 4;
-            this.viewIncidentsByTechnicianTab.Text = "View Incidents by Technician";
-            this.viewIncidentsByTechnicianTab.UseVisualStyleBackColor = true;
-            // 
-            // displayIncidentsByTechnicianUserControl1
-            // 
-            this.displayIncidentsByTechnicianUserControl1.Location = new System.Drawing.Point(6, -37);
-            this.displayIncidentsByTechnicianUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.displayIncidentsByTechnicianUserControl1.Name = "displayIncidentsByTechnicianUserControl1";
-            this.displayIncidentsByTechnicianUserControl1.Size = new System.Drawing.Size(636, 546);
-            this.displayIncidentsByTechnicianUserControl1.TabIndex = 0;
+            this.ReportTab.Controls.Add(this.reportUserControl1);
+            this.ReportTab.Location = new System.Drawing.Point(4, 33);
+            this.ReportTab.Name = "ReportTab";
+            this.ReportTab.Size = new System.Drawing.Size(648, 515);
+            this.ReportTab.TabIndex = 5;
+            this.ReportTab.Text = "Report";
+            this.ReportTab.UseVisualStyleBackColor = true;
             // 
             // logoutLabel
             // 
@@ -166,6 +171,58 @@ namespace TechSupport.View
             this.currentUsernameLabel.Size = new System.Drawing.Size(0, 17);
             this.currentUsernameLabel.TabIndex = 5;
             // 
+            // openIncidentsByTechniciansBindingSource
+            // 
+            this.openIncidentsByTechniciansBindingSource.DataMember = "OpenIncidentsByTechnicians";
+            this.openIncidentsByTechniciansBindingSource.DataSource = this.techSupportDataSetForIncidentsByTechniciansBindingSource;
+            // 
+            // openIncidentsByTechniciansTableAdapter
+            // 
+            this.openIncidentsByTechniciansTableAdapter.ClearBeforeFill = true;
+            // 
+            // addIncidentUserControl1
+            // 
+            this.addIncidentUserControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(-3, 0);
+            this.addIncidentUserControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.addIncidentUserControl1.MaximumSize = new System.Drawing.Size(733, 508);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(653, 471);
+            this.addIncidentUserControl1.TabIndex = 0;
+            this.addIncidentUserControl1.Load += new System.EventHandler(this.addIncidentUserControl1_Load);
+            // 
+            // updateUserControl1
+            // 
+            this.updateUserControl1.Location = new System.Drawing.Point(-3, 3);
+            this.updateUserControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.updateUserControl1.Name = "updateUserControl1";
+            this.updateUserControl1.Size = new System.Drawing.Size(651, 523);
+            this.updateUserControl1.TabIndex = 0;
+            // 
+            // displayOpenIncidentsUserControl
+            // 
+            this.displayOpenIncidentsUserControl.Location = new System.Drawing.Point(4, 12);
+            this.displayOpenIncidentsUserControl.Margin = new System.Windows.Forms.Padding(2);
+            this.displayOpenIncidentsUserControl.Name = "displayOpenIncidentsUserControl";
+            this.displayOpenIncidentsUserControl.Size = new System.Drawing.Size(641, 455);
+            this.displayOpenIncidentsUserControl.TabIndex = 0;
+            // 
+            // displayIncidentsByTechnicianUserControl1
+            // 
+            this.displayIncidentsByTechnicianUserControl1.Location = new System.Drawing.Point(6, -37);
+            this.displayIncidentsByTechnicianUserControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.displayIncidentsByTechnicianUserControl1.Name = "displayIncidentsByTechnicianUserControl1";
+            this.displayIncidentsByTechnicianUserControl1.Size = new System.Drawing.Size(636, 546);
+            this.displayIncidentsByTechnicianUserControl1.TabIndex = 0;
+            // 
+            // reportUserControl1
+            // 
+            this.reportUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.reportUserControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.reportUserControl1.Name = "reportUserControl1";
+            this.reportUserControl1.Size = new System.Drawing.Size(643, 436);
+            this.reportUserControl1.TabIndex = 0;
+            // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,11 +235,16 @@ namespace TechSupport.View
             this.Name = "MainDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainDashboard";
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechniciansBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.AddIncidentTab.ResumeLayout(false);
             this.UpdateTab.ResumeLayout(false);
             this.DisplayOpenIncidentsTab.ResumeLayout(false);
-            this.viewIncidentsByTechnicianTab.ResumeLayout(false);
+            this.ViewIncidentsByTechnicianTab.ResumeLayout(false);
+            this.ReportTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,8 +260,15 @@ namespace TechSupport.View
         private System.Windows.Forms.TabPage DisplayOpenIncidentsTab;
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private UserControls.UpdateUserControl updateUserControl1;
-        private System.Windows.Forms.TabPage viewIncidentsByTechnicianTab;
+        private System.Windows.Forms.TabPage ViewIncidentsByTechnicianTab;
         private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl;
         private UserControls.DisplayIncidentsByTechnicianUserControl displayIncidentsByTechnicianUserControl1;
+        private System.Windows.Forms.TabPage ReportTab;
+        private TechSupportDataSetForIncidentsByTechnicians techSupportDataSetForIncidentsByTechnicians;
+        private System.Windows.Forms.BindingSource techSupportDataSetForIncidentsByTechniciansBindingSource;
+        private System.Windows.Forms.BindingSource openIncidentsByTechniciansBindingSource;
+        private TechSupportDataSetForIncidentsByTechniciansTableAdapters.OpenIncidentsByTechniciansTableAdapter openIncidentsByTechniciansTableAdapter;
+        private System.Windows.Forms.BindingSource openIncidentsByTechniciansBindingSource1;
+        private UserControls.ReportUserControl reportUserControl1;
     }
 }
