@@ -31,19 +31,31 @@ namespace TechSupport.UserControls
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.techSupportDataSetForIncidentsByTechnicians = new TechSupport.TechSupportDataSetForIncidentsByTechnicians();
             this.openIncidentsByTechniciansBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.techSupportDataSetForIncidentsByTechnicians = new TechSupport.TechSupportDataSetForIncidentsByTechnicians();
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.openIncidentsByTechniciansTableAdapter = new TechSupport.TechSupportDataSetForIncidentsByTechniciansTableAdapters.OpenIncidentsByTechniciansTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).BeginInit();
+            this.openIncidentsByTechniciansBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // openIncidentsByTechniciansBindingSource
+            // 
+            this.openIncidentsByTechniciansBindingSource.DataMember = "OpenIncidentsByTechnicians";
+            this.openIncidentsByTechniciansBindingSource.DataSource = this.techSupportDataSetForIncidentsByTechnicians;
+            // 
+            // techSupportDataSetForIncidentsByTechnicians
+            // 
+            this.techSupportDataSetForIncidentsByTechnicians.DataSetName = "TechSupportDataSetForIncidentsByTechnicians";
+            this.techSupportDataSetForIncidentsByTechnicians.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer
             // 
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "OpenIncidentsByTechnicianReport";
-            reportDataSource1.Value = this.openIncidentsByTechniciansBindingSource;
+            reportDataSource1.Value = this.openIncidentsByTechniciansBindingSource1;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "TechSupport.UserControls.OpenIncidentsByTechnicianReport.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 0);
@@ -52,19 +64,14 @@ namespace TechSupport.UserControls
             this.reportViewer.Size = new System.Drawing.Size(427, 300);
             this.reportViewer.TabIndex = 0;
             // 
-            // techSupportDataSetForIncidentsByTechnicians
-            // 
-            this.techSupportDataSetForIncidentsByTechnicians.DataSetName = "TechSupportDataSetForIncidentsByTechnicians";
-            this.techSupportDataSetForIncidentsByTechnicians.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // openIncidentsByTechniciansBindingSource
-            // 
-            this.openIncidentsByTechniciansBindingSource.DataMember = "OpenIncidentsByTechnicians";
-            this.openIncidentsByTechniciansBindingSource.DataSource = this.techSupportDataSetForIncidentsByTechnicians;
-            // 
             // openIncidentsByTechniciansTableAdapter
             // 
             this.openIncidentsByTechniciansTableAdapter.ClearBeforeFill = true;
+            // 
+            // openIncidentsByTechniciansBindingSource1
+            // 
+            this.openIncidentsByTechniciansBindingSource1.DataMember = "OpenIncidentsByTechnicians";
+            this.openIncidentsByTechniciansBindingSource1.DataSource = this.techSupportDataSetForIncidentsByTechnicians;
             // 
             // ReportUserControl
             // 
@@ -74,8 +81,9 @@ namespace TechSupport.UserControls
             this.Name = "ReportUserControl";
             this.Size = new System.Drawing.Size(427, 300);
             this.Load += new System.EventHandler(this.Report_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,5 +94,6 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.BindingSource openIncidentsByTechniciansBindingSource;
         private TechSupportDataSetForIncidentsByTechnicians techSupportDataSetForIncidentsByTechnicians;
         private TechSupportDataSetForIncidentsByTechniciansTableAdapters.OpenIncidentsByTechniciansTableAdapter openIncidentsByTechniciansTableAdapter;
+        private System.Windows.Forms.BindingSource openIncidentsByTechniciansBindingSource1;
     }
 }

@@ -62,7 +62,7 @@ namespace TechSupport.DAL
                             Incident.TechnicianName = reader["techniciansName"].ToString();
                             Incident.Title = reader["Title"].ToString();
 
-                            if (String.Format("{0:MM/dd/yyyy}", reader["dateClosed"]) != String.Format("{0:MM/dd/yyyy}", DateTime.MinValue))
+                            if (String.Format("{0:MM/dd/yyyy}", reader["DateClosed"]) != String.Format("{0:MM/dd/yyyy}", DateTime.MinValue))
                             {
                                 Incident.DateClosed = String.Format("{0:MM/dd/yyyy}", reader["DateClosed"]);
 
@@ -144,7 +144,7 @@ namespace TechSupport.DAL
                     int rows = command.ExecuteNonQuery();
                     if (rows == 0)
                     {
-                        throw new Exception("That incident has already been updated. Please try again.");
+                        throw new Exception("That incident has already been updated or closed. Please try again.");
                     }
                 }
             }
@@ -190,8 +190,8 @@ namespace TechSupport.DAL
 
 
 
-                        command.Parameters.AddWithValue("@closeDate", newIncident.DateClosed);
-                        command.Parameters["@closeDate"].Value = newIncident.DateClosed;
+                        command.Parameters.AddWithValue("@closeDate", DateTime.Parse(newIncident.DateClosed));
+                        command.Parameters["@closeDate"].Value =  DateTime.Parse(newIncident.DateClosed);
 
                         command.Parameters.AddWithValue("@incidentID", newIncident.IncidentID);
                         command.Parameters["@incidentID"].Value = newIncident.IncidentID;
@@ -205,7 +205,7 @@ namespace TechSupport.DAL
                         int rows = command.ExecuteNonQuery();
                         if (rows == 0)
                         {
-                            throw new Exception("That incident has already been updated. Please try again.");
+                            throw new Exception("That incident has already been updated or closed. Please try again.");
                         }
                     }
                 }
@@ -261,8 +261,7 @@ namespace TechSupport.DAL
 
             string selectStatement =
               "SELECT COUNT(*) FROM Incidents " +
-              "WHERE Incidents.IncidentID=@incidentID " +
-              "AND DateClosed IS NULL";
+              "WHERE Incidents.IncidentID=@incidentID ";
 
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
@@ -278,7 +277,7 @@ namespace TechSupport.DAL
                     int count = Convert.ToInt32(command.ExecuteScalar());
                     if (count == 0)
                     {
-                        throw new Exception("That incident has already been closed or does not exist.");
+                        throw new Exception("That incident does not exist.");
                     }
                     return count;
                 }
@@ -301,7 +300,7 @@ namespace TechSupport.DAL
             string selectStatement =
 
               "SELECT Products.Name as productName, Incidents.DateOpened as dateOpened, " +
-              "Customers.Name as customerName, Title " +
+              "Customers.Name as customerName, Title, Incidents.DateClosed as dateClosed " +
               "FROM Incidents " +
               "LEFT JOIN Customers " +
               "ON Customers.CustomerID=Incidents.CustomerID " +
@@ -309,7 +308,8 @@ namespace TechSupport.DAL
               "ON Products.ProductCode=Incidents.ProductCode " +
               "LEFT JOIN Technicians " +
               "ON Incidents.techID=Technicians.techID " +
-              "WHERE Technicians.TechID = @techID";
+              "WHERE Technicians.TechID = @techID " +
+              "AND Incidents.DateClosed IS NULL";
 
 
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
@@ -332,7 +332,8 @@ namespace TechSupport.DAL
                                 ProductName = reader["productName"].ToString(),
                                 DateOpened = String.Format("{0:MM/dd/yyyy}", reader["dateOpened"]),
                                 CustomerName = reader["customerName"].ToString(),
-                                Title = reader["Title"].ToString()
+                                Title = reader["Title"].ToString(),
+                           
 
                             };
                             incidentList.Add(newIncident);

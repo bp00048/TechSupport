@@ -67,9 +67,9 @@ namespace TechSupport.DAL
             string selectStatement =
               "SELECT DISTINCT Technicians.TechID as techID, Name, Email, Phone " +
               "FROM Technicians " +
-              "LEFT JOIN Incidents " +
+              "INNER JOIN Incidents " +
               "ON Incidents.TechID=Technicians.TechID " +
-              "WHERE Incidents.TechID IS NOT NULL";
+              "WHERE Incidents.TechID IS NOT NULL ";
 
            
                 using (SqlConnection connection = TechSupportDBConnection.GetConnection())

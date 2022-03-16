@@ -31,12 +31,20 @@ namespace TechSupport.UserControls
 
         }
 
-        private void DisplayIncidentsByTechnicianUserControl_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Refreshes the techniciansList data source.
+        /// </summary>
+        public void LoadIncidents()
         {
-            
+
             technicianList = techController.GetAllTechnicians();
             nameComboBox.DataSource = technicianList;
+        }
+       
+        private void DisplayIncidentsByTechnicianUserControl_Load(object sender, EventArgs e)
+        {
 
+            this.LoadIncidents();
 
         }
 

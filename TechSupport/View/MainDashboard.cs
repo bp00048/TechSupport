@@ -50,9 +50,14 @@ namespace TechSupport.View
 
         }
 
-        private void Load_Report(object sender, System.EventArgs e)
+        private void Enter_Report(object sender, System.EventArgs e)
         {
             this.ReportUserControl.LoadReport();
+        }
+
+        private void Enter_ViewIncidentsByTechnicians(object sender, System.EventArgs e)
+        {
+            this.DisplayIncidentsByTechnicianUserControl.LoadIncidents();
         }
     }
 }

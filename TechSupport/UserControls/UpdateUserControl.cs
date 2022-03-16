@@ -68,9 +68,9 @@ namespace TechSupport.UserControls
                     MessageBox.Show("ID must be a number", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("That incident has already been closed.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -186,7 +186,7 @@ namespace TechSupport.UserControls
 
                 if (CheckTextLength() == DialogResult.OK)
                 {
-                    this.CloseIncident(newIncident, techID, textToAdd.Substring(0, 200));
+                    this.CloseIncident(newIncident, techID, textToAddTextBox.Text.Substring(0, 200) + "\r\n< " + DateTime.Now.ToShortDateString() + " > Closed ");
                 }
 
             }
