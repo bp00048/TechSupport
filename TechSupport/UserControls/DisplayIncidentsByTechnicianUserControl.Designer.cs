@@ -124,9 +124,9 @@ namespace TechSupport.UserControls
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn1});
             this.incidentByTechnicianDataGridView.DataSource = this.incidentBindingSource;
-            this.incidentByTechnicianDataGridView.Location = new System.Drawing.Point(22, 137);
+            this.incidentByTechnicianDataGridView.Location = new System.Drawing.Point(22, 121);
             this.incidentByTechnicianDataGridView.Name = "incidentByTechnicianDataGridView";
-            this.incidentByTechnicianDataGridView.Size = new System.Drawing.Size(333, 170);
+            this.incidentByTechnicianDataGridView.Size = new System.Drawing.Size(291, 151);
             this.incidentByTechnicianDataGridView.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn5
@@ -166,7 +166,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.phoneTextBox);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DisplayIncidentsByTechnicianUserControl";
-            this.Size = new System.Drawing.Size(373, 396);
+            this.Size = new System.Drawing.Size(330, 303);
             this.Load += new System.EventHandler(this.DisplayIncidentsByTechnicianUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incidentBindingSource)).EndInit();

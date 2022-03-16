@@ -43,12 +43,12 @@ namespace TechSupport.View
             this.ViewIncidentsByTechnicianTab = new System.Windows.Forms.TabPage();
             this.DisplayIncidentsByTechnicianUserControl = new TechSupport.UserControls.DisplayIncidentsByTechnicianUserControl();
             this.ReportTab = new System.Windows.Forms.TabPage();
+            this.reportUserControl1 = new TechSupport.UserControls.ReportUserControl();
             this.ReportUserControl = new TechSupport.UserControls.ReportUserControl();
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.currentUsernameLabel = new System.Windows.Forms.Label();
             this.openIncidentsByTechniciansBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openIncidentsByTechniciansTableAdapter = new TechSupport.TechSupportDataSetForIncidentsByTechniciansTableAdapters.OpenIncidentsByTechniciansTableAdapter();
-            this.reportUserControl1 = new TechSupport.UserControls.ReportUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.openIncidentsByTechniciansBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechniciansBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSetForIncidentsByTechnicians)).BeginInit();
@@ -170,7 +170,7 @@ namespace TechSupport.View
             // 
             // DisplayIncidentsByTechnicianUserControl
             // 
-            this.DisplayIncidentsByTechnicianUserControl.Location = new System.Drawing.Point(6, -37);
+            this.DisplayIncidentsByTechnicianUserControl.Location = new System.Drawing.Point(11, -37);
             this.DisplayIncidentsByTechnicianUserControl.Margin = new System.Windows.Forms.Padding(4);
             this.DisplayIncidentsByTechnicianUserControl.Name = "DisplayIncidentsByTechnicianUserControl";
             this.DisplayIncidentsByTechnicianUserControl.Size = new System.Drawing.Size(636, 546);
@@ -187,6 +187,14 @@ namespace TechSupport.View
             this.ReportTab.Text = "Report";
             this.ReportTab.UseVisualStyleBackColor = true;
             this.ReportTab.Enter += new System.EventHandler(this.Enter_Report);
+            // 
+            // reportUserControl1
+            // 
+            this.reportUserControl1.Location = new System.Drawing.Point(11, 6);
+            this.reportUserControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.reportUserControl1.Name = "reportUserControl1";
+            this.reportUserControl1.Size = new System.Drawing.Size(626, 435);
+            this.reportUserControl1.TabIndex = 1;
             // 
             // ReportUserControl
             // 
@@ -228,14 +236,6 @@ namespace TechSupport.View
             // openIncidentsByTechniciansTableAdapter
             // 
             this.openIncidentsByTechniciansTableAdapter.ClearBeforeFill = true;
-            // 
-            // reportUserControl1
-            // 
-            this.reportUserControl1.Location = new System.Drawing.Point(11, 6);
-            this.reportUserControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.reportUserControl1.Name = "reportUserControl1";
-            this.reportUserControl1.Size = new System.Drawing.Size(614, 435);
-            this.reportUserControl1.TabIndex = 1;
             // 
             // MainDashboard
             // 
